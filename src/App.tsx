@@ -1,9 +1,21 @@
-import ExampleCard from "./components/ExampleCard";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';  // Importando librerias de react-router-dom para el manejo de wards ('/')
+import Dashboard from './components/views/Dashboard';
 function App() {
   return (
-    <div className="bg-slate-950 flex h-screen w-full items-center justify-center">
-      <ExampleCard/>
-    </div>
+    <BrowserRouter>
+    <Routes>
+
+      {/* MAIN ROUTE '/' */}
+      <Route index element={<Dashboard />} />
+      {/* USUARIO */}
+      <Route path='/' element={<Dashboard />} />
+      
+      {/* OPERADOR */}
+      {/* <Route path='/test' element={<Dashboard />} /> */}
+
+
+    </Routes>
+  </BrowserRouter >
   );
 }
 export default App;
