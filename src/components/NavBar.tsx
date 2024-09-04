@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import USER_IMAGE from "../assets/svg/icons/extra/UserBlack.svg";
 import LOGO_IPS from "../assets/img/logos/LogoSanavit(Pequeño).png";
-import { navigation } from "../utils/navLinks.routes.js";
+import { navigation } from "../utils/navLinks.routes.ts";
 import { useState } from "react";
 import {
   ArrowLeftEndOnRectangleIcon,
@@ -11,6 +11,7 @@ import {
   UserIcon,
 } from "@heroicons/react/24/solid";
 import Login from "./views/Login";
+import { useAuth } from "../context/AuthContext.js";
 
 /**
  * This function takes a list of classes and joins them together in one
@@ -27,13 +28,7 @@ function classNames(...classes: string[]) {
  */
 const NavBar = () => {
   // Mock authentication status
-  const userLogin = false;
-  const isAuthenticated = false;
-  const logoutContext = () => {
-    // Implement logout functionality here
-    console.log("User logged out");
-  };
-
+  const { userLogin, isAuthenticated, logoutContext } = useAuth();
   // State to manage the login modal visibility
   const [showLogin, setShowLogin] = useState<boolean>(false);
 
@@ -45,7 +40,9 @@ const NavBar = () => {
       {/* Render Login modal if visible */}
       {showLogin && <Login onClose={closeLogin} />}
 
-      <Disclosure as="nav" className="bg-white shadow-customNav fixed top-0 left-0 right-0 z-10">
+      <Disclosure
+        as="nav"
+        className="bg-white shadow-customNav fixed top-0 left-0 right-0 z-10">
         {({ open }) => (
           <>
             <div className="w-full px-2 sm:px-6 lg:px-8">
@@ -80,8 +77,9 @@ const NavBar = () => {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                   <div className="hidden sm:ml-36 sm:block">
                     <div className="flex items-center">
-                      {navigation.map((item) => (
+                      {navigation.map((item, i) => (
                         <a
+                          key={i}
                           aria-current={item.current ? "page" : undefined}
                           href={item.href}
                           className="relative group mx-7 px-1 2xl:mx-8 2xl:px-2 hover:cursor-pointer">
@@ -125,7 +123,7 @@ const NavBar = () => {
                                   "flex items-center px-2 py-1 text-sm text-black"
                                 )}>
                                 <UserIcon className="w-6 mr-2 text-gray-800" />
-                                {/* {userLogin.user.nameUser} */}
+                                {userLogin.user.nombreUsuario}
                               </a>
                             )}
                           </Menu.Item>

@@ -65,8 +65,14 @@ const Dashboard = () => {
             </h1>
             <ul className="flex gap-x-28 mb-6">
               {services.map((service) => (
-                <li className="flex flex-col items-center justify-center" key={service.id}>
-                  <img className="size-32" src={service.imgRelated} alt={service.title} />
+                <li
+                  className="flex flex-col items-center justify-center"
+                  key={service.id}>
+                  <img
+                    className="size-32"
+                    src={service.imgRelated}
+                    alt={service.title}
+                  />
                   <p className="text-lg mt-4 font-bold">{service.title}</p>
                 </li>
               ))}
@@ -148,7 +154,7 @@ const Dashboard = () => {
       </section>
 
       {/* FOOTER */}
-      <Footer/>
+      <Footer />
     </>
   );
 };
