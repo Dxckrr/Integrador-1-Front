@@ -88,6 +88,9 @@ const NavBar = () => {
                           <span className="absolute -bottom-1 right-1/2 w-0 h-[1.5px] bg-black group-hover:w-1/2 group-hover:transition-all" />
                         </a>
                       ))}
+                      <a href={"/citas"} className="text-white px-6 py-2 mx-7 rounded-3xl bg-gradient-to-r from-primary-blue to-secondary-blue">
+                        Citas aquí
+                      </a>
                     </div>
                   </div>
 

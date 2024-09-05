@@ -1,5 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"; // Importando librerias de react-router-dom para el manejo de wards ('/')
 import Dashboard from "./components/pages/Dashboard";
+import AboutUs from "./components/pages/AboutUs";
+import Appointments from "./components/pages/Appointment";
+import Services from "./components/pages/Services";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -8,11 +13,10 @@ function App() {
         <Route index element={<Dashboard />} />
         {/* USUARIO */}
         <Route path="/" element={<Dashboard />} />
-        {/* 
+
         <Route path="/" element={<AboutUs />} />
-        <Route path="/" element={<Services />} /> 
-        <Route path="/" element={<Appointments />} />         
-        */}
+        <Route path="/" element={<Services />} />
+        <Route path="/" element={<Appointments />} />
 
         {/* OPERADOR */}
 
@@ -38,7 +42,6 @@ function App() {
           <Route path='/sth/' element={<Dashboard />}>
         </Route>
          */}
-
 
         {/* RUTAS NO EXISTENTES */}
         {/* <Route path="*" element={<NotFound />} /> */}

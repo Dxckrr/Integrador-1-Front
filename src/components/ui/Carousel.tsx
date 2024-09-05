@@ -2,19 +2,24 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function SampleNextArrow(props ) {
+function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
       style={{
-        ...style,
-        display: "block",
-        background: "red",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#1a1a2e !important", // Color oscuro del fondo
+        borderRadius: "50%", // Hacerlo circular
+        width: "24px", // Tamaño del círculo
+        height: "24px",
+        cursor: "pointer",
+        transition: "background-color 0.3s ease",
         transform: "translateX(-40px)",
       }}
-      onClick={onClick}
-    />
+      onClick={onClick}></div>
   );
 }
 
@@ -25,13 +30,19 @@ function SamplePrevArrow(props) {
       className={className}
       style={{
         ...style,
-        display: "block",
-        background: "green",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#1a1a2e", // Color oscuro del fondo
+        borderRadius: "50%", // Hacerlo circular
+        width: "24px", // Tamaño del círculo
+        height: "24px",
+        cursor: "pointer",
+        transition: "background-color 0.3s ease",
         transform: "translateX(40px)",
         zIndex: "1",
       }}
-      onClick={onClick}
-    />
+      onClick={onClick}></div>
   );
 }
 
@@ -50,10 +61,13 @@ function CustomArrows() {
           transform: "translateY(-40px)",
           zIndex: "1",
         }}>
-        <ul style={{ margin: 0, padding: 0, listStyleType: "none" }}> {dots} </ul>
+        <ul style={{ margin: 0, padding: 0, listStyleType: "none" }}>
+          {" "}
+          {dots}{" "}
+        </ul>
       </div>
     ),
-    customPaging: i => (
+    customPaging: (i) => (
       <div
         style={{
           width: "12px",
@@ -63,10 +77,8 @@ function CustomArrows() {
           cursor: "pointer",
           transition: "background-color 0.3s ease",
         }}
-        className="custom-dot"
-      >
-      </div>
-    )
+        className="custom-dot"></div>
+    ),
   };
 
   return (
@@ -82,10 +94,7 @@ function CustomArrows() {
           <img src="/src/assets/img/carousel/img_3_carousel.png" alt="" />
         </div>
         <div>
-          <img
-            src="/src/assets/img/carousel/img_4_carousel.png"
-            alt=""
-          />
+          <img src="/src/assets/img/carousel/img_4_carousel.png" alt="" />
         </div>
       </Slider>
 

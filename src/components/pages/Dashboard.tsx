@@ -13,7 +13,7 @@ const Dashboard = () => {
     <>
       <NavBar />
       {/* 1 SECCIÓN  = LANDING*/}
-      <main className="h-screen w-full flex flex-col mt-16">
+      <main className="h-screen w-full flex flex-col mt-16 mb-16 2xl:mb-0">
         <section className="flex h-2/5 w-full text-white bg-primary-blue">
           <div className="flex items-center w-full mx-auto container">
             <article className="flex flex-col items-start px-8 mr-20">
@@ -39,7 +39,7 @@ const Dashboard = () => {
               </div>
             </article>
             <img
-              className="w-auto h-80"
+              className="w-auto h-5/6"
               src="src/assets/img/others/Main_Image_Landing.png"
               alt=""
             />
