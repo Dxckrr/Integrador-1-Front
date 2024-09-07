@@ -1,11 +1,11 @@
 import Modal from "react-modal";
 import { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import LOGO_IPS from "../../assets/img/logos/LogoSanavit(Pequeño).png";
-import usePasswordToggle from "../../hooks/auth/usePassword";
-import { modalStyles } from "../../styled-components/auth/loginModal";
-import { useLogin } from "../../hooks/auth/useLoginForm";
-import Loader from "../ui/Loader";
+import LOGO_IPS from "../../../assets/img/logos/LogoSanavit(Pequeño).png";
+import usePasswordToggle from "../../../hooks/auth/usePassword";
+import { modalStyles } from "../../../styled-components/auth/loginModal";
+import { useLogin } from "../../../hooks/auth/useLoginForm";
+import Loader from "../../ui/global/Loader";
 
 const Login = ({ onClose }) => {
   const [modalIsOpen, setIsOpen] = useState<boolean>(true);
@@ -19,7 +19,6 @@ const Login = ({ onClose }) => {
     setIsOpen(false);
     if (onClose) onClose();
   }
-
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -34,13 +33,6 @@ const Login = ({ onClose }) => {
           <XMarkIcon className="size-8" />
         </button>
         {loading ? <Loader /> : ""}
-        {errorOnResponse ? (
-          <p className="text-red-600 animate-horizontal-vibration animate-iteration-count-once">
-            Error al iniciar sesión
-          </p>
-        ) : (
-          ""
-        )}
         <header>
           <div className="flex items-center justify-center w-56 sm:w-64 md:w-72 p-2 mt-2">
             <img src={LOGO_IPS} alt="logo_ips" />
@@ -60,7 +52,7 @@ const Login = ({ onClose }) => {
                 />
 
                 <label className="absolute text-sm text-black duration-300 transform -translate-y-6 scale-90 top-1 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6">
-                  Email
+                  Correo Electronico
                 </label>
               </span>
               {errors.email?.message && (
@@ -85,7 +77,7 @@ const Login = ({ onClose }) => {
                 />
 
                 <label className="absolute text-sm text-black duration-300 transform -translate-y-6 scale-90 top-1 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6">
-                  Password
+                  Contraseña
                 </label>
                 {showEye && (
                   <span className="absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer mb-2">
@@ -109,6 +101,13 @@ const Login = ({ onClose }) => {
               </button>
             </div>
           </form>
+          {errorOnResponse ? (
+            <p className="text-red-600 animate-horizontal-vibration animate-iteration-count-once flex justify-center ">
+              Error al iniciar sesión
+            </p>
+          ) : (
+            ""
+          )}
         </section>
       </article>
     </Modal>

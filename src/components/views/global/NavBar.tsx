@@ -1,17 +1,17 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import USER_IMAGE from "../assets/svg/icons/extra/UserBlack.svg";
-import LOGO_IPS from "../assets/img/logos/LogoSanavit(Pequeño).png";
-import { navigation } from "../utils/navLinks.routes.ts";
+import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
+import LOGO_IPS from "../../../assets/img/logos/LogoSanavit(Pequeño).png";
+import { navigation } from "../../../utils/navLinks.routes.ts";
 import { useState } from "react";
 import {
   ArrowLeftEndOnRectangleIcon,
   ArrowLeftStartOnRectangleIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import Login from "./views/Login";
-import { useAuth } from "../context/AuthContext.js";
+import Login from "../main/Login.tsx";
+import { useAuth } from "../../../context/AuthContext.js";
 
 /**
  * This function takes a list of classes and joins them together in one
@@ -145,7 +145,7 @@ const NavBar = () => {
                                   "flex items-center px-2 py-1 text-sm text-black"
                                 )}>
                                 <ArrowLeftStartOnRectangleIcon className="w-6 mr-2 text-gray-800" />
-                                Log out
+                                Cerrar Sesión
                               </a>
                             )}
                           </Menu.Item>
@@ -158,7 +158,7 @@ const NavBar = () => {
                                   active ? "bg-gray-100" : "",
                                   "flex justify-between px-2 py-1 text-sm text-black"
                                 )}>
-                                Log in
+                                Iniciar Sesión
                                 <ArrowLeftEndOnRectangleIcon className="w-6 mr-2 text-gray-800" />
                               </a>
                             )}

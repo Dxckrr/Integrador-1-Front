@@ -1,8 +1,8 @@
-import NavBar from "../NavBar.tsx";
-import Footer from "../ui/Footer.tsx";
-import { services } from "../../utils/data/services.ts";
-import Carousel from "../ui/Carousel.tsx";
-import ScheduleCard from "../ui/ScheduleCard.tsx";
+import NavBar from "../../views/global/NavBar.tsx";
+import Footer from "../../ui/global/Footer.tsx";
+import { services } from "../../../utils/data/services.ts";
+import Carousel from "../../ui/main/landing/Carousel.tsx";
+import ScheduleCard from "../../ui/main/landing/ScheduleCard.tsx";
 
 /**
  * This section contains tha main page
@@ -13,7 +13,7 @@ const Dashboard = () => {
     <>
       <NavBar />
       {/* 1 SECCIÓN  = LANDING*/}
-      <main className="h-screen w-full flex flex-col mt-16 mb-16 2xl:mb-0">
+      <main className="h-screen w-full flex flex-col mt-16 mb-16 2xl:mb-0" id="pepe">
         <section className="flex h-2/5 w-full text-white bg-primary-blue">
           <div className="flex items-center w-full mx-auto container">
             <article className="flex flex-col items-start px-8 mr-20">

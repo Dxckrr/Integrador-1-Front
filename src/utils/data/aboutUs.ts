@@ -1,32 +1,22 @@
-export const aboutUs = {
-    mision: {
+import MISION_IMG from '../../assets/svg/icons/aboutUs/IconMision.svg'
+import VISION_IMG from '../../assets/svg/icons/aboutUs/IconVision.svg'
+import OBJETIVO_IMG from '../../assets/svg/icons/aboutUs/IconObjetivo.svg'
+
+export const aboutUs = [
+    {
         title: 'Misión',
-        description: `Somos una Institución Prestadora de Servicios de Salud (IPS) 
-        que atiende desde la necesidad de los usuarios, sus necesidades y 
-        expectativas; desarrollando nuestros servicios con enfoque de riesgos y calidad. 
-        Propendemos por la salud y satisfacción de nuestra población, ofreciendo una atención cálida y segura.
-         Nos posicionamos como aliados estratégicos del aseguramiento, contando con colaboradores comprometidos 
-         que crecen tanto en lo profesional como en lo personal, dentro de una institución sólida y estable. 
-         Generamos rentabilidad social y económica para garantizar nuestra permanencia y proyección en el tiempo.`,
-        imgRelated: ''
+        description: `Ser el centro de referencia líder en medicina musculoesquelética y rehabilitación para la IPS, reconocido por nuestra excelencia clínica, tecnología avanzada y un enfoque multidisciplinario para mejorar la salud
+ y calidad de vida de nuestros pacientes.`,
+        imgRelated: MISION_IMG
     },
-    vision: {
+    {
         title: 'Visión',
-        description: `En el 2025 la población atendida por 
-        SaludPRO estará en las mejores condiciones de salud posible,
-         con usuarios y aseguradores altamente satisfechos. 
-         Que atenderá con infraestructura propia, tecnología de punta, 
-        un portafolio diversificado de servicios y estará ubicada en más de quince departamentos, con más de un millón y medio de usuarios; 
-        reconocida por sus modelos innovadores, con colaboradores que permanecen y se proyectan en una empresa estable y en constante crecimiento.`,
-        imgRelated: ''
+        description: `Proveer servicios integrales y de alta calidad en medicina musculoesquelética y rehabilitación, utilizando un enfoque multidisciplinario para mejorar la salud y calidad de vida de los pacientes. Ofreciendo atención personalizada con un equipo de profesionales capacitados y orientados a la excelencia.`,
+        imgRelated: VISION_IMG
     },
-    objetivo: {
+    {
         title: 'Objetivo',
-        description: `Gestionar el riesgo de los usuarios buscando intervenirlo para mejorar su salud y calidad de vida.
-         Brindar a los usuarios y grupos de interés experiencias que los hagan sentir cuidados.
-        Mejorar continuamente, lograr solidez y crecimiento organizacional.
-        Aportar a los aseguradores para su estabilidad y crecimiento.
-        Buscamos mejorar continuamente nuestros procesos y servicios, con el objetivo de alcanzar la excelencia en la atención médica y la gestión de la salud.`,
-        imgRelated: ''
+        description: `Ofrecer servicios generales de medicina musculoesquelética y rehabilitación, mediante programas personalizados de musculación, empleando tecnología avanzada y un enfoque multidisciplinario, con el fin de mejorar la salud, el rendimiento físico y la calidad de vida de nuestros clientes.`,
+        imgRelated: OBJETIVO_IMG
     }
-}
+]

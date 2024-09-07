@@ -1,6 +1,6 @@
-import FACEBOOK_ICON from "../../assets/svg/icons/social/facebook.svg";
-import INSTAGRAM_ICON from "../../assets/svg/icons/social/instagram.svg";
-import TWITTER_ICON from "../../assets/svg/icons/social/twitter.svg";
+import FACEBOOK_ICON from "../../../assets/svg/icons/social/facebook.svg";
+import INSTAGRAM_ICON from "../../../assets/svg/icons/social/instagram.svg";
+import TWITTER_ICON from "../../../assets/svg/icons/social/twitter.svg";
 
 /**
  * This component represents the Card that is displayed on the LOGIN section
@@ -78,7 +78,7 @@ const Footer = () => {
         </div>
       </footer>
       <aside className="w-full bg-gradient-to-b from-primary-blue to-primary-blue text-xs pb-2 lg:flex lg:items-center lg:justify-center md:px-12 lg:px-16 xl:px-24 2xl:px-28 text-white 2xl:text-sm">
-        © Sanavit | Colombia 2024
+        <span className="font-bold mr-1">©</span> Sanavit | Colombia 2024
       </aside>
     </>
   );

@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"; // Importando librerias de react-router-dom para el manejo de wards ('/')
-import Dashboard from "./components/pages/Dashboard";
-import AboutUs from "./components/pages/AboutUs";
-import Appointments from "./components/pages/Appointment";
-import Services from "./components/pages/Services";
-
+import Dashboard from "./components/pages/main/Dashboard";
+import AboutUs from "./components/pages/main/AboutUs";
+import Appointments from "./components/pages/main/Appointment";
+import Services from "./components/pages/main/Services";
 
 function App() {
   return (
@@ -14,9 +13,9 @@ function App() {
         {/* USUARIO */}
         <Route path="/" element={<Dashboard />} />
 
-        <Route path="/" element={<AboutUs />} />
+        <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/" element={<Services />} />
-        <Route path="/" element={<Appointments />} />
+        <Route path="/citas" element={<Appointments />} />
 
         {/* OPERADOR */}
 

@@ -8,6 +8,7 @@ function SampleNextArrow(props) {
     <div
       className={className}
       style={{
+        ...style,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -18,6 +19,8 @@ function SampleNextArrow(props) {
         cursor: "pointer",
         transition: "background-color 0.3s ease",
         transform: "translateX(-40px)",
+        zIndex: "1",
+
       }}
       onClick={onClick}></div>
   );
@@ -33,7 +36,7 @@ function SamplePrevArrow(props) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#1a1a2e", // Color oscuro del fondo
+        backgroundColor: "#1a1a2e !important", // Color oscuro del fondo
         borderRadius: "50%", // Hacerlo circular
         width: "24px", // Tamaño del círculo
         height: "24px",
@@ -85,16 +88,16 @@ function CustomArrows() {
     <div className="slider-container">
       <Slider {...settings}>
         <div className="">
-          <img src="/src/assets/img/carousel/img_1_carousel.png" alt="" />
+          <img src="/src/assets/img/carousel/main/img_1_carousel.png" alt="" />
         </div>
         <div>
-          <img src="/src/assets/img/carousel/img_2_carousel.png" alt="" />
+          <img src="/src/assets/img/carousel/main/img_2_carousel.png" alt="" />
         </div>
         <div>
-          <img src="/src/assets/img/carousel/img_3_carousel.png" alt="" />
+          <img src="/src/assets/img/carousel/main/img_3_carousel.png" alt="" />
         </div>
         <div>
-          <img src="/src/assets/img/carousel/img_4_carousel.png" alt="" />
+          <img src="/src/assets/img/carousel/main/img_4_carousel.png" alt="" />
         </div>
       </Slider>
 
