@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
  * @returns {Component} Dashboard
  */
 
-const buttonClass = "bg-slate-50 px-4 py-2 m-5 text-xl rounded-full shadow-lg hover:bg-aux-1-yellow"
+const buttonClass = "bg-white px-4 py-2 m-5 text-xl rounded-full shadow-customButton hover:bg-aux-1-yellow"
 
 const OperatorEmergencies = () => {
     return (

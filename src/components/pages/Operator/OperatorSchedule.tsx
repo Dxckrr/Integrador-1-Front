@@ -1,9 +1,3 @@
-
-
-/** bg-gradient-to-r from-white to-[#EFF0F1]
- * This section contains tha main page
- * @returns {Component} Dashboard
- */
 const inputActive = "border-gray-400 border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-2/5 mr-10 mt-5"
 
