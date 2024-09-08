@@ -6,15 +6,14 @@
 const inputActive = "border-gray-400 border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 pr-10 mt-5"
 
-
 const OperatorRegister = () => {
   return (
     <>
-      <main className="h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1] p-6">
+      <main className="min-h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1]">
 
         <div className="h-full w-4/5">
-          <div className="flex justify-center">
-            <h1 className="font-bold text-2xl mr-">Registrar usuario</h1>
+          <div className="flex justify-center mt-10">
+            <h1 className="font-bold text-2xl">Registrar usuario</h1>
           </div>
 
           <section className="mt-5 mb-11">
