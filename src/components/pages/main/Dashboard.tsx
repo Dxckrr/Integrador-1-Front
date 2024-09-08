@@ -13,7 +13,7 @@ const Dashboard = () => {
     <>
       <NavBar />
       {/* 1 SECCIÓN  = LANDING*/}
-      <main className="h-screen w-full flex flex-col mt-16 mb-16 2xl:mb-0" id="pepe">
+      <main className="h-screen w-full flex flex-col mt-16 mb-16 2xl:mb-0">
         <section className="flex h-2/5 w-full text-white bg-primary-blue">
           <div className="flex items-center w-full mx-auto container">
             <article className="flex flex-col items-start px-8 mr-20">
@@ -60,20 +60,20 @@ const Dashboard = () => {
                 de su camino hacia una vida más saludable!
               </p>
             </div>
-            <h1 className="font-bold text-3xl my-8">
+            <h1 className="font-bold text-3xl my-14">
               Nuestras áreas de servicios
             </h1>
-            <ul className="flex gap-x-28 mb-6">
+            <ul className="flex gap-x-16 xl:gap-x-44 mb-14">
               {services.map((service) => (
                 <li
-                  className="flex flex-col items-center justify-center"
+                  className="flex flex-col items-center justify-center size-32"
                   key={service.id}>
                   <img
-                    className="size-32"
+                    className="object-contain"
                     src={service.imgRelated}
                     alt={service.title}
                   />
-                  <p className="text-lg mt-4 font-bold">{service.title}</p>
+                  <p className="text-lg text-pretty mt-4 font-bold">{service.title}</p>
                 </li>
               ))}
             </ul>

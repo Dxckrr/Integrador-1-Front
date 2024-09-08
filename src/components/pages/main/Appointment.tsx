@@ -23,7 +23,9 @@ const Appointment = () => {
             </div>
           </div>
           <aside className="mt-16">
-            <button className="bg-red-500 text-white py-1 px-8 rounded-xl">Salir</button>
+            <a href="/" className="bg-red-500 text-white py-1 px-8 rounded-xl">
+              Salir
+            </a>
           </aside>
         </div>
       </main>

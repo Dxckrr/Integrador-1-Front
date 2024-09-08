@@ -11,7 +11,6 @@ import TWITTER_ICON from "../../../assets/svg/icons/social/twitter.svg";
 const Footer = () => {
   return (
     <>
-      {" "}
       <footer className="w-full bg-gradient-to-b from-primary-blue to-primary-blue grid grid-cols-2 sm:grid-cols-3 text-xs p-4 lg:flex lg:items-center lg:justify-between md:px-12 lg:px-16 xl:px-24 2xl:px-28 text-white 2xl:text-sm">
         <div className="flex flex-col justify-center mx-2 text-justify">
           <h2 className="mb-2 font-bold">Contacto</h2>
@@ -26,7 +25,7 @@ const Footer = () => {
         </div>
         <div className="flex items-center justify-center mx-2 p-2">
           <a href="#" className="hover:underline hover:decoration-white">
-            servicioalcliente@saludpro.ips.com
+            notificacionesyquejas@sanavit.ips.com
           </a>
         </div>
         <div className="flex flex-col justify-center sm:items-center mx-2 text-nowrap lg:items-start">

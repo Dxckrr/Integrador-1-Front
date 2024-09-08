@@ -7,29 +7,40 @@ import SERVICIOS_QUIROPRACTICOS from '../../assets/svg/icons/services/IconServic
 import ORTOPEDIA from '../../assets/svg/icons/services/IconOrtopedia.svg';
 import TRATAMIENTOS_QUIRURGICOS from '../../assets/svg/icons/services/IconTratamientosQuirurgicos.svg';
 
-export const services = [
+type Service = {
+    title: string;
+    imgRelated: string;
+    description: string;
+    id: number;
+};
+export const services: Service[] = [
     {
         title: 'Evaluaciones y Diagnósticos',
         imgRelated: EVALUACIONES_Y_DIAGNOSTICOS,
+        description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
         id: 1,
     },
     {
         title: 'Tratamientos de rehabilitación',
         imgRelated: TRATAMIENTOS_Y_REHABILITACION,
+        description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
         id: 2,
     },
     {
         title: 'Servicios quiroprácticos',
         imgRelated: SERVICIOS_QUIROPRACTICOS,
+        description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
         id: 3,
     },
     {
         title: 'Ortopedia',
         imgRelated: ORTOPEDIA,
+        description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
         id: 4,
     }, {
         title: 'Tratamientos quirúrgicos',
         imgRelated: TRATAMIENTOS_QUIRURGICOS,
+        description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
         id: 5,
     }
 ]

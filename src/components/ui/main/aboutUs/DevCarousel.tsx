@@ -6,7 +6,7 @@ import img3 from "../../../../assets/img/carousel/aboutUs/jose.jpeg";
 import img4 from "../../../../assets/img/carousel/aboutUs/carvajal.png";
 import { useState } from "react";
 
-const images = [img1, img2, img3, img4];
+const images = [img1, img2, img3, img4];  //THIS OBJECT MUST HAVE THE NAME OF EACH EV <- TODO
 function EmptyArrow({ onClick }) {
   return <div></div>;
 }
