@@ -76,7 +76,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <aside className="w-full bg-gradient-to-b from-primary-blue to-primary-blue text-xs pb-2 lg:flex lg:items-center lg:justify-center md:px-12 lg:px-16 xl:px-24 2xl:px-28 text-white 2xl:text-sm">
+      <aside className="w-full text-white bg-gradient-to-b from-primary-blue to-primary-blue text-xs pb-2 flex items-center justify-center md:px-12 lg:px-16 xl:px-24 2xl:px-28 2xl:text-sm">
         <span className="font-bold mr-1">©</span> Sanavit | Colombia 2024
       </aside>
     </>

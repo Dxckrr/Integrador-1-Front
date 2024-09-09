@@ -5,8 +5,7 @@ import img2 from "../../../../assets/img/carousel/aboutUs/chris.jpeg";
 import img3 from "../../../../assets/img/carousel/aboutUs/jose.jpeg";
 import img4 from "../../../../assets/img/carousel/aboutUs/carvajal.png";
 import { useState } from "react";
-
-const images = [img1, img2, img3, img4];  //THIS OBJECT MUST HAVE THE NAME OF EACH EV <- TODO
+const images = [img1, img2, img3, img4];  //THIS OBJECT MUST HAVE THE NAME OF EACH DEV <- TODO
 function EmptyArrow({ onClick }) {
   return <div></div>;
 }
