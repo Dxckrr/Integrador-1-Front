@@ -3,6 +3,7 @@ import Dashboard from "./components/pages/main/Dashboard";
 import AboutUs from "./components/pages/main/AboutUs";
 import Appointments from "./components/pages/main/Appointment";
 import Services from "./components/pages/main/Services";
+import Schedule_Appointment from "./components/pages/user/schedule/Schedule_Appointment";
 
 function App() {
   return (
@@ -15,7 +16,10 @@ function App() {
 
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/servicios" element={<Services />} />
-        <Route path="/citas" element={<Appointments />} />
+
+        {/* <Route path="/citas" element={<Appointments />}> */}
+          <Route path="/agendar" element={<Schedule_Appointment />} />
+        {/* </Route> */}
 
         {/* OPERADOR */}
 
