@@ -1,18 +1,17 @@
 import React from "react";
 import Paciente from "../../especialista_components/PacienteComponent";
+import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
 
 const Buscar: React.FC = () => {
   const appointments = [
     {
       cc: 1234567890,
-      profileImage: "user.png",
       name: "Pepito Perez",
       gender: "pansexual",
       age: "69 Años",
     },
     {
       cc: 9876543210,
-      profileImage: "user.png",
       name: "Juanita Gomez",
       gender: "femenino",
       age: "35 Años",
@@ -46,7 +45,7 @@ const Buscar: React.FC = () => {
             <Paciente
               key={appointment.cc}
               cc={appointment.cc}
-              profileImage={appointment.profileImage}
+              profileImage={USER_IMAGE}
               name={appointment.name}
               gender={appointment.gender}
               age={appointment.age}

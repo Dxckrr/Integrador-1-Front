@@ -17,7 +17,7 @@ const Paciente: React.FC<PacienteProps> = ({
 }) => {
   return (
     <a
-      href="/detallesdelpaciente"
+      href="detallesdelpaciente"
       className="flex items-center space-x-4 py-4 border-b border-[#D1DBE5] hover:bg-gray-100 transition"
     >
       <img

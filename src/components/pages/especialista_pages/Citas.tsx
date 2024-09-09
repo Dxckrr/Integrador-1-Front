@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TabComponent from "../../especialista_components/TabComponent";
+import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
 
 const Citas: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState("Hoy");
@@ -7,14 +8,12 @@ const Citas: React.FC = () => {
   const appointments = [
     {
       id: 1,
-      profileImage: "user.png",
       date: "23 de julio, 10:00 am - 10:15 am",
       type: "Consulta general",
       duration: "15 minutos",
     },
     {
       id: 2,
-      profileImage: "user.png",
       date: "24 de julio, 11:00 am - 11:30 am",
       type: "Consulta especializada",
       duration: "30 minutos",
@@ -37,10 +36,10 @@ const Citas: React.FC = () => {
         {appointments.map((appointment) => (
           <div
             key={appointment.id}
-            className="flex items-center space-x-4 py-4 border-b border-[#D1DBE5]"
+            className="flex items-center space-x-4 py-4 border-b border-[#D1DBE5] hover:bg-gray-100 transition"
           >
             <img
-              src={appointment.profileImage}
+              src={USER_IMAGE}
               alt="Profile"
               className="w-12 h-12 rounded-full"
             />

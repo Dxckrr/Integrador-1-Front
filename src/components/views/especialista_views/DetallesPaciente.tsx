@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TabComponent, DetallesComponent } from "../../especialista_components";
+import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
 
 import { Link } from "react-router-dom";
 
@@ -14,13 +15,11 @@ const DetallesPaciente: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState("Historia médica");
 
   const specialist = {
-    profileImage: "user.png",
     name: "Dr. Juan Rodriguez",
     specialty: "Cardiología",
   };
 
   const patient = {
-    profileImage: "user.png",
     name: "Pepito Perez",
     gender: "Pansexual",
     age: "69 Años",
@@ -149,7 +148,7 @@ const DetallesPaciente: React.FC = () => {
         <div className="w-[28%] bg-white p-6 flex flex-col justify-between">
           <div className="flex items-center">
             <img
-              src={specialist.profileImage}
+              src={USER_IMAGE}
               alt="Profile"
               className="w-24 h-24 rounded-md mr-4"
             />
@@ -164,13 +163,13 @@ const DetallesPaciente: React.FC = () => {
         <div className="w-[72%] bg-white p-4 flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-3xl font-semibold">Paciente</h1>
-            <Link to="/ordenMedica">
+            <Link to="../ordenMedica">
               <button className="bg-[#0F6AEF] text-white px-10 py-1 text-sm rounded-md hover:bg-blue-800 mr-1">
                 Crear Orden
               </button>
             </Link>
           </div>
-          <Link to="/historiaClinica">
+          <Link to="../historiaClinica">
             <button className="bg-[#0F6AEF] text-white px-10 py-1 text-sm rounded-md hover:bg-blue-800 ml-[83.15%] ">
               Historia Clinica
             </button>
@@ -178,7 +177,7 @@ const DetallesPaciente: React.FC = () => {
 
           <div className="flex flex-col items-center mt-12">
             <img
-              src={patient.profileImage}
+              src={USER_IMAGE}
               alt="Patient Profile"
               className="w-36 h-36 rounded-md"
             />

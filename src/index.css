@@ -11,3 +11,7 @@
   color-scheme: light; /* pagina BLANCA predeterminada */
   color: #000; /* color de letra NEGRO predeterminado */
 }
+
+* {
+  @apply select-none outline-none;
+}

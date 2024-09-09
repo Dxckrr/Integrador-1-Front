@@ -46,7 +46,7 @@ function HistoriaClinica() {
           </div>
           <div className="w-1/2 flex items-center justify-center pt-8">
             <img
-              src="LogoSanavit(Mediana).png"
+              src="..\..\src\assets\img\logos\LogoSanavit(Mediana).png"
               alt="VitaMed Logo"
               className="w-1/2"
             />

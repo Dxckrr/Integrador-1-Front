@@ -1,4 +1,5 @@
 import React from "react";
+import USER_IMAGE from "../../assets/svg/icons/extra/UserBlack.svg";
 
 const Header: React.FC = () => {
   return (
@@ -6,9 +7,9 @@ const Header: React.FC = () => {
       <div className="flex items-center">
         <div className="w-52 h-full">
           <img
-            src="LogoSanavit(Mediana).png"
+            src="..\..\src\assets\img\logos\LogoSanavit(Mediana).png"
             alt="Logo"
-            className="h-16 w-full object-contain"
+            className="h-14 w-auto object-contain"
           />
         </div>
       </div>
@@ -34,7 +35,7 @@ const Header: React.FC = () => {
 
         <div className="w-12 h-full rounded-full bg-white">
           <img
-            src="user.png"
+            src={USER_IMAGE}
             alt="Profile"
             className="h-full w-full rounded-full object-cover"
           />

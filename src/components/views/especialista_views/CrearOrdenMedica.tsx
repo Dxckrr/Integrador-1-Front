@@ -78,7 +78,7 @@ function CrearOrdenMedica() {
 
       <div className="w-1/2 flex flex-col items-center justify-between">
         <img
-          src="LogoSanavit(Mediana).png"
+          src="..\..\src\assets\img\logos\LogoSanavit(Mediana).png"
           alt="Logo"
           className="w-1/2 mx-auto mt-72 "
         />
