@@ -1,4 +1,5 @@
-const inputActive = "border-gray-400 border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
+
+const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-2/5 mr-10 mt-5"
 
 const OperatorSchedule = () => {

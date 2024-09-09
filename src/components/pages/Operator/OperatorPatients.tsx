@@ -1,11 +1,6 @@
 import { operatorNavigation } from "../../../utils/navLinks.routes";
 import { Link } from "react-router-dom";
 
-/** bg-gradient-to-r from-white to-[#EFF0F1]
- * This section contains tha main page
- * @returns {Component} Dashboard
- */
-
 const buttonClass = "bg-white px-4 py-2 m-5 text-xl rounded-full shadow-customButton hover:bg-aux-1-yellow"
 
 const OperatorEmergencies = () => {

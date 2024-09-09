@@ -1,9 +1,5 @@
 
-/** bg-gradient-to-r from-white to-[#EFF0F1]
- * This section contains tha main page
- * @returns {Component} Dashboard
- */
-const inputActive = "border-gray-400 border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
+const inputActive = "border-gray-300 border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-2/5 mr-10 mt-5"
 
 const OperatorEmergencies = () => {
@@ -43,7 +39,7 @@ const OperatorEmergencies = () => {
               </div>
               <div className="mt-5">
                 <label className="text-lg">Motivo de llegada</label>
-                <textarea className="border-gray-400 border rounded-lg p-1 pl-2 text-xl font-light w-full" name={"Emergencia"} rows={3} placeholder="Describe los sintomas del paciente..."/>
+                <textarea className="border-gray-300 border rounded-lg p-1 pl-2 text-xl font-light w-full" name={"Emergencia"} rows={3} placeholder="Describe los sintomas del paciente..."/>
               </div>
               <div className="w-1/4 mr-10 mt-5">
                 <select className={inputActive} name={"Prioridad"}>
