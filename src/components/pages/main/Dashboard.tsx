@@ -1,8 +1,8 @@
-import NavBar from "../NavBar.tsx";
-import Footer from "../ui/Footer.tsx";
-import { services } from "../../utils/data/services.ts";
-import Carousel from "../ui/Carousel.tsx";
-import ScheduleCard from "../ui/ScheduleCard.tsx";
+import NavBar from "../../views/global/NavBar.tsx";
+import Footer from "../../ui/global/Footer.tsx";
+import { services } from "../../../utils/data/services.ts";
+import Carousel from "../../ui/main/landing/Carousel.tsx";
+import ScheduleCard from "../../ui/main/landing/ScheduleCard.tsx";
 
 /**
  * This section contains tha main page
@@ -13,7 +13,7 @@ const Dashboard = () => {
     <>
       <NavBar />
       {/* 1 SECCIÓN  = LANDING*/}
-      <main className="h-screen w-full flex flex-col mt-16">
+      <main className="h-screen w-full flex flex-col mt-16 mb-16 2xl:mb-0">
         <section className="flex h-2/5 w-full text-white bg-primary-blue">
           <div className="flex items-center w-full mx-auto container">
             <article className="flex flex-col items-start px-8 mr-20">
@@ -39,7 +39,7 @@ const Dashboard = () => {
               </div>
             </article>
             <img
-              className="w-auto h-80"
+              className="w-auto h-5/6"
               src="src/assets/img/others/Main_Image_Landing.png"
               alt=""
             />
@@ -60,14 +60,20 @@ const Dashboard = () => {
                 de su camino hacia una vida más saludable!
               </p>
             </div>
-            <h1 className="font-bold text-3xl my-8">
+            <h1 className="font-bold text-3xl my-14">
               Nuestras áreas de servicios
             </h1>
-            <ul className="flex gap-x-28 mb-6">
+            <ul className="flex gap-x-16 xl:gap-x-44 mb-14">
               {services.map((service) => (
-                <li className="flex flex-col items-center justify-center" key={service.id}>
-                  <img className="size-32" src={service.imgRelated} alt={service.title} />
-                  <p className="text-lg mt-4 font-bold">{service.title}</p>
+                <li
+                  className="flex flex-col items-center justify-center size-32"
+                  key={service.id}>
+                  <img
+                    className="object-contain"
+                    src={service.imgRelated}
+                    alt={service.title}
+                  />
+                  <p className="text-lg text-pretty mt-4 font-bold">{service.title}</p>
                 </li>
               ))}
             </ul>
@@ -148,7 +154,7 @@ const Dashboard = () => {
       </section>
 
       {/* FOOTER */}
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -1,54 +1,38 @@
 import Modal from "react-modal";
 import { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import LOGO_IPS from "../../assets/img/logos/LogoSanavit(Pequeño).png";
-import usePasswordToggle from "../../hooks/auth/usePassword";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "8px",
-    maxWidth: "450px",
-    width: "100%",
-    backgroundColor: "#fff",
-    boxShadow: "0 0 15px rgba(0, 0, 0, 0.2)",
-  },
-  overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-};
+import LOGO_IPS from "../../../assets/img/logos/LogoSanavit(Pequeño).png";
+import usePasswordToggle from "../../../hooks/auth/usePassword";
+import { modalStyles } from "../../../styled-components/auth/loginModal";
+import { useLogin } from "../../../hooks/auth/useLoginForm";
+import Loader from "../../ui/global/Loader";
 
 const Login = ({ onClose }) => {
-  const [modalIsOpen, setIsOpen] = useState(true);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(true);
+
   const [InputType, Icon] = usePasswordToggle();
-  const [showEye, setShowEye] = useState(false);
+
+  const [showEye, setShowEye] = useState<boolean>(false);
+  const { register, errors, onSubmit, loading, errorOnResponse } = useLogin();
 
   function closeModal() {
     setIsOpen(false);
     if (onClose) onClose();
   }
-
   return (
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      style={customStyles}
+      style={modalStyles}
       contentLabel="Login Modal"
-      ariaHideApp={false} // Desactiva el requisito de appElement para simplificar
-    >
+      ariaHideApp={false}>
       <article className="bg-white rounded-2xl text-black flex flex-col items-center justify-evenly box-border relative">
         <button
           onClick={closeModal}
           className="absolute top-0 right-0 text-gray-600 hover:text-gray-900">
           <XMarkIcon className="size-8" />
         </button>
-        {/* {loading ? <Loader /> : ""}
-        {errorOnResponse ? <LoginModal /> : ""} */}
+        {loading ? <Loader /> : ""}
         <header>
           <div className="flex items-center justify-center w-56 sm:w-64 md:w-72 p-2 mt-2">
             <img src={LOGO_IPS} alt="logo_ips" />
@@ -56,7 +40,7 @@ const Login = ({ onClose }) => {
           <h1 className="text-xl flex justify-center">Iniciar Sesión</h1>
         </header>
         <section className="w-full">
-          <form>
+          <form onSubmit={onSubmit}>
             <div className="m-4 p-4">
               <span className="relative">
                 <input
@@ -64,18 +48,18 @@ const Login = ({ onClose }) => {
                   type="email"
                   autoComplete="off"
                   placeholder=""
-                  //   {...register("email")}
+                  {...register("email")}
                 />
 
                 <label className="absolute text-sm text-black duration-300 transform -translate-y-6 scale-90 top-1 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6">
-                  Email
+                  Correo Electronico
                 </label>
               </span>
-              {/* {errors.email?.message && (
+              {errors.email?.message && (
                 <p className="text-sm text-red-600 animate-horizontal-vibration animate-iteration-count-once">
                   {errors.email.message}
                 </p>
-              )} */}
+              )}
             </div>
             <div className="m-4 p-4">
               <span className="relative">
@@ -84,13 +68,16 @@ const Login = ({ onClose }) => {
                   type={InputType}
                   autoComplete="off"
                   placeholder=""
-                  onFocus={() => setShowEye(!showEye)}
-                  onBlur={() => setShowEye(!showEye)}
-                  //   {...register("password")}
+                  {...register("password", {
+                    onChange: (event) => {
+                      const value = event.target.value.trim();
+                      setShowEye(value.length > 0); // Actualiza el estado del icono del ojo
+                    },
+                  })}
                 />
 
                 <label className="absolute text-sm text-black duration-300 transform -translate-y-6 scale-90 top-1 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6">
-                  Password
+                  Contraseña
                 </label>
                 {showEye && (
                   <span className="absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer mb-2">
@@ -98,11 +85,11 @@ const Login = ({ onClose }) => {
                   </span>
                 )}
               </span>
-              {/* {errors.password?.message && (
-    <p className="text-sm text-red-600 animate-horizontal-vibration animate-iteration-count-once">
-      {errors.password.message}
-    </p>
-  )} */}
+              {errors.password?.message && (
+                <p className="text-sm text-red-600 animate-horizontal-vibration animate-iteration-count-once">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             <div></div>
@@ -114,6 +101,13 @@ const Login = ({ onClose }) => {
               </button>
             </div>
           </form>
+          {errorOnResponse ? (
+            <p className="text-red-600 animate-horizontal-vibration animate-iteration-count-once flex justify-center ">
+              Error al iniciar sesión
+            </p>
+          ) : (
+            ""
+          )}
         </section>
       </article>
     </Modal>
