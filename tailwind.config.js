@@ -14,7 +14,7 @@ export default {
         // 'customCard': '0 12px 12px 0 rgba(0, 0, 0, 0.25) , 0 0 10px 0 rgba(0, 0, 0, 0.2)',
         // 'smallShadow': 'rgba(0,0,0,0.16) 0px 0px 10px',
         // 'bigShadow': 'rgba(0,0,0,0.16) 0px 0px 20px',
-        // 'customButton': 'rgba(0,0,0,0.16) 0px 0px 35px'
+        'customButton': 'rgba(0,0,0,0.16) 0px 0px 10px'
       },
       colors: {
         'primary-blue': '#0f6aef',
