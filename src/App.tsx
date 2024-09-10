@@ -7,6 +7,7 @@ import {
 } from "./components/views/especialista_views";
 import { Buscar, Citas } from "./components/pages/especialista_pages";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
+import EncuestaSatisfaccion from "./components/pages/EncuestaSatisfaccion";
 
 function App() {
   return (
@@ -55,6 +56,11 @@ function App() {
               </Routes>
             </EspecialistaLayout>
           }
+        />
+
+        <Route
+          path="/encuesta-satisfaccion"
+          element={<EncuestaSatisfaccion />}
         />
         {/* ADMINISTRADOR */}
 

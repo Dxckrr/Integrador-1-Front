@@ -21,7 +21,7 @@ const DetallesPaciente: React.FC = () => {
 
   const patient = {
     name: "Pepito Perez",
-    gender: "Pansexual",
+    gender: "Hombre",
     age: "69 Años",
   };
 
@@ -34,9 +34,9 @@ const DetallesPaciente: React.FC = () => {
     },
     {
       labelLeft: "Nombre(s)",
-      valueLeft: "Quico",
+      valueLeft: "Pepito",
       labelRight: "Apellido(s)",
-      valueRight: "Pericles",
+      valueRight: "Perez",
     },
     {
       labelLeft: "Tipo de Identificacion",
@@ -55,32 +55,6 @@ const DetallesPaciente: React.FC = () => {
       valueLeft: "UPB eps",
       labelRight: "Regimen",
       valueRight: "Privado",
-    },
-  ];
-  const signosVitalesDetails: Detail[] = [
-    {
-      labelLeft: "Presion Arterial",
-      valueLeft: "n/a",
-      labelRight: "Presion Arterial Media",
-      valueRight: "n/a",
-    },
-    {
-      labelLeft: "Pulso",
-      valueLeft: "n/a",
-      labelRight: "Frecuencia Cardiaca",
-      valueRight: "n/a",
-    },
-    {
-      labelLeft: "Saturacion de oxigeno",
-      valueLeft: "n/a",
-      labelRight: "Talla",
-      valueRight: "n/a",
-    },
-    {
-      labelLeft: "Peso",
-      valueLeft: "n/a",
-      labelRight: "",
-      valueRight: "",
     },
   ];
 
@@ -123,10 +97,7 @@ const DetallesPaciente: React.FC = () => {
               title="Detalles personales"
               details={medicalHistoryDetails}
             />
-            <DetallesComponent
-              title="Signos vitales"
-              details={signosVitalesDetails}
-            />
+
             <DetallesComponent
               title="Antecedentes"
               details={AntecedentesDetails}
@@ -161,19 +132,18 @@ const DetallesPaciente: React.FC = () => {
         </div>
 
         <div className="w-[72%] bg-white p-4 flex flex-col">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-semibold">Paciente</h1>
+          <div className="flex flex-col items-end mb-4 space-y-2">
             <Link to="../ordenMedica">
-              <button className="bg-[#0F6AEF] text-white px-10 py-1 text-sm rounded-md hover:bg-blue-800 mr-1">
+              <button className="bg-[#0F6AEF] text-white px-10 py-1 text-sm rounded-md hover:bg-blue-800">
                 Crear Orden
               </button>
             </Link>
+            <Link to="../historiaClinica">
+              <button className="bg-[#0F6AEF] text-white px-10 py-1 text-sm rounded-md hover:bg-blue-800">
+                Historia Clinica
+              </button>
+            </Link>
           </div>
-          <Link to="../historiaClinica">
-            <button className="bg-[#0F6AEF] text-white px-10 py-1 text-sm rounded-md hover:bg-blue-800 ml-[83.15%] ">
-              Historia Clinica
-            </button>
-          </Link>
 
           <div className="flex flex-col items-center mt-12">
             <img

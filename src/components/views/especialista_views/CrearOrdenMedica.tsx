@@ -56,9 +56,10 @@ function CrearOrdenMedica() {
               Médico Responsable
             </label>
             <input
+              readOnly
               id="medicoResponsable"
               type="text"
-              placeholder="Médico o especialista"
+              placeholder="Juan Rodriguez - Cardiologia"
               className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
