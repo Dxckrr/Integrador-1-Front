@@ -17,9 +17,9 @@ function App() {
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/servicios" element={<Services />} />
 
-        {/* <Route path="/citas" element={<Appointments />}> */}
-          <Route path="/agendar" element={<Schedule_Appointment />} />
-        {/* </Route> */}
+        <Route path="/citas" element={<Appointments />}>
+          <Route path="agendar" element={<Schedule_Appointment />} />
+        </Route>
 
         {/* OPERADOR */}
 

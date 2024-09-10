@@ -6,7 +6,7 @@ const Stepper = ({ steps, currentStep }) => {
 
     const updateStep = (stepNumber, steps) => {
         const newSteps = [...steps];
-        console.log(newSteps);
+        // console.log(newSteps);
         let count = 0;
         while (count < newSteps.length) {
             //current step
@@ -95,7 +95,7 @@ const Stepper = ({ steps, currentStep }) => {
                         )}
                     </div>
                     <div
-                        className={`absolute top-0  text-center mt-12 text-xs uppercase ${step.highlighted ? "text-primary-blue font-bold" : "text-gray-400"
+                        className={`absolute top-0  text-center mt-8 text-xs uppercase ${step.highlighted ? "text-primary-blue font-bold" : "text-gray-400"
                             }`}
                     >
                         {step.description}
