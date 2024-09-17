@@ -6,8 +6,8 @@ const translations = {
   email: "Correo Electrónico",
   phone: "Teléfono",
   CC: "CC",
-  serviceId: "ID del Servicio",
-  medicId: "ID del Médico",
+  idServicio: "Id del Servicio",
+  idDocCC: "CC del Médico",
   fecha: "Fecha",
   hora: "Hora",
 };

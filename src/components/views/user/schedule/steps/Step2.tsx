@@ -2,8 +2,12 @@ import { services } from "../../../../../utils/data/services";
 import { useStepperContext } from "../../../../../context/schedule/ScheduleStepperContext";
 
 const Step2 = () => {
-  const { register, watch } = useStepperContext();
-
+  const { register, watch, medics } = useStepperContext();
+  const selectedMedicId = watch("idDocCC") || "";
+  const selectedHora = watch("hora") || "";
+  //LLAMAR A LOS DOCS EN LA DATABASE
+  //MAPEAR LAS HORAS Y QUITARLES LAS QUE NO ESTEN DISPONIBLES
+  console.log(medics)
   return (
     <>
       <h2 className="text-xl text-center font-bold text-dark-blue mb-20">
@@ -14,18 +18,17 @@ const Step2 = () => {
           <label className="text-xl">Especialista</label>
           <select
             className="block bg-transparent text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
-            {...register("medicId")}>
-            <option
-              defaultValue={
-                watch("medicId") !== undefined ? watch("medicId") : ""
-              }>
+            {...register("idDocCC")}
+            value={selectedMedicId}>
+            <option value="" disabled>
               Seleccione una opción
             </option>
-            {services.map((service, index) => (
-              <option key={index} value={service.id}>
-                {service.title}
-              </option>
-            ))}
+            {medics &&
+              medics.map((medic) => (
+                <option key={medic.CC} value={medic.CC}>
+                  {medic.nombreUsuario} {medic.apellidoUsuario}
+                </option>
+              ))}
           </select>
         </div>
         <div className="flex-grow flex flex-col justify-center items-center">
@@ -36,13 +39,13 @@ const Step2 = () => {
           <label className="text-xl">Horas disponibles</label>
           <select
             className="block bg-transparent text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
-            {...register("hora")}>
-            <option
-              defaultValue={watch("hora") !== undefined ? watch("hora") : ""}>
+            {...register("hora")}
+            value={selectedHora}>
+            <option value="" disabled>
               Seleccione una opción
             </option>
-            {services.map((service, index) => (
-              <option key={index} value={service.id}>
+            {services.map((service) => (
+              <option key={service.id} value={service.id}>
                 {service.title}
               </option>
             ))}
@@ -52,4 +55,5 @@ const Step2 = () => {
     </>
   );
 };
+
 export default Step2;

@@ -1,7 +1,9 @@
+import { useAuth } from "../../../../../context/auth/AuthContext";
 import { useStepperContext } from "../../../../../context/schedule/ScheduleStepperContext";
 
 const Step3 = () => {
-  const { register, watch } = useStepperContext();
+  const { register } = useStepperContext();
+  const { userLogin } = useAuth();
 
   return (
     <>
@@ -13,52 +15,57 @@ const Step3 = () => {
       </h2>
       <section className="grid grid-rows-3 grid-cols-2 gap-10">
         <div className="flex flex-col p-2">
-          <label htmlFor="">Nombres</label>
+          <label htmlFor="name">Nombres</label>
           <input
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
+            id="name"
+            defaultValue={userLogin?.user.nombreUsuario}
             {...register("name")}
-            value={watch("name")}
           />
         </div>
         <div className="flex flex-col p-2">
-          <label htmlFor="">Numero de telefono</label>
+          <label htmlFor="phone">Número de teléfono</label>
           <input
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
+            id="phone"
             {...register("phone")}
-            value={watch("phone")}
           />
         </div>
         <div className="flex flex-col p-2">
-          <label htmlFor="">Apellidos</label>
+          <label htmlFor="surname">Apellidos</label>
           <input
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
+            id="surname"
+            defaultValue={userLogin?.user.apellidoUsuario}
             {...register("surname")}
-            value={watch("surname")}
           />
         </div>
         <div className="flex flex-col p-2">
-          <label htmlFor="">Correo Electronico</label>
+          <label htmlFor="email">Correo Electrónico</label>
           <input
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
+            id="email"
+            defaultValue={userLogin?.user.emailUsuario}
             {...register("email")}
-            value={watch("email")}
           />
         </div>
         <div className="flex flex-col p-2">
-          <label htmlFor="">Documento</label>
+          <label htmlFor="CC">Documento</label>
           <input
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
+            id="CC"
+            defaultValue={userLogin?.user.CC}
             {...register("CC")}
-            value={watch("CC")}
           />
         </div>
       </section>
     </>
   );
 };
+
 export default Step3;

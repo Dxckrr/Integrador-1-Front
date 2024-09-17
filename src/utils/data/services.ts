@@ -36,7 +36,7 @@ export const services: Service[] = [
         title: 'Ortopedia',
         imgRelated: ORTOPEDIA,
         description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
-        id: 4,
+        id: 8,
     }, {
         title: 'Tratamientos quirúrgicos',
         imgRelated: TRATAMIENTOS_QUIRURGICOS,

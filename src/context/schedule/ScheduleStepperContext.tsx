@@ -1,32 +1,25 @@
 import { createContext, useContext, ReactNode } from "react";
-import {
-  useForm,
-  UseFormRegister,
-  UseFormHandleSubmit,
-  FieldErrors,
-} from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormDataSchedule } from "../../types/core/ScheduleForm";
+import { User } from "../../types/auth/UserLogin";
+import useScheduleAppointment from "../../hooks/schedule/useScheduleAppointment";
 
 interface StepperContextProps {
   register: UseFormRegister<FormDataSchedule>;
-  handleSubmit: UseFormHandleSubmit<FormDataSchedule>;
+  onSubmit: () => void;
   errors: FieldErrors;
   watch: (field: keyof FormDataSchedule) => any;
+  medics: User[];
 }
 
 interface ProviderProps {
   children: ReactNode;
 }
 
-// Crear el contexto con un valor por defecto vacío, con tipos especificados
 const StepperContext = createContext<StepperContextProps | undefined>(
   undefined
 );
 
-/**
- * Export the function to use the context body
- * @returns {Context} Context
- */
 export const useStepperContext = (): StepperContextProps => {
   const context = useContext(StepperContext);
   if (!context) {
@@ -35,22 +28,12 @@ export const useStepperContext = (): StepperContextProps => {
   return context;
 };
 
-/**
- * Contains the functions of the Context
- * In order to have the data inputs info in the register appointment section
- * @param {*} param0
- * @returns {Component} StepperContext.Provider that wraps the appointment section
- */
 export const UseContextProvider = ({ children }: ProviderProps) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm<FormDataSchedule>();
+  const { register, onSubmit, errors, watch, medics } = useScheduleAppointment();
 
   return (
-    <StepperContext.Provider value={{ register, handleSubmit, errors, watch }}>
+    <StepperContext.Provider
+      value={{ register, onSubmit, errors, watch, medics }}>
       {children}
     </StepperContext.Provider>
   );
