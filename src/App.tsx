@@ -3,15 +3,22 @@ import Dashboard from "./components/pages/main/Dashboard";
 import AboutUs from "./components/pages/main/AboutUs";
 import Appointments from "./components/pages/main/Appointment";
 import Services from "./components/pages/main/Services";
-import OperatorManagement from "./components/pages/Operator/OperatorManagement";
-import OperatorSchedule from "./components/pages/Operator/OperatorSchedule";
-import OperatorCancelation from "./components/pages/Operator/OperatorCancelation";
-import OperatorReschedule from "./components/pages/Operator/OperatorReschedule";
-import OperatorAuthorizations from "./components/pages/Operator/OperatorAuthorizations";
-import OperatorEmergencies from "./components/pages/Operator/OperatorEmergencies";
-import OperatorPatients from "./components/pages/Operator/OperatorPatients";
-import OperatorRegister from "./components/pages/Operator/OperatorRegister";
-import OperatorInformation from "./components/pages/Operator/OperatorInformation";
+import OperatorManagement from "./components/pages/operator/OperatorManagement";
+import OperatorSchedule from "./components/pages/operator/OperatorSchedule";
+import OperatorCancelation from "./components/pages/operator/OperatorCancelation";
+import OperatorReschedule from "./components/pages/operator/OperatorReschedule";
+import OperatorAuthorizations from "./components/pages/operator/OperatorAuthorizations";
+import OperatorEmergencies from "./components/pages/operator/OperatorEmergencies";
+import OperatorPatients from "./components/pages/operator/OperatorPatients";
+import OperatorRegister from "./components/pages/operator/OperatorRegister";
+import OperatorInformation from "./components/pages/operator/OperatorInformation";
+import AdminManagement from "./components/pages/admin/AdminManagement";
+import AdminRegisterPacient from "./components/pages/admin/AdminRegisterPacient";
+import AdminRegisterOperator from "./components/pages/admin/AdminRegisterOperator";
+import AdminRegisterMedic from "./components/pages/admin/AdminRegisterMedic";
+import AdminFinances from "./components/pages/admin/AdminFinances";
+import AdminSurvey from "./components/pages/admin/AdminSurvey";
+import AdminStats from "./components/pages/admin/AdminStats";
 
 function App() {
   return (
@@ -55,11 +62,13 @@ function App() {
 
         {/* ADMINISTRADOR */}
 
-        {/* AQUI IRA LA RUTA PROTEGIDA DE ADMIN
-        <Route path='/admin' element={<Dashboard />}>     
-          <Route path='/sth/' element={<Dashboard />}>
+        AQUI IRA LA RUTA PROTEGIDA DE ADMIN
+        <Route path='/admin/' element={<AdminManagement/>}>
+          <Route path='registrar-paciente' element={<AdminRegisterPacient/>}/>
+          <Route path='finanzas' element={<AdminFinances/>}/>
+          <Route path='encuesta-satisfaccion' element={<AdminSurvey/>}/>
+          <Route path='estadisticas' element={<AdminStats/>}/>
         </Route>
-         */}
 
         {/* RUTAS NO EXISTENTES */}
         {/* <Route path="*" element={<NotFound />} /> */}
