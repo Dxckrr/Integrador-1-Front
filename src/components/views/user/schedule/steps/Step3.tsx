@@ -60,7 +60,7 @@ const Step3 = () => {
             type="text"
             id="CC"
             defaultValue={userLogin?.user.CC}
-            {...register("CC")}
+            {...register("idUsuarioCC")}
           />
         </div>
       </section>

@@ -10,6 +10,10 @@ interface StepperContextProps {
   errors: FieldErrors;
   watch: (field: keyof FormDataSchedule) => any;
   medics: User[];
+  setValue: any;
+  hours: string[];
+  success: boolean;
+  notSuccess: boolean;
 }
 
 interface ProviderProps {
@@ -29,11 +33,12 @@ export const useStepperContext = (): StepperContextProps => {
 };
 
 export const UseContextProvider = ({ children }: ProviderProps) => {
-  const { register, onSubmit, errors, watch, medics } = useScheduleAppointment();
+  const { register, onSubmit, errors, watch, medics ,setValue , hours , success, notSuccess} =
+    useScheduleAppointment();
 
   return (
     <StepperContext.Provider
-      value={{ register, onSubmit, errors, watch, medics }}>
+      value={{ register, onSubmit, errors, watch, medics , setValue , hours , success ,notSuccess}}>
       {children}
     </StepperContext.Provider>
   );

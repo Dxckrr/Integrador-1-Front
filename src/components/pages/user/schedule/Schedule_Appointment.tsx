@@ -9,11 +9,13 @@ import {
 } from "../../../../context/schedule/ScheduleStepperContext";
 import Step3 from "../../../views/user/schedule/steps/Step3";
 import Step4 from "../../../views/user/schedule/steps/Step4";
+import AppointmentModal from "../../../ui/global/AppoinmentModal";
+import ErrorMessage from "../../../ui/global/ErrorMensaje";
 
 const ScheduleBody = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
-  const { onSubmit } = useStepperContext();
+  const { onSubmit, success, notSuccess } = useStepperContext();
 
   const steps = ["Servicio", "Horario", "Datos", "Confirmación"];
 
@@ -41,45 +43,42 @@ const ScheduleBody = () => {
   };
 
   return (
-    <main className="bg-gradient-to-t from-gray-100 to-white min-h-screen">
-      {/* Title */}
-      <h1 className="text-center text-xl pt-16 sm:text-2xl lg:text-3xl">
-        Agendamiento de citas
-      </h1>
-      {/* Stepper */}
-      <div className="container mx-auto px-2 my-8">
-        <Stepper steps={steps} currentStep={currentStep} />
-      </div>
-      <div className="mx-auto rounded-2xl bg-white p-1 shadow-customCard w-full sm:w-4/5 md:w-2/3 min-h-[70vh]">
-        <div className="container h-full">
-          <div className="p-5 sm:p-8 md:p-10">
-            <form onSubmit={onSubmit}>
-              {displaySteps(currentStep)}
-              {/* navigation button */}
-              <StepperControl
-                handleClick={handleClick}
-                currentStep={currentStep}
-                steps={steps}
-              />
-            </form>
+    <>
+      {success && (
+        <AppointmentModal
+          title={"Cita Agendada !"}
+          description={
+            "Su cita ha sido Agendada con exito, revise su correo electronico para mas información"
+          }
+        />
+      )}
+      <main className="bg-gradient-to-t from-gray-100 to-white min-h-screen">
+        {/* Title */}
+        <h1 className="text-center text-xl pt-16 sm:text-2xl lg:text-3xl">
+          Agendamiento de citas
+        </h1>
+        {/* Stepper */}
+        <div className="container mx-auto px-2 my-8">
+          <Stepper steps={steps} currentStep={currentStep} />
+        </div>
+        <div className="mx-auto rounded-2xl bg-white p-1 shadow-customCard w-full sm:w-4/5 md:w-2/3 min-h-[70vh]">
+          <div className="container h-full">
+            <div className="p-5 sm:p-8 md:p-10">
+              <form onSubmit={onSubmit}>
+                {displaySteps(currentStep)}
+                {/* navigation button */}
+                <StepperControl
+                  handleClick={handleClick}
+                  currentStep={currentStep}
+                  steps={steps}
+                />
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-      {/* Confirm => END */}
-      {currentStep === steps.length && (
-        <div className="flex justify-center mt-8">
-          <footer>
-            <h3 className="text-dark-blue text-2xl">
-              <span className="font-bold">Confirma la cita </span>a través del
-              mensaje que se envió a tu correo electrónico.
-            </h3>
-            <p className="font-thin">
-              Si no encuentras el mensaje revisa la bandeja de spam.
-            </p>
-          </footer>
-        </div>
-      )}
-    </main>
+        {notSuccess && <ErrorMessage />}
+      </main>
+    </>
   );
 };
 const Schedule_Appointment = () => {
