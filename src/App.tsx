@@ -14,7 +14,7 @@ import OperatorEmergencies from "./components/pages/Operator/OperatorEmergencies
 import OperatorPatients from "./components/pages/Operator/OperatorPatients";
 import OperatorRegister from "./components/pages/Operator/OperatorRegister";
 import OperatorInformation from "./components/pages/Operator/OperatorInformation";
-import DatePicker from "./components/ui/user/DatePicker";
+import HealthCheck from "./components/pages/HealthCheck";
 
 function App() {
   return (
@@ -71,7 +71,7 @@ function App() {
         {/* <Route path="*" element={<NotFound />} /> */}
 
         {/* HealthCheck */}
-        <Route path="/health" element={<DatePicker />} />
+        <Route path="/health" element={<HealthCheck />} />
       </Routes>
     </BrowserRouter>
   );
