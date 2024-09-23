@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import Cookies from "js-cookie";
-import { verifyTokenRequest, signin } from "../services/auth/auth.service";
-import { UserLogin } from "../types/auth/UserLogin";
+import { verifyTokenRequest, signin } from "../../services/auth/auth.service";
+import { UserLogin } from "../../types/auth/UserLogin";
 
 /**
  * Creates the context of the current user
