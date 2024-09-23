@@ -17,7 +17,7 @@ const SideBarButtonsDropDown: React.FC<SideBarButtonProps> = ({ Icon, name, subI
     <Disclosure>
       {({ open }) => (
         <>
-          <Disclosure.Button className="flex justify-between w-full font-normal text-base py-1 pl-2 my-2 rounded-md hover:bg-gray-100 items-center ">
+          <Disclosure.Button className="flex justify-between w-full font-normal text-lg py-1 pl-2 my-2 rounded-md hover:bg-gray-100 items-center ">
             <div className="flex items-center">
               <Icon className="size-5"/>
               <span className="pl-3">{name}</span>

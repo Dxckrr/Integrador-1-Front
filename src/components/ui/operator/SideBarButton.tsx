@@ -7,7 +7,7 @@ interface SideBarButtonProps {
     name: string;
 }
 
-const SideBarButtons: React.FC<SideBarButtonProps> = ({linkto, Icon, name}) => {
+const SideBarButton: React.FC<SideBarButtonProps> = ({linkto, Icon, name}) => {
     const location = useLocation();
     const isActive = location.pathname === linkto;
     const [hover, setHover] = useState<string>()
@@ -16,13 +16,13 @@ const SideBarButtons: React.FC<SideBarButtonProps> = ({linkto, Icon, name}) => {
     }
     return (
         <Link to={linkto} 
-        className={`font-normal text-lg py-1 pl-2 my-2 flex flex-row items-center rounded-md ${
+        className={`font-normal text-lg py-2 flex flex-row items-center px-6 ${
             isActive ? "bg-primary-blue text-white" : "hover:bg-gray-100 text-black"
             } ${hover === name && !isActive ? "hover:bg-gray-100" : ""}`}
             onClick={() => handleToDo(name)}
         >
             {Icon ? (
-                <Icon className="size-5" /> // Renderiza el ícono si está presente
+                <Icon className="size-6" /> // Renderiza el ícono si está presente
             ) : (
                 <div/> // Renderiza un div vacío si no hay ícono
             )}
@@ -31,4 +31,4 @@ const SideBarButtons: React.FC<SideBarButtonProps> = ({linkto, Icon, name}) => {
     )
 }
 
-export default SideBarButtons
+export default SideBarButton

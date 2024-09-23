@@ -9,15 +9,15 @@ import { DocumentMagnifyingGlassIcon, ChartBarIcon, UserPlusIcon, PencilSquareIc
  * Contains the side menu of the admin options
  * @returns {Component} SideBar
  */
-type SvgIconKey = 'registrar' | 'modificar' | 'consultar' | 'finanzas' | 'encuesta' | 'estadisticas';
+type SvgIconKey = string;
 
 const svgIcons: Record<SvgIconKey, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
-    registrar: UserPlusIcon,
-    modificar: PencilSquareIcon,
-    consultar: DocumentMagnifyingGlassIcon,
-    finanzas: CurrencyDollarIcon,
-    encuesta: ChartBarIcon,
-    estadisticas: DocumentMagnifyingGlassIcon
+    'Registrar usuarios': UserPlusIcon,
+    'Modificar usuarios': PencilSquareIcon,
+    'Consultar información': DocumentMagnifyingGlassIcon,
+    'Finanzas': CurrencyDollarIcon,
+    'Encuesta de satisfacción': ChartBarIcon,
+    'Estadísticas': DocumentMagnifyingGlassIcon
 };
 
 const SideBarAdmin = () => {
@@ -37,7 +37,7 @@ const SideBarAdmin = () => {
                     {adminNavigation.slice(0, 3).map((item, i) => (
                         <SideBarButtonsDropDown
                             name={item.name}
-                            Icon={svgIcons[item.id]}
+                            Icon={svgIcons[item.name]}
                             subItems={item.subRef}
                             key={i} 
                         />
@@ -50,7 +50,7 @@ const SideBarAdmin = () => {
                         <SideBarButton 
                         linkto={item.href} 
                         name={item.name} 
-                        Icon={svgIcons[item.id]}
+                        Icon={svgIcons[item.name]}
                         key={i}
                         />
                     ))}
