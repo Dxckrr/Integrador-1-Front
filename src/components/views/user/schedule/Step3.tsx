@@ -1,5 +1,5 @@
-import { useAuth } from "../../../../../context/auth/AuthContext";
-import { useStepperContext } from "../../../../../context/schedule/ScheduleStepperContext";
+import { useAuth } from "../../../../context/auth/AuthContext";
+import { useStepperContext } from "../../../../context/schedule/ScheduleStepperContext";
 
 const Step3 = () => {
   const { register } = useStepperContext();

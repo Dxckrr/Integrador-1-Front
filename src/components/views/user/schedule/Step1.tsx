@@ -1,5 +1,5 @@
-import { useStepperContext } from "../../../../../context/schedule/ScheduleStepperContext";
-import { services } from "../../../../../utils/data/services";
+import { useStepperContext } from "../../../../context/schedule/ScheduleStepperContext";
+import { services } from "../../../../utils/data/services";
 
 export default function Step1() {
   const { register } = useStepperContext();

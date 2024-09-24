@@ -3,18 +3,20 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Dayjs } from "dayjs";
 import { TextField } from "@mui/material";
-import { useStepperContext } from "../../../context/schedule/ScheduleStepperContext";
+import { useStepperContext as useStepperSchedule } from "../../../context/schedule/ScheduleStepperContext";
+import { useStepperContext as useStepperReSchedule } from "../../../context/re-schedule/ReScheduleStepperContext";
+
 import { useState } from "react";
 import { formatDate } from "../../../utils/hours";
 
-export default function HelperText() {
+export default function HelperText({ context }) {
   const isWeekend = (date: Dayjs) => {
     const day = date.day();
     return day === 0 || day === 6;
   };
 
   const [date, setDate] = useState<Dayjs | null>(null);
-  const { setValue } = useStepperContext(); // Asegúrate de que register está disponible
+  const { setValue } = context === "schedule" ? useStepperSchedule() : useStepperReSchedule();
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker

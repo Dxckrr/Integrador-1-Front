@@ -1,6 +1,6 @@
-import { useStepperContext } from "../../../../../context/schedule/ScheduleStepperContext";
+import { useStepperContext } from "../../../../context/schedule/ScheduleStepperContext";
 import { CalendarIcon, ClockIcon, UserIcon } from "@heroicons/react/24/outline";
-import HelperText from "../../../../ui/user/DatePicker";
+import HelperText from "../../../ui/user/DatePicker";
 
 const Step2 = () => {
   const { register, watch, medics, hours } = useStepperContext();

@@ -1,23 +1,21 @@
 import { useState } from "react";
 import Stepper from "../../../views/global/core/stepper/Stepper";
 import StepperControl from "../../../views/global/core/stepper/StepperControl";
-import Step1 from "../../../views/user/schedule/Step1";
-import Step2 from "../../../views/user/schedule/Step2";
+import Step1 from "../../../views/user/cancel/Step1";
+import Step2 from "../../../views/user/cancel/Step2";
 import {
-  UseScheduleContextProvider,
+  UseCancelContextProvider,
   useStepperContext,
-} from "../../../../context/schedule/ScheduleStepperContext";
-import Step3 from "../../../views/user/schedule/Step3";
-import Step4 from "../../../views/user/schedule/Step4";
+} from "../../../../context/cancel/CancelScheduleStepperContext";
 import AppointmentModal from "../../../ui/global/AppoinmentModal";
 import ErrorMessage from "../../../ui/global/ErrorMensaje";
 
-const ScheduleBody = () => {
+const CancelBody = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const { onSubmit, success, notSuccess } = useStepperContext();
 
-  const steps = ["Servicio", "Horario", "Datos", "Confirmación"];
+  const steps = ["Cita", "Confirmación"];
 
   const displaySteps = (step: number) => {
     switch (step) {
@@ -25,10 +23,6 @@ const ScheduleBody = () => {
         return <Step1 />;
       case 2:
         return <Step2 />;
-      case 3:
-        return <Step3 />;
-      case 4:
-        return <Step4 />;
       default:
         return null; // Ensure to return something for default case
     }
@@ -46,7 +40,7 @@ const ScheduleBody = () => {
     <>
       {success && (
         <AppointmentModal
-          title={"Cita Agendada !"}
+          title={"Cita CANCELADA !"}
           description={
             "Su cita ha sido Agendada con exito, revise su correo electronico para mas información"
           }
@@ -55,10 +49,10 @@ const ScheduleBody = () => {
       <main className="bg-gradient-to-t from-gray-100 to-white min-h-screen">
         {/* Title */}
         <h1 className="text-center text-xl pt-16 sm:text-2xl lg:text-3xl">
-          Agendamiento de citas
+          Cancelamiento de citas
         </h1>
         {/* Stepper */}
-        <div className="container mx-auto px-2 my-8">
+        <div className="container mx-auto px-auto xl:px-96 my-8">
           <Stepper steps={steps} currentStep={currentStep} />
         </div>
         <div className="mx-auto rounded-2xl bg-white p-1 shadow-customCard w-full sm:w-4/5 md:w-2/3 min-h-[70vh]">
@@ -81,11 +75,11 @@ const ScheduleBody = () => {
     </>
   );
 };
-const Schedule_Appointment = () => {
+const Cancel_Appointment = () => {
   return (
-    <UseScheduleContextProvider>
-      <ScheduleBody />
-    </UseScheduleContextProvider>
+    <UseCancelContextProvider>
+      <CancelBody />
+    </UseCancelContextProvider>
   );
 };
-export default Schedule_Appointment;
+export default Cancel_Appointment;
