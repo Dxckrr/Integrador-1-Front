@@ -6,13 +6,14 @@ interface PacienteProps {
   name: string;
   gender: string;
   age: string;
+  emailUsuario: string;
 }
 
 const Paciente: React.FC<PacienteProps> = ({
   cc,
   profileImage,
   name,
-  gender,
+  emailUsuario,
   age,
 }) => {
   return (
@@ -28,7 +29,7 @@ const Paciente: React.FC<PacienteProps> = ({
       <div>
         <p className="text-lg font-medium">{name}</p>
         <p className="text-sm text-gray-500">
-          {age}, {gender}, {cc}
+          {age}, {emailUsuario}, {cc}
         </p>
       </div>
     </a>
