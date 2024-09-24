@@ -34,6 +34,29 @@ export async function add_appointment(data:FormDataSchedule) {
 }
 /**
  * 
+ * @returns all existing appointments that haven't been taken
+ */
+export async function get_all_appointments() {
+    try {
+        const response = await fetch(`${host}appointments/`, { // Ajuste en la URL para llamar al endpoint 'signin'
+            method: "GET",
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error('Error al obtener citas.');
+        }
+        
+        const jsonResponse = await response.json();
+        console.log("Success:", jsonResponse);
+        return jsonResponse; // Devolver el resultado de la solicitud 
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+
+}
+/**
+ * 
  * @returns all appointments related to an user's id
  */
 export async function get_all_appointments_by_id(id:number) {

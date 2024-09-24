@@ -119,9 +119,7 @@ const OperatorRegister = () => {
               Confirmar
             </button>
           </div>
-          
         </div>
-      
       </main>
     </>
   );
