@@ -1,4 +1,4 @@
-import { useStepperContext } from "../../../../../context/schedule/ScheduleStepperContext";
+import { useStepperContext } from "../../../../context/re-schedule/ReScheduleStepperContext";
 
 const translations = {
   name: "Nombre",
@@ -6,14 +6,14 @@ const translations = {
   email: "Correo Electrónico",
   phone: "Teléfono",
   CC: "CC",
-  serviceId: "ID del Servicio",
-  medicId: "ID del Médico",
+  idServicio: "Id del Servicio",
+  idDocCC: "CC del Médico",
   fecha: "Fecha",
   hora: "Hora",
 };
 
-const Step4 = () => {
-  const { watch } = useStepperContext();
+const Step3 = () => {
+  const { watch, appointment } = useStepperContext();
   const watchedValues = watch(); // Obtener los valores observados
 
   // Verificar la estructura de los valores observados
@@ -36,10 +36,24 @@ const Step4 = () => {
                 <p>{watchedValues[key]}</p>
               </div>
             ))}
+          {Object.keys(appointment).map((key) => (
+            <div key={key} className="p-2 ">
+              <h2 className="text-xl font-semibold text-dark-blue">{key}</h2>
+              <p>{appointment[key]}</p>
+            </div>
+          ))}
+          {/* {Object.keys(appointment)
+            .filter((key) => key !== "id" && key !== "date")
+            .map((key) => (
+              <div key={key} className="p-2">
+                <h2 className="text-xl font-semibold text-dark-blue">{key}</h2>
+                <p>{appointment[key]}</p>
+              </div>
+            ))} */}
         </section>
       </div>
     </>
   );
 };
 
-export default Step4;
+export default Step3;

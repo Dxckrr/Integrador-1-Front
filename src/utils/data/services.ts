@@ -18,19 +18,19 @@ export const services: Service[] = [
         title: 'Evaluaciones y Diagnósticos',
         imgRelated: EVALUACIONES_Y_DIAGNOSTICOS,
         description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
-        id: 1,
+        id: 5,
     },
     {
         title: 'Tratamientos de rehabilitación',
         imgRelated: TRATAMIENTOS_Y_REHABILITACION,
         description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
-        id: 2,
+        id: 6,
     },
     {
         title: 'Servicios quiroprácticos',
         imgRelated: SERVICIOS_QUIROPRACTICOS,
         description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
-        id: 3,
+        id: 7,
     },
     {
         title: 'Ortopedia',
@@ -41,6 +41,12 @@ export const services: Service[] = [
         title: 'Tratamientos quirúrgicos',
         imgRelated: TRATAMIENTOS_QUIRURGICOS,
         description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
-        id: 5,
-    }
+        id: 9,
+    },
+    // {
+    //     title: 'Emergencias',
+    //     imgRelated: TRATAMIENTOS_QUIRURGICOS,
+    //     description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
+    //     id: 10,
+    // }
 ]

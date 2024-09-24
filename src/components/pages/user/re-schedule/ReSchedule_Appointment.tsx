@@ -1,23 +1,22 @@
 import { useState } from "react";
 import Stepper from "../../../views/global/core/stepper/Stepper";
 import StepperControl from "../../../views/global/core/stepper/StepperControl";
-import Step1 from "../../../views/user/schedule/Step1";
-import Step2 from "../../../views/user/schedule/Step2";
+import Step1 from "../../../views/user/re-schedule/Step1";
+import Step2 from "../../../views/user/re-schedule/Step2";
 import {
-  UseScheduleContextProvider,
+  UseReScheduleContextProvider,
   useStepperContext,
-} from "../../../../context/schedule/ScheduleStepperContext";
-import Step3 from "../../../views/user/schedule/Step3";
-import Step4 from "../../../views/user/schedule/Step4";
+} from "../../../../context/re-schedule/ReScheduleStepperContext";
+import Step3 from "../../../views/user/re-schedule/Step3";
 import AppointmentModal from "../../../ui/global/AppoinmentModal";
 import ErrorMessage from "../../../ui/global/ErrorMensaje";
 
-const ScheduleBody = () => {
+const ReScheduleBody = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const { onSubmit, success, notSuccess } = useStepperContext();
 
-  const steps = ["Servicio", "Horario", "Datos", "Confirmación"];
+  const steps = ["Cita", "Horario", "Confirmación"];
 
   const displaySteps = (step: number) => {
     switch (step) {
@@ -27,8 +26,6 @@ const ScheduleBody = () => {
         return <Step2 />;
       case 3:
         return <Step3 />;
-      case 4:
-        return <Step4 />;
       default:
         return null; // Ensure to return something for default case
     }
@@ -46,16 +43,16 @@ const ScheduleBody = () => {
     <>
       {success && (
         <AppointmentModal
-          title={"Cita Agendada !"}
+          title={"Cita Re-Agendada !"}
           description={
-            "Su cita ha sido Agendada con exito, revise su correo electronico para mas información"
+            "Su cita ha sido Re-gendada con exito, revise su correo electronico para mas información"
           }
         />
       )}
       <main className="bg-gradient-to-t from-gray-100 to-white min-h-screen">
         {/* Title */}
         <h1 className="text-center text-xl pt-16 sm:text-2xl lg:text-3xl">
-          Agendamiento de citas
+          Re-Agendamiento de citas
         </h1>
         {/* Stepper */}
         <div className="container mx-auto px-2 my-8">
@@ -81,11 +78,11 @@ const ScheduleBody = () => {
     </>
   );
 };
-const Schedule_Appointment = () => {
+const ReSchedule_Appointment = () => {
   return (
-    <UseScheduleContextProvider>
-      <ScheduleBody />
-    </UseScheduleContextProvider>
+    <UseReScheduleContextProvider>
+      <ReScheduleBody />
+    </UseReScheduleContextProvider>
   );
 };
-export default Schedule_Appointment;
+export default ReSchedule_Appointment;

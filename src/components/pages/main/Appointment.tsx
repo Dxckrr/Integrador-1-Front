@@ -25,12 +25,12 @@ const Appointment = () => {
                 Agendar Cita
               </a>
               <a
-                href="/reagendar"
+                href="citas/reagendar"
                 className="bg-primary-blue py-3 px-8 rounded-2xl text-white">
                 Reagendar Cita
               </a>
               <a
-                href="/cancelar"
+                href="citas/cancelar"
                 className="bg-primary-blue py-3 px-8 rounded-2xl text-white">
                 Cancelar Cita
               </a>

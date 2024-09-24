@@ -22,6 +22,9 @@ import AdminRegisterMedic from "./components/pages/admin/AdminRegisterMedic";
 import AdminFinances from "./components/pages/admin/AdminFinances";
 import AdminSurvey from "./components/pages/admin/AdminSurvey";
 import AdminStats from "./components/pages/admin/AdminStats";
+import HealthCheck from "./components/pages/HealthCheck";
+import ReSchedule_Appointment from "./components/pages/user/re-schedule/ReSchedule_Appointment";
+import Cancel_Appointment from "./components/pages/user/cancel/Cancel_Appointment";
 
 function App() {
   return (
@@ -36,6 +39,9 @@ function App() {
 
         <Route path="/citas" element={<Appointments />}>
           <Route path="agendar" element={<Schedule_Appointment />} />
+          <Route path="reagendar" element={<ReSchedule_Appointment />} />
+          <Route path="cancelar" element={<Cancel_Appointment />} />
+
         </Route>
 
         {/* OPERADOR */}
@@ -81,7 +87,7 @@ function App() {
         {/* <Route path="*" element={<NotFound />} /> */}
 
         {/* HealthCheck */}
-        {/* <Route path="/health" element={<HealthCheck />} /> */}
+        <Route path="/health" element={<HealthCheck />} />
       </Routes>
     </BrowserRouter>
   );

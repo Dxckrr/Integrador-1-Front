@@ -1,19 +1,19 @@
 import { createContext, useContext, ReactNode } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormDataSchedule } from "../../types/core/ScheduleForm";
-import { User } from "../../types/auth/UserLogin";
-import useScheduleAppointment from "../../hooks/schedule/useScheduleAppointment";
+import useReScheduleAppointment from "../../hooks/re-schedule/useReScheduleAppointment";
 
 interface StepperContextProps {
   register: UseFormRegister<FormDataSchedule>;
   onSubmit: () => void;
   errors: FieldErrors;
   watch: (field: keyof FormDataSchedule) => any;
-  medics: User[];
   setValue: any;
   hours: string[];
   success: boolean;
   notSuccess: boolean;
+  appointment: any;
+  setAppointment: any;
 }
 
 interface ProviderProps {
@@ -32,13 +32,34 @@ export const useStepperContext = (): StepperContextProps => {
   return context;
 };
 
-export const UseScheduleContextProvider = ({ children }: ProviderProps) => {
-  const { register, onSubmit, errors, watch, medics ,setValue , hours , success, notSuccess} =
-    useScheduleAppointment();
+export const UseReScheduleContextProvider = ({ children }: ProviderProps) => {
+  const {
+    register,
+    onSubmit,
+    errors,
+    watch,
+    setValue,
+    hours,
+    success,
+    notSuccess,
+    appointment,
+    setAppointment,
+  } = useReScheduleAppointment();
 
   return (
     <StepperContext.Provider
-      value={{ register, onSubmit, errors, watch, medics , setValue , hours , success ,notSuccess}}>
+      value={{
+        register,
+        onSubmit,
+        errors,
+        watch,
+        setValue,
+        hours,
+        success,
+        notSuccess,
+        appointment,
+        setAppointment,
+      }}>
       {children}
     </StepperContext.Provider>
   );
