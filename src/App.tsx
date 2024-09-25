@@ -46,7 +46,7 @@ function App() {
             <EspecialistaLayout>
               <Routes>
                 <Route
-                  path="detallesDelPaciente"
+                  path="detallesDelPaciente/:cc" // Dynamic route for patient details
                   element={<DetallesPaciente />}
                 />
                 <Route path="buscar" element={<Buscar />} />
