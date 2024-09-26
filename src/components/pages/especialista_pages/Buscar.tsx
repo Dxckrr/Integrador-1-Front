@@ -1,69 +1,72 @@
 import React, { useEffect, useState } from "react";
 import Paciente from "../../especialista_components/PacienteComponent";
 import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
+import { useNavigate } from "react-router-dom"; // Importar el hook para navegar
 
 const Buscar: React.FC = () => {
   const [pacientes, setPacientes] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [searchCC, setSearchCC] = useState<string>(""); // Estado para el CC a buscar
+  const [searchCC, setSearchCC] = useState<string>("");
 
   const userRol = 2;
+  const navigate = useNavigate(); // Instanciar el hook
 
-  // Llamada a la API para obtener todos los pacientes
   const fetchPacientes = async () => {
-    setLoading(true); // Comienza el estado de carga
+    setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/${userRol}` // Cambia la URL según tu configuración
+        `http://localhost:3000/api/users/${userRol}`
       );
       const data = await response.json();
-
       if (data.success) {
-        setPacientes(data.users); // Guardar todos los pacientes en el estado
-        setError(null); // Limpia cualquier error anterior
+        setPacientes(data.users);
+        setError(null);
       } else {
         setError("No se encontraron pacientes.");
       }
     } catch (error) {
       setError("Ocurrió un error al obtener los pacientes.");
     } finally {
-      setLoading(false); // Finaliza el estado de carga
+      setLoading(false);
     }
   };
 
-  // Llamada a la API para buscar un paciente por su CC
   const buscarPacientePorCC = async () => {
     if (!searchCC) {
-      // Si la barra de búsqueda está vacía, cargar todos los pacientes
       fetchPacientes();
       return;
     }
 
-    setLoading(true); // Comienza el estado de carga
+    setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/user/${searchCC}` // Asume que tienes una API para buscar por CC
+        `http://localhost:3000/api/users/user/${searchCC}`
       );
       const data = await response.json();
 
-      if (data.success) {
-        setPacientes([data.user]); // Guarda el paciente encontrado en el estado
-        setError(null); // Limpia cualquier error anterior
+      if (data.success && data.user.idRol === 2) {
+        setPacientes([data.user]);
+        setError(null);
       } else {
-        setPacientes([]); // Limpia los pacientes anteriores si no hay coincidencias
-        setError("No se encontró ningún paciente con ese CC.");
+        setPacientes([]);
+        setError("El paciente no tiene el rol adecuado o no fue encontrado.");
       }
     } catch (error) {
       setError("Ocurrió un error al buscar el paciente.");
     } finally {
-      setLoading(false); // Finaliza el estado de carga
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchPacientes(); // Cargar todos los pacientes al montar el componente
+    fetchPacientes();
   }, []);
+
+  // Función para manejar el clic en un paciente
+  const handlePacienteClick = (paciente: any) => {
+    navigate("/especialista/detalles-paciente", { state: { paciente } }); // Navegar a la página de detalles y pasar los datos del paciente
+  };
 
   return (
     <div className="flex h-[calc(100vh-100px)]">
@@ -73,15 +76,15 @@ const Buscar: React.FC = () => {
             type="text"
             placeholder="Buscar paciente por CC"
             className="w-full max-w-xs p-2 border border-gray-300 rounded-xl"
-            value={searchCC} // Valor del input controlado
-            onChange={(e) => setSearchCC(e.target.value)} // Actualiza el estado cuando el usuario escribe
+            value={searchCC}
+            onChange={(e) => setSearchCC(e.target.value)}
           />
         </div>
 
         <div className="flex justify-center">
           <button
             className="py-1 mb-8 px-4 w-full max-w-xs bg-[#E8EDF2] rounded-xl hover:bg-gray-300 text-gray-800"
-            onClick={buscarPacientePorCC} // Llama a la función de búsqueda cuando se hace clic
+            onClick={buscarPacientePorCC}
           >
             Buscar
           </button>
@@ -100,15 +103,19 @@ const Buscar: React.FC = () => {
             <p className="text-red-500">{error}</p>
           ) : pacientes.length > 0 ? (
             pacientes.map((paciente) => (
-              <Paciente
+              <div
                 key={paciente.CC}
-                cc={paciente.CC}
-                profileImage={USER_IMAGE}
-                name={`${paciente.nombreUsuario} ${paciente.apellidoUsuario}`}
-                emailUsuario={paciente.emailUsuario}
-                gender={""}
-                age={""}
-              />
+                onClick={() => handlePacienteClick(paciente)}
+              >
+                <Paciente
+                  cc={paciente.CC}
+                  profileImage={USER_IMAGE}
+                  name={`${paciente.nombreUsuario} ${paciente.apellidoUsuario}`}
+                  emailUsuario={paciente.emailUsuario}
+                  gender={""}
+                  age={""}
+                />
+              </div>
             ))
           ) : (
             <p>No hay pacientes disponibles.</p>
