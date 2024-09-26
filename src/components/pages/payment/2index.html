@@ -1,0 +1,28 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Información de Pago</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4; }
+        .payment-info { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); text-align: center; }
+        h2 { color: green; text-transform: uppercase; }
+        .info { margin-bottom: 10px; }
+        .info label { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="payment-info">
+        <h2>EL PROCESO DE PAGO HA SIDO COMPLETADO COMPLETAMENTE</h2>
+        <div class="info"><label>Número de Pago:</label> ${paymentNumber}</div>
+        <div class="info"><label>Titular:</label> ${holderName}</div>
+        <div class="info"><label>Número de Identificación:</label> ${identification}</div>
+        <div class="info"><label>Banco:</label> ${bank}</div>
+        <div class="info"><label>Total del Pago:</label> ${totalPayment}</div>
+    </div>
+</body>
+</html>
+;
+
+
+
