@@ -9,7 +9,7 @@ const Buscar: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchCC, setSearchCC] = useState<string>("");
 
-  const userRol = 2;
+  const userRol = 3;
   const navigate = useNavigate(); // Instanciar el hook
 
   const fetchPacientes = async () => {
