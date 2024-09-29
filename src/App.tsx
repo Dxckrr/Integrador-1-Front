@@ -29,8 +29,8 @@ import {
   DetallesPaciente,
   CrearOrdenMedica,
   HistoriaClinica,
-} from "./components/views/especialista_views";
-import { Buscar, Citas } from "./components/pages/especialista_pages";
+} from "./components/views/especialista";
+import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
 import EncuestaSatisfaccion from "./components/pages/EncuestaSatisfaccion";
 function App() {
@@ -89,8 +89,14 @@ function App() {
                 />
                 <Route path="buscar" element={<Buscar />} />
                 <Route path="citas" element={<Citas />} />
-                <Route path="ordenMedica" element={<CrearOrdenMedica />} />
-                <Route path="HistoriaClinica" element={<HistoriaClinica />} />
+                <Route
+                  path="orden-Medica/:idCita"
+                  element={<CrearOrdenMedica />}
+                />
+                <Route
+                  path="historia-clinica/:idCita"
+                  element={<HistoriaClinica />}
+                />
               </Routes>
             </EspecialistaLayout>
           }

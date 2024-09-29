@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import TabComponent from "../../especialista_components/TabComponent";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
 import dayjs from "dayjs";
-import ModalComponent from "../../especialista_components/ModalComponent";
+import TabComponent from "../../especialista_components/TabComponent";
 
 const Citas: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState("Hoy");
@@ -10,11 +10,12 @@ const Citas: React.FC = () => {
   const [filteredAppointments, setFilteredAppointments] = useState<
     Appointment[]
   >([]);
-  const [selectedAppointment, setSelectedAppointment] =
-    useState<Appointment | null>(null);
+  const [, setSelectedAppointment] = useState<Appointment | null>(null);
   const [userInfo, setUserInfo] = useState<User | null>(null);
   const [doctorInfo, setDoctorInfo] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = useNavigate(); // Initialize navigate
 
   interface Appointment {
     idCita: number;
@@ -39,12 +40,12 @@ const Citas: React.FC = () => {
     idEspecialidad?: number;
     idHoja_Vida?: number;
     idTipoPaciente?: number;
-    telefono?: string; // Agregar campo opcional
+    telefono?: string; // Optional field
   }
 
   const fetchAppointments = async () => {
     try {
-      const staticDoctorId = 123456789; // ID estático usado por el momento
+      const staticDoctorId = 123456789; // Static ID for now
       const response = await fetch(
         `http://localhost:3000/api/appointments/user/${staticDoctorId}`
       );
@@ -64,7 +65,7 @@ const Citas: React.FC = () => {
       if (data.success) {
         setUserInfo(data.user);
       } else {
-        console.error("Error en la respuesta de la API:", data);
+        console.error("API response error:", data);
       }
     } catch (error) {
       console.error("Error fetching user info:", error);
@@ -80,7 +81,7 @@ const Citas: React.FC = () => {
       if (data.success) {
         setDoctorInfo(data.user);
       } else {
-        console.error("Error en la respuesta de la API:", data);
+        console.error("API response error:", data);
       }
     } catch (error) {
       console.error("Error fetching user info:", error);
@@ -91,7 +92,6 @@ const Citas: React.FC = () => {
     fetchAppointments();
   }, []);
 
-  // Filtrar y ordenar citas en función de la opción seleccionada
   useEffect(() => {
     const today = dayjs();
 
@@ -146,15 +146,20 @@ const Citas: React.FC = () => {
     setSelectedAppointment(appointment);
     setIsModalOpen(true);
 
-    console.log("Selected Appointment:", appointment);
+    console.log("Selected Appointment:", appointment); // Verifica la cita seleccionada
 
-    // Verificar que el ID del usuario y doctor son correctos
+    // Fetch user and doctor information
     await fetchUserInfo(appointment.idUsuarioCC);
     await fetchDoctorInfo(appointment.idDocCC);
 
-    // Verificar el estado después de cargar la información
-    console.log("User Info:", userInfo);
-    console.log("Doctor Info:", doctorInfo);
+    // Navega a la ruta con el idCita en los parámetros y pasa el idCita en el estado
+    console.log(
+      "Navigating to:",
+      `/especialista/orden-medica/${appointment.idCita}`
+    ); // Verifica la ruta
+    navigate(`/especialista/orden-medica/${appointment.idCita}`, {
+      state: { idCita: appointment.idCita },
+    });
   };
 
   return (
@@ -201,14 +206,6 @@ const Citas: React.FC = () => {
           <p>No hay citas programadas para esta selección.</p>
         )}
       </div>
-
-      <ModalComponent
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        appointment={selectedAppointment}
-        userInfo={userInfo}
-        doctorInfo={doctorInfo}
-      />
     </div>
   );
 };
