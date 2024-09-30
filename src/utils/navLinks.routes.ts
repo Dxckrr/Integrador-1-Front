@@ -36,7 +36,7 @@ export const adminNavigation = [
         subRef: [
         { name: 'Pacientes', href: '/admin/registrar-paciente'},
         { name: 'Operadores', href: '/admin/registrar-operador'},
-        { name: 'Medicos', href: '/admin/registrar-medicos'},
+        { name: 'Medicos', href: '/admin/registrar-medico'},
         ]
     },
     { name: 'Modificar usuarios', href: '', svg: {PencilSquareIcon},

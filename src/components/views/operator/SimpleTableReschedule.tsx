@@ -23,6 +23,8 @@ function SimpleTableReschedule() {
         const dataF = async () => {
             try {
                 const res = await get_all_appointments()
+                console.log("res:", res)
+
                 res.map((item: any) => {
                     const service = services.find(serviceItem => serviceItem.id === item.type);
                     item.type = service?.title;
