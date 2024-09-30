@@ -4,11 +4,18 @@ import { services } from "../../../utils/data/services.ts";
 import Carousel from "../../ui/main/landing/Carousel.tsx";
 import ScheduleCard from "../../ui/main/landing/ScheduleCard.tsx";
 import PORTRAIT_IMG from "../../../assets/img/others/Main_Image_Landing.png";
+import Chat_Bot from "../../ui/main/Chat_Bot.tsx";
+import { useState } from "react";
 /**
  * This section contains tha main page
  * @returns {Component} Dashboard
  */
 const Dashboard = () => {
+  const [chatVisible, setChatVisible] = useState(false);
+
+  const toggleChat = () => {
+    setChatVisible(!chatVisible);
+  };
   return (
     <>
       <NavBar />
@@ -126,7 +133,9 @@ const Dashboard = () => {
       </section>
       <section className="flex flex-col items-center justify-center w-full">
         <div className="flex flex-col items-center justify-center mt-16 mb-8">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">Ubicación</h1>
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">
+            Ubicación
+          </h1>
           <h2 className="text-center px-4 sm:text-lg lg:text-xl sm:p-0">
             IPS Sanavit - Centro de medicina musculoesquelética y rehabilitación
           </h2>
@@ -158,7 +167,13 @@ const Dashboard = () => {
           <ScheduleCard days="Sabado" hours="7:00 a.m - 7:00 p.m" />
         </div>
       </section>
-
+      {/* Chat_Bot */}
+      {chatVisible && <Chat_Bot onClose={toggleChat} />}
+      <button
+        onClick={toggleChat}
+        className="fixed bottom-6 right-6 bg-primary-blue text-white px-6 py-2 rounded-3xl shadow-lg">
+        Asistente Virtual
+      </button>
       {/* FOOTER */}
       <Footer />
     </>
