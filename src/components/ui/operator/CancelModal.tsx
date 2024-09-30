@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { cancel_appointment } from "../../../services/core/appointments.service";
 import CheckCircleIcon from "@heroicons/react/24/solid/CheckCircleIcon";
@@ -12,7 +12,7 @@ export default function CancelModal({ isModalOpen, idAppointment }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-
+  const [confirmation, setConfirmation] = useState(false);
   const deleteAppointment = async () => {
     setLoading(true);
     try {
@@ -82,7 +82,7 @@ export default function CancelModal({ isModalOpen, idAppointment }) {
                 textAlign: "center",
               }}>
               {/* Ícono de éxito */}
-              <CheckCircleIcon className="size-10"/>
+              <CheckCircleIcon className="size-10" />
               <Typography
                 id="delete-modal-title"
                 variant="h5"
@@ -118,16 +118,31 @@ export default function CancelModal({ isModalOpen, idAppointment }) {
                 <span className="font-semibold">{idAppointment}</span> y no
                 podrás recuperarla.
               </Typography>
+              <Typography id="delete-modal-description" sx={{ mt: 2, mb: 3 }}>
+                Para confirmar escribe
+                <span className="font-semibold">"Borrar"</span>
+                <input
+                  type="text"
+                  className="border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 font-light w-full mt-2"
+                  onChange={(event) => {
+                    const value = event.target.value.trim().toUpperCase();
+                    setConfirmation(value === "BORRAR");
+                  }}
+                />
+              </Typography>
+
               <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
                 <Button onClick={handleClose} variant="outlined">
                   Cancelar
                 </Button>
-                <Button
-                  onClick={() => deleteAppointment()}
-                  variant="contained"
-                  color="error">
-                  Eliminar
-                </Button>
+                {confirmation && (
+                  <Button
+                    onClick={() => deleteAppointment()}
+                    variant="contained"
+                    color="error">
+                    Eliminar
+                  </Button>
+                )}
               </Box>
             </>
           )}

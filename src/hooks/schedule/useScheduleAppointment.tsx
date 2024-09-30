@@ -8,7 +8,7 @@ import { User } from "../../types/auth/UserLogin";
 import { getHours } from "../../utils/hours";
 import { get_hours_available } from "../../services/hours.service";
 
-const useScheduleAppointment = () => {
+const useScheduleAppointment = (usedOn : string) => {
   const {
     register,
     handleSubmit,
@@ -40,7 +40,8 @@ const useScheduleAppointment = () => {
       console.log("Error", e);
     } finally {
       setTimeout(() => {
-        navigate("/");
+        if (usedOn === "user") navigate("/");
+        if (usedOn === "operator") navigate("/management");
       }, 5000);
     }
   });
