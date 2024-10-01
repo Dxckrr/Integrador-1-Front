@@ -8,18 +8,20 @@ import {
     SortingState,
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
-import { get_all_pacients, get_cv_userPDF } from "../../../services/core/users.service";
+import { get_all_doctors, get_cv_userPDF } from "../../../services/core/users.service";
+import { services } from "../../../utils/data/services";
 
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 mr-10 mt-5"
 
-function SimpleTablePacientInfo() {
+function SimpleTableOperatorInfo() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const dataF = async () => {
             try {
-                const res = await get_all_pacients()
+                const res = await get_all_doctors(2);
+                console.log("res: ", res)         
                 setData(res.user)
             } catch (error) {
                 console.log(error);
@@ -32,21 +34,25 @@ function SimpleTablePacientInfo() {
     const columns = [
         {
             header: "Nombres",
-            accessorKey: "name",
+            accessorKey: "nombreUsuario",
         },
         {
             header: "Apellidos",
-            accessorKey: "lastname",
+            accessorKey: "apellidoUsuario",
         },
         {
             header: "Documento",
-            accessorKey: "pacientID",
+            accessorKey: "CC",
+        },
+        {
+            header: "Email",
+            accessorKey: "emailUsuario",
         },
         {
             header: "Hoja de vida",
             accessorKey: "cv",
             cell: () => (
-                <button onClick={() => get_cv_userPDF("as", 1)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
+                <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
             )
         },
     ];
@@ -92,20 +98,20 @@ function SimpleTablePacientInfo() {
                 <div className={div}>
                     <label className="text-lg">Documento</label>
                     <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'pacientID')?.value}
-                        onChange={(e) => handleFilterChange('pacientID', e.target.value)}/>
+                        value={columnFilters.find(filter => filter.id === 'CC')?.value}
+                        onChange={(e) => handleFilterChange('CC', e.target.value)}/>
                 </div>
-                <div className={div}>
+                <div className={div}>   
                     <label className="text-lg">Nombre</label>
                     <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'name')?.value}
-                        onChange={(e) => handleFilterChange('name', e.target.value)}/>
+                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value}
+                        onChange={(e) => handleFilterChange('nombreUsuario', e.target.value)}/>
                 </div>
                 <div className={div}>
-                    <label className="text-lg">Apellidos</label>
+                    <label className="text-lg">Apellido</label>
                     <input className={inputActive} type="text" name={"Apellidos"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'lastname')?.value}
-                        onChange={(e) => handleFilterChange('lastname', e.target.value)}/>
+                        value={columnFilters.find(filter => filter.id === 'apellidoUsuario')?.value}
+                        onChange={(e) => handleFilterChange('apellidoUsuario', e.target.value)}/>
                 </div>
             </div>
             <hr className="border-t border-gray-700 my-10"></hr>
@@ -171,4 +177,4 @@ function SimpleTablePacientInfo() {
     );
 }
 
-export default SimpleTablePacientInfo;
+export default SimpleTableOperatorInfo;

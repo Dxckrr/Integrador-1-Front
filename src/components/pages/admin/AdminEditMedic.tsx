@@ -1,17 +1,27 @@
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
+const inputDisable = "border-gray-300 text-gray-400 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
+const labelDisable = "text-lg text-[#ACACAC]"
 const div = "flex-col w-1/3 pr-10 mt-5"
 
-const OperatorRegister = () => {
+const AdminEditMedic = () => {
   return (
     <>
       <main className="min-h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1] pb-10">
 
         <div className="h-full w-4/5">
-          <div className="flex justify-center mt-10">
-            <h1 className="font-bold text-2xl">Registrar usuario</h1>
-          </div>
-
-          <section className="mt-5 mb-11">
+            <div className="flex justify-center mt-10">
+                <h1 className="font-bold text-2xl">Modificar Especialista</h1>
+            </div>
+            <section className="mt-5 mb-11">
+                <div className={div}>
+                    <label className="text-lg">Estado usuario</label>
+                    <select className={inputActive} name={"estado"}>
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+                    </select>
+                </div>
+            </section>
+            <section className="mt-5 mb-11">
             <div>
               <h2 className="font-normal text-lg">Información personal</h2>
               <hr className="border-t border-gray-700"></hr>
@@ -19,18 +29,12 @@ const OperatorRegister = () => {
             <div className="flex">
               <div className={div}>
                 <label className="text-lg">Nombres y Apellidos</label>
-                <input className={inputActive} type="text" name={"fullName"} placeholder="Nombres del paciente..."/>
+                <input className={inputActive} type="text" name={"Nombres y Apellidos"} placeholder="Nombres del paciente..."/>
               </div>
               <div className={div}>
                 <label className="text-lg">Documento de Identidad</label>
                 <input className={inputActive} type="text" name={"Documento de Identidada"} placeholder="Documento del paciente..."/>
               </div>
-              <div className={div}>
-                <label className="text-lg">Fecha de nacimineto</label>
-                <input className={inputActive} type="date" name={"Documento"} placeholder="DD/MM/AA..."/>
-              </div>
-            </div>
-            <div className="flex">
               <div className={div}>
                 <label className="text-lg">Género</label>
                 <select className={inputActive} name={"Genero"}>
@@ -39,44 +43,33 @@ const OperatorRegister = () => {
                   <option>Otro</option>
                 </select>
               </div>
-              <div className={div}>
-                <label className="text-lg">Tipo de afiliación</label>
-                <select className={inputActive} name={"TipoAfiliacion"}>
-                  <option> </option>
-                  <option>Contributivo</option>
-                  <option>Subsidiado</option>
-                </select>
               </div>
+              <div className="flex">
               <div className={div}>
-                <label className="text-lg">Plan de salud</label>
-                <select className={inputActive} name={"PlanDeSalud"}>
-                  <option> </option>
-                  <option>Básico</option>
-                  <option>Complementario</option>
-                </select>
+                <label className="text-lg">Correo</label>
+                <input className={inputActive} type="text" name={"TipoAfiliacion"}  placeholder="Escribir..."/>
+                 
+
               </div>
+              
             </div>
           </section>
 
           <section className="mb-11">
             <div>
-              <h2 className="font-normal text-lg">Informacion Medica</h2>
+              <h2 className="font-normal text-lg">Informacion Administrativa</h2>
               <hr className="border-t border-gray-700"></hr>
             </div>
             <div className="flex">
               <div className={div}>
-                <label className="text-lg">Tipo de Sangre</label>
+                <label className="text-lg">Salario</label>
                 <input className={inputActive} type="text" name={"EPS"} placeholder="Escribir..."/>
               </div>
               <div className={div}>
-                <label className="text-lg">Vacunas</label>
+                <label className="text-lg">Cargo</label>
                 <input className={inputActive} type="text" name={"NumAfiliacion"} placeholder="Escribir..."/>
               </div>
-              <div className={div}>
-                <label className="text-lg">Alergias</label>
-                <input className={inputActive} type="text" name={"TipoAfiliacion"} placeholder="Escribir..."/>
-    
-              </div>
+              
             </div>
             
           </section>
@@ -124,7 +117,7 @@ const OperatorRegister = () => {
               </div>
               <div className={div}>
                 <label className="text-lg">Número de teléfono</label>
-                <input className={inputActive} type="text" name={"TelefonoContactoEmergencia"} placeholder="Telefono de emergencia..."/>
+                <input className={inputActive} type="text" name={"TelefonoContactoEmergencia"} placeholder="Telefono   de emergencia..."/>
               </div>
             </div>
             <div className={div}>
@@ -160,4 +153,4 @@ const OperatorRegister = () => {
     </>
   );
 };
-export default OperatorRegister;
+export default AdminEditMedic;

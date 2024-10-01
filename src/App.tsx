@@ -12,16 +12,17 @@ import OperatorManageReschedule from "./components/pages/operator/OperatorManage
 import OperatorAuthorizations from "./components/pages/operator/OperatorAuthorizations";
 import OperatorEmergencies from "./components/pages/operator/OperatorEmergencies";
 import OperatorPatients from "./components/pages/operator/OperatorPatients";
-import OperatorRegister from "./components/pages/operator/OperatorRegister";
+import RegisterPacient from "./components/pages/operator/OperatorRegister";
 import OperatorInformation from "./components/pages/operator/OperatorInformation";
 import OperatorReschedule from "./components/pages/operator/OperatorReschedule";
 import AdminManagement from "./components/pages/admin/AdminManagement";
-import AdminRegisterPacient from "./components/pages/admin/AdminRegisterPacient";
-import AdminRegisterOperator from "./components/pages/admin/AdminRegisterOperator";
-import AdminRegisterMedic from "./components/pages/admin/AdminRegisterMedic";
+import RegisterOperator from "./components/pages/admin/AdminRegisterOperator";
+import RegisterMedic from "./components/pages/admin/AdminRegisterMedic";
 import AdminFinances from "./components/pages/admin/AdminFinances";
 import AdminSurvey from "./components/pages/admin/AdminSurvey";
 import AdminStats from "./components/pages/admin/AdminStats";
+import AdminConsultMedic from "./components/pages/admin/AdminConsultMedic";
+import AdminConsultOperator from "./components/pages/admin/AdminConsultOperator";
 import HealthCheck from "./components/pages/HealthCheck";
 import ReSchedule_Appointment from "./components/pages/user/re-schedule/ReSchedule_Appointment";
 import Cancel_Appointment from "./components/pages/user/cancel/Cancel_Appointment";
@@ -34,6 +35,7 @@ import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
 import EncuestaSatisfaccion from "./components/pages/EncuestaSatisfaccion";
 import HomePage from "./components/pages/especialista/HomePage";
+import AdminEditMedic from "./components/pages/admin/AdminEditMedic";
 function App() {
   return (
     <BrowserRouter>
@@ -66,7 +68,7 @@ function App() {
           <Route path="autorizaciones" element={<OperatorAuthorizations />} />
           <Route path="urgencias" element={<OperatorEmergencies />} />
           <Route path="gestionar-pacientes" element={<OperatorPatients />} />
-          <Route path="registrar-pacientes" element={<OperatorRegister />} />
+          <Route path='registrar-pacientes' element={<RegisterPacient/>}/>
           <Route path="consultar-pacientes" element={<OperatorInformation />} />
           {/* <Route path='confirm' element={<ConfirmAppointment />} />
           <Route path='cancel' element={<CancelAppointmnet />} />
@@ -110,11 +112,17 @@ function App() {
         />
         {/* ADMINISTRADOR */}
         AQUI IRA LA RUTA PROTEGIDA DE ADMIN
-        <Route path="/admin/" element={<AdminManagement />}>
-          <Route path="registrar-paciente" element={<AdminRegisterPacient />} />
-          <Route path="finanzas" element={<AdminFinances />} />
-          <Route path="encuesta-satisfaccion" element={<AdminSurvey />} />
-          <Route path="estadisticas" element={<AdminStats />} />
+        <Route path='/admin/' element={<AdminManagement/>}>
+          <Route path='registrar-paciente' element={<RegisterPacient/>}/>
+          <Route path='registrar-operador' element={<RegisterOperator/>}/>
+          <Route path='registrar-medico' element={<RegisterMedic/>}/>
+          <Route path='finanzas' element={<AdminFinances/>}/>
+          <Route path='encuesta-satisfaccion' element={<AdminSurvey/>}/>
+          <Route path='estadisticas' element={<AdminStats/>}/>
+          <Route path='consultar-paciente' element={<OperatorInformation/>}/>
+          <Route path='consultar-medicos' element={<AdminConsultMedic/>}/>
+          <Route path='consultar-operador' element={<AdminConsultOperator/>}/>
+          <Route path='editar-medico' element={<AdminEditMedic/>}/>
         </Route>
         {/* RUTAS NO EXISTENTES */}
         {/* <Route path="*" element={<NotFound />} /> */}
