@@ -4,7 +4,7 @@ const div = "flex-col w-1/3 pr-10 mt-5"
 const AdminRegisterOperator = () => {
   return (
     <>
-      <main className="min-h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1]">
+      <main className="min-h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1] pb-10">
 
         <div className="h-full w-4/5">
           <div className="flex justify-center mt-10">
@@ -19,18 +19,12 @@ const AdminRegisterOperator = () => {
             <div className="flex">
               <div className={div}>
                 <label className="text-lg">Nombres y Apellidos</label>
-                <input className={inputActive} type="text" name={"fullName"} placeholder="Nombres del paciente..."/>
+                <input className={inputActive} type="text" name={"Nombres y Apellidos"} placeholder="Nombres del paciente..."/>
               </div>
               <div className={div}>
                 <label className="text-lg">Documento de Identidad</label>
                 <input className={inputActive} type="text" name={"Documento de Identidada"} placeholder="Documento del paciente..."/>
               </div>
-              <div className={div}>
-                <label className="text-lg">Fecha de nacimineto</label>
-                <input className={inputActive} type="date" name={"Documento"} placeholder="DD/MM/AA..."/>
-              </div>
-            </div>
-            <div className="flex">
               <div className={div}>
                 <label className="text-lg">Género</label>
                 <select className={inputActive} name={"Genero"}>
@@ -39,44 +33,33 @@ const AdminRegisterOperator = () => {
                   <option>Otro</option>
                 </select>
               </div>
-              <div className={div}>
-                <label className="text-lg">Tipo de afiliación</label>
-                <select className={inputActive} name={"TipoAfiliacion"}>
-                  <option> </option>
-                  <option>Contributivo</option>
-                  <option>Subsidiado</option>
-                </select>
               </div>
+              <div className="flex">
               <div className={div}>
-                <label className="text-lg">Plan de salud</label>
-                <select className={inputActive} name={"PlanDeSalud"}>
-                  <option> </option>
-                  <option>Básico</option>
-                  <option>Complementario</option>
-                </select>
+                <label className="text-lg">Correo</label>
+                <input className={inputActive} type="text" name={"TipoAfiliacion"}  placeholder="Escribir..."/>
+                 
+
               </div>
+              
             </div>
           </section>
 
           <section className="mb-11">
             <div>
-              <h2 className="font-normal text-lg">Informacion Medica</h2>
+              <h2 className="font-normal text-lg">Informacion Administrativa</h2>
               <hr className="border-t border-gray-700"></hr>
             </div>
             <div className="flex">
               <div className={div}>
-                <label className="text-lg">Tipo de Sangre</label>
+                <label className="text-lg">Salario</label>
                 <input className={inputActive} type="text" name={"EPS"} placeholder="Escribir..."/>
               </div>
               <div className={div}>
-                <label className="text-lg">Vacunas</label>
+                <label className="text-lg">Cargo</label>
                 <input className={inputActive} type="text" name={"NumAfiliacion"} placeholder="Escribir..."/>
               </div>
-              <div className={div}>
-                <label className="text-lg">Alergias</label>
-                <input className={inputActive} type="text" name={"TipoAfiliacion"} placeholder="Escribir..."/>
-    
-              </div>
+              
             </div>
             
           </section>
@@ -124,7 +107,7 @@ const AdminRegisterOperator = () => {
               </div>
               <div className={div}>
                 <label className="text-lg">Número de teléfono</label>
-                <input className={inputActive} type="text" name={"TelefonoContactoEmergencia"} placeholder="Telefono de emergencia..."/>
+                <input className={inputActive} type="text" name={"TelefonoContactoEmergencia"} placeholder="Telefono   de emergencia..."/>
               </div>
             </div>
             <div className={div}>
