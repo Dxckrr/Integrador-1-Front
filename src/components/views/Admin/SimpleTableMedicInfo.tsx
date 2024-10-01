@@ -21,12 +21,12 @@ function SimpleTableMedicInfo() {
         const dataF = async () => {
             try {
                 const res = await get_all_doctors(3);
-                res.user.map((item: any) => {
+                res.users.map((item: any) => {
                     const service = services.find(serviceItem => serviceItem.id === item.idEspecialidad);
                     item.idEspecialidad = service?.title;
 
                 })
-                setData(res.user)
+                setData(res.users)
             } catch (error) {
                 console.log(error);
             }
