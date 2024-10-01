@@ -42,7 +42,7 @@ const Step2 = () => {
                 <CalendarIcon className="w-4 h-4 text-primary-blue" />
                 Fecha
               </label>
-              <HelperText />
+              <HelperText context={"schedule"} />
             </div>
             <div className="flex-1 space-y-2">
               <label
