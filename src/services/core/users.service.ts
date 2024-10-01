@@ -50,6 +50,27 @@ export async function get_all_pacients() {
         console.error('Error al procesar la solicitud:', error);
     }
 }
+export async function get_all_doctors(role : number) {
+    try {
+        const response = await fetch(`${host}users/${role}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error('Error al crear la cita');
+        }
+
+        const jsonResponse = await response.json();
+        console.log("Success:", jsonResponse);
+        return jsonResponse;
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+}
 
 export async function get_cv_userPDF(cc : String, idRol : number) {
     try {

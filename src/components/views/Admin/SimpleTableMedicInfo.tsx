@@ -8,7 +8,8 @@ import {
     SortingState,
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
-import { get_all_pacients, get_cv_userPDF, get_history_clinicPDF, get_medic_orderPDF } from "../../../services/core/users.service";
+import { get_all_doctors, get_cv_userPDF } from "../../../services/core/users.service";
+import { services } from "../../../utils/data/services";
 
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 mr-10 mt-5"
@@ -19,7 +20,12 @@ function SimpleTableMedicInfo() {
     useEffect(() => {
         const dataF = async () => {
             try {
-                const res = await get_all_pacients()
+                const res = await get_all_doctors(3);
+                res.user.map((item: any) => {
+                    const service = services.find(serviceItem => serviceItem.id === item.idEspecialidad);
+                    item.idEspecialidad = service?.title;
+
+                })
                 setData(res.user)
             } catch (error) {
                 console.log(error);
@@ -32,15 +38,15 @@ function SimpleTableMedicInfo() {
     const columns = [
         {
             header: "Nombres",
-            accessorKey: "name",
+            accessorKey: "nombreUsuario",
         },
         {
             header: "Apellidos",
-            accessorKey: "lastname",
+            accessorKey: "apellidoUsuario",
         },
         {
             header: "Documento",
-            accessorKey: "pacientID",
+            accessorKey: "CC",
         },
         {
             header: "Categoria",
@@ -50,7 +56,7 @@ function SimpleTableMedicInfo() {
             header: "Hoja de vida",
             accessorKey: "cv",
             cell: () => (
-                <button onClick={() => get_medic_orderPDF(12)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
+                <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
             )
         },
     ];
@@ -96,20 +102,20 @@ function SimpleTableMedicInfo() {
                 <div className={div}>
                     <label className="text-lg">Documento</label>
                     <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'pacientID')?.value}
-                        onChange={(e) => handleFilterChange('pacientID', e.target.value)}/>
+                        value={columnFilters.find(filter => filter.id === 'CC')?.value}
+                        onChange={(e) => handleFilterChange('CC', e.target.value)}/>
                 </div>
-                <div className={div}>
+                <div className={div}>   
                     <label className="text-lg">Nombre</label>
                     <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'name')?.value}
-                        onChange={(e) => handleFilterChange('name', e.target.value)}/>
+                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value}
+                        onChange={(e) => handleFilterChange('nombreUsuario', e.target.value)}/>
                 </div>
                 <div className={div}>
-                    <label className="text-lg">Apellidos</label>
-                    <input className={inputActive} type="text" name={"Apellidos"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'lastname')?.value}
-                        onChange={(e) => handleFilterChange('lastname', e.target.value)}/>
+                    <label className="text-lg">Especialidad</label>
+                    <input className={inputActive} type="text" name={"Especialidad"} placeholder="Escribir..."
+                        value={columnFilters.find(filter => filter.id === 'idEspecialidad')?.value}
+                        onChange={(e) => handleFilterChange('idEspecialidad', e.target.value)}/>
                 </div>
             </div>
             <hr className="border-t border-gray-700 my-10"></hr>

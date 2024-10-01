@@ -15,6 +15,18 @@ type Service = {
 };
 export const services: Service[] = [
     {
+        title: 'Prueba',
+        imgRelated: EVALUACIONES_Y_DIAGNOSTICOS,
+        description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
+        id: 1,
+    },
+    {
+        title: 'Especialidad prueba',
+        imgRelated: EVALUACIONES_Y_DIAGNOSTICOS,
+        description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',
+        id: 2,
+    },
+    {
         title: 'Evaluaciones y Diagnósticos',
         imgRelated: EVALUACIONES_Y_DIAGNOSTICOS,
         description: 'Recupera tu movilidad y mejora tu bienestar con nuestros tratamientos personalizados.',

@@ -22,9 +22,11 @@ import AdminFinances from "./components/pages/admin/AdminFinances";
 import AdminSurvey from "./components/pages/admin/AdminSurvey";
 import AdminStats from "./components/pages/admin/AdminStats";
 import AdminConsultMedic from "./components/pages/admin/AdminConsultMedic";
+import AdminConsultOperator from "./components/pages/admin/AdminConsultOperator";
 import HealthCheck from "./components/pages/HealthCheck";
 import ReSchedule_Appointment from "./components/pages/user/re-schedule/ReSchedule_Appointment";
 import Cancel_Appointment from "./components/pages/user/cancel/Cancel_Appointment";
+import AdminEditMedic from "./components/pages/admin/AdminEditMedic";
 
 function App() {
   return (
@@ -84,7 +86,8 @@ function App() {
           <Route path='estadisticas' element={<AdminStats/>}/>
           <Route path='consultar-paciente' element={<OperatorInformation/>}/>
           <Route path='consultar-medicos' element={<AdminConsultMedic/>}/>
-          <Route path='consultar-operador' element={<AdminConsultMedic/>}/>
+          <Route path='consultar-operador' element={<AdminConsultOperator/>}/>
+          <Route path='editar-medico' element={<AdminEditMedic/>}/>
         </Route>
 
         {/* RUTAS NO EXISTENTES */}
