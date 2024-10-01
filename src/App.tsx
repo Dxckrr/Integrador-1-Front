@@ -25,7 +25,15 @@ import AdminStats from "./components/pages/admin/AdminStats";
 import HealthCheck from "./components/pages/HealthCheck";
 import ReSchedule_Appointment from "./components/pages/user/re-schedule/ReSchedule_Appointment";
 import Cancel_Appointment from "./components/pages/user/cancel/Cancel_Appointment";
-
+import {
+  DetallesPaciente,
+  CrearOrdenMedica,
+  HistoriaClinica,
+} from "./components/views/especialista";
+import { Buscar, Citas } from "./components/pages/especialista";
+import EspecialistaLayout from "./components/Layouts/Especialista_layout";
+import EncuestaSatisfaccion from "./components/pages/EncuestaSatisfaccion";
+import HomePage from "./components/pages/especialista/HomePage";
 function App() {
   return (
     <BrowserRouter>
@@ -36,56 +44,80 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/servicios" element={<Services />} />
-
         <Route path="/citas" element={<Appointments />}>
           <Route path="agendar" element={<Schedule_Appointment />} />
           <Route path="reagendar" element={<ReSchedule_Appointment />} />
           <Route path="cancelar" element={<Cancel_Appointment />} />
-
         </Route>
-
         {/* OPERADOR */}
-      
         AQUI IRA LA RUTA PROTEGIDA DE OPERADOR
         {/* <Route path='/operator' element={<Dashboard />}>      */}
-        <Route path='/management/' element={<OperatorManagement/>}>
-          <Route path='agendamiento' element={<OperatorSchedule/>}/>
-          <Route path='re-agendamiento/' element={<OperatorManageReschedule/>}/>
-          <Route path='re-agendamiento/cita/:id' element={<OperatorReschedule/>}/>
-          <Route path='cancelacion' element={<OperatorCancelation/>}/>
-          <Route path='autorizaciones' element={<OperatorAuthorizations/>}/>
-          <Route path='urgencias' element={<OperatorEmergencies/>}/>
-          <Route path='gestionar-pacientes' element={<OperatorPatients/>}/>
-          <Route path='registrar-pacientes' element={<OperatorRegister/>}/>
-          <Route path='consultar-pacientes' element={<OperatorInformation/>}/>
+        <Route path="/management/" element={<OperatorManagement />}>
+          <Route path="agendamiento" element={<OperatorSchedule />} />
+          <Route
+            path="re-agendamiento/"
+            element={<OperatorManageReschedule />}
+          />
+          <Route
+            path="re-agendamiento/cita/:id"
+            element={<OperatorReschedule />}
+          />
+          <Route path="cancelacion" element={<OperatorCancelation />} />
+          <Route path="autorizaciones" element={<OperatorAuthorizations />} />
+          <Route path="urgencias" element={<OperatorEmergencies />} />
+          <Route path="gestionar-pacientes" element={<OperatorPatients />} />
+          <Route path="registrar-pacientes" element={<OperatorRegister />} />
+          <Route path="consultar-pacientes" element={<OperatorInformation />} />
           {/* <Route path='confirm' element={<ConfirmAppointment />} />
           <Route path='cancel' element={<CancelAppointmnet />} />
           <Route path='reschedule' element={<RescheduleAppointment />} /> */}
           {/* <Route path='addUser' element={<RegisterUsers />} /> */}
-      </Route>
-        
-
+        </Route>
         {/* MEDICO */}
-
         {/* AQUI IRA LA RUTA PROTEGIDA DE MEDICO
         <Route path='/medic' element={<Dashboard />}>     
           <Route path='/sth/' element={<Dashboard />}>
         </Route>
          */}
-
+        <Route
+          path="/especialista/*"
+          element={
+            <EspecialistaLayout>
+              <Routes>
+                <Route path="" element={<HomePage />} />{" "}
+                {/* Página de inicio */}
+                <Route
+                  path="detalles-paciente"
+                  element={<DetallesPaciente />}
+                />
+                <Route path="buscar" element={<Buscar />} />
+                <Route path="citas" element={<Citas />} />
+                <Route
+                  path="orden-Medica/:idCita"
+                  element={<CrearOrdenMedica />}
+                />
+                <Route
+                  path="historia-clinica/:idCita"
+                  element={<HistoriaClinica />}
+                />
+              </Routes>
+            </EspecialistaLayout>
+          }
+        />
+        <Route
+          path="/encuesta-satisfaccion"
+          element={<EncuestaSatisfaccion />}
+        />
         {/* ADMINISTRADOR */}
-
         AQUI IRA LA RUTA PROTEGIDA DE ADMIN
-        <Route path='/admin/' element={<AdminManagement/>}>
-          <Route path='registrar-paciente' element={<AdminRegisterPacient/>}/>
-          <Route path='finanzas' element={<AdminFinances/>}/>
-          <Route path='encuesta-satisfaccion' element={<AdminSurvey/>}/>
-          <Route path='estadisticas' element={<AdminStats/>}/>
+        <Route path="/admin/" element={<AdminManagement />}>
+          <Route path="registrar-paciente" element={<AdminRegisterPacient />} />
+          <Route path="finanzas" element={<AdminFinances />} />
+          <Route path="encuesta-satisfaccion" element={<AdminSurvey />} />
+          <Route path="estadisticas" element={<AdminStats />} />
         </Route>
-
         {/* RUTAS NO EXISTENTES */}
         {/* <Route path="*" element={<NotFound />} /> */}
-
         {/* HealthCheck */}
         <Route path="/health" element={<HealthCheck />} />
       </Routes>
