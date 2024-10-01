@@ -34,7 +34,7 @@ export const useStepperContext = (): StepperContextProps => {
 
 export const UseScheduleContextProvider = ({ children }: ProviderProps) => {
   const { register, onSubmit, errors, watch, medics ,setValue , hours , success, notSuccess} =
-    useScheduleAppointment();
+    useScheduleAppointment("user");
 
   return (
     <StepperContext.Provider
