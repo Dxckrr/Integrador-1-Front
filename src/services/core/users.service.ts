@@ -50,3 +50,75 @@ export async function get_all_pacients() {
         console.error('Error al procesar la solicitud:', error);
     }
 }
+
+export async function get_cv_userPDF(cc : String, idRol : number) {
+    try {
+        const response = await fetch(`${host}users/getCV/${cc}/${idRol}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error('Error al generar PDF');
+        }
+
+        const pdfBlob = await response.blob();
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+
+        return pdfUrl;
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+}
+
+export async function get_history_clinicPDF(cc : String, idCita : number) {
+    try {
+        const response = await fetch(`${host}users/getHistoryClinic/${cc}/${idCita}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error('Error al generar PDF');
+        }
+
+        const pdfBlob = await response.blob();
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+
+        return pdfUrl;
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+}
+
+export async function get_medic_orderPDF(id : number) {
+    try {
+        const response = await fetch(`${host}users/getOrder/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error(`Error al generar PDF: ${response.statusText}`);
+        }
+
+        const pdfBlob = await response.blob();
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+
+        return pdfUrl;
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+}

@@ -21,6 +21,7 @@ import RegisterMedic from "./components/pages/admin/AdminRegisterMedic";
 import AdminFinances from "./components/pages/admin/AdminFinances";
 import AdminSurvey from "./components/pages/admin/AdminSurvey";
 import AdminStats from "./components/pages/admin/AdminStats";
+import AdminConsultMedic from "./components/pages/admin/AdminConsultMedic";
 import HealthCheck from "./components/pages/HealthCheck";
 import ReSchedule_Appointment from "./components/pages/user/re-schedule/ReSchedule_Appointment";
 import Cancel_Appointment from "./components/pages/user/cancel/Cancel_Appointment";
@@ -77,10 +78,13 @@ function App() {
         <Route path='/admin/' element={<AdminManagement/>}>
           <Route path='registrar-paciente' element={<RegisterPacient/>}/>
           <Route path='registrar-operador' element={<RegisterOperator/>}/>
-          <Route path='registrar-medico' element={<RegisterOperator/>}/>
+          <Route path='registrar-medico' element={<RegisterMedic/>}/>
           <Route path='finanzas' element={<AdminFinances/>}/>
           <Route path='encuesta-satisfaccion' element={<AdminSurvey/>}/>
           <Route path='estadisticas' element={<AdminStats/>}/>
+          <Route path='consultar-paciente' element={<OperatorInformation/>}/>
+          <Route path='consultar-medicos' element={<AdminConsultMedic/>}/>
+          <Route path='consultar-operador' element={<AdminConsultMedic/>}/>
         </Route>
 
         {/* RUTAS NO EXISTENTES */}
