@@ -9,7 +9,7 @@ const Buscar: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchCC, setSearchCC] = useState<string>("");
 
-  const userRol = 3;
+  const userRol = 4;
   const navigate = useNavigate(); // Instanciar el hook
 
   const fetchPacientes = async () => {
@@ -69,13 +69,13 @@ const Buscar: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[calc(100vh-100px)]">
-      <div className="w-[28%] bg-white p-4 flex flex-col justify-between">
-        <div className="flex flex-col items-center mb-2">
+    <div className="flex h-[calc(100vh-56px)]">
+      <div className="w-[28%] bg-white p-4 flex flex-col justify-between shadow-lg rounded-lg">
+        <div className="flex flex-col items-center mb-4">
           <input
             type="text"
             placeholder="Buscar paciente por CC"
-            className="w-full max-w-xs p-2 border border-gray-300 rounded-xl"
+            className="w-full max-w-xs p-3 border border-gray-300 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-[#0F6AEF]"
             value={searchCC}
             onChange={(e) => setSearchCC(e.target.value)}
           />
@@ -83,7 +83,7 @@ const Buscar: React.FC = () => {
 
         <div className="flex justify-center">
           <button
-            className="py-1 mb-8 px-4 w-full max-w-xs bg-[#E8EDF2] rounded-xl hover:bg-gray-300 text-gray-800"
+            className="py-2 mb-8 px-4 w-full max-w-xs bg-[#0F6AEF] rounded-xl hover:bg-[#0E5BB0] text-white transition duration-200 ease-in-out shadow-md"
             onClick={buscarPacientePorCC}
           >
             Buscar
@@ -91,9 +91,9 @@ const Buscar: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-[72%] bg-white p-4">
+      <div className="w-[72%] bg-white p-4 shadow-lg rounded-lg">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">Pacientes</h1>
+          <h1 className="text-3xl font-bold text-slate-800">Pacientes</h1>
         </div>
 
         <div className="pt-8">
@@ -106,6 +106,7 @@ const Buscar: React.FC = () => {
               <div
                 key={paciente.CC}
                 onClick={() => handlePacienteClick(paciente)}
+                className="transition-transform transform hover:scale-105 duration-200"
               >
                 <Paciente
                   cc={paciente.CC}

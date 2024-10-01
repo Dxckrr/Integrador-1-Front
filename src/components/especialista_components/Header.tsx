@@ -3,7 +3,7 @@ import USER_IMAGE from "../../assets/svg/icons/extra/UserBlack.svg";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-white p-4 px-14 w-full flex items-center justify-between border-b-2">
+    <header className="bg-white p-1 px-14 w-full flex items-center justify-between border-b-2">
       <div className="flex items-center">
         <div className="w-52 h-full">
           <img

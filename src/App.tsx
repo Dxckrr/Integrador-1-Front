@@ -33,6 +33,7 @@ import {
 import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
 import EncuestaSatisfaccion from "./components/pages/EncuestaSatisfaccion";
+import HomePage from "./components/pages/especialista/HomePage";
 function App() {
   return (
     <BrowserRouter>
@@ -83,6 +84,8 @@ function App() {
           element={
             <EspecialistaLayout>
               <Routes>
+                <Route path="" element={<HomePage />} />{" "}
+                {/* Página de inicio */}
                 <Route
                   path="detalles-paciente"
                   element={<DetallesPaciente />}

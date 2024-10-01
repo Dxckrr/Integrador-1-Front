@@ -45,28 +45,24 @@ const CrearOrdenMedica = () => {
     fetchCita();
   }, [idCita]);
 
-  // Manejar el envío del formulario
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Validar campos requeridos
     if (!idCita || !diagnostico || !ordenes || !recomendaciones) {
       alert("Por favor, complete todos los campos requeridos.");
       return;
     }
 
-    // Crear objeto de la nueva orden médica
     const newOrder = {
       idCita: idCita,
       estadoOM: estadoOM,
-      fecha: new Date().toISOString(), // Fecha actual como timestamp
+      fecha: new Date().toISOString(),
       diagnostico,
       ordenes,
       recomendaciones,
     };
 
     try {
-      // Enviar la nueva orden médica al API
       const response = await fetch("http://localhost:3000/api/orders/create", {
         method: "POST",
         headers: {
@@ -77,13 +73,6 @@ const CrearOrdenMedica = () => {
 
       if (!response.ok) throw new Error("Error creating order");
 
-      // Agregar console.log para verificar la ruta
-      console.log(
-        "Navigating to:",
-        `/especialista/orden-medica/${idCita}` // Verifica la ruta
-      );
-
-      // Navegar a la nueva ruta
       navigate(`/especialista/historia-clinica/${idCita}`, {
         state: { idCita: idCita },
       });
@@ -96,13 +85,12 @@ const CrearOrdenMedica = () => {
   };
 
   return (
-    <div className="flex h-full px-44 bg-white">
-      <div className="w-1/2 p-10">
-        <h2 className="text-3xl font-semibold mb-6">Crear Orden Médica</h2>
+    <div className="flex h-full px-10 bg-white">
+      <div className="w-1/2 p-6">
+        <h2 className="text-2xl font-semibold mb-4">Crear Orden Médica</h2>
 
-        {/* Mostrar la información de la cita */}
         {cita ? (
-          <div className="mb-6 p-4 bg-gray-100 rounded-lg">
+          <div className="mb-4 p-4 bg-gray-100 rounded-lg shadow">
             <h3 className="text-xl font-semibold mb-2">Detalles de la Cita</h3>
             <p>
               <strong>ID de Cita:</strong> {cita.idCita}
@@ -119,22 +107,21 @@ const CrearOrdenMedica = () => {
             <p>
               <strong>Doctor (CC):</strong> {cita.idDocCC}
             </p>
-            {/* Otros detalles que quieras mostrar */}
           </div>
         ) : (
           <p>Cargando detalles de la cita...</p>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3">
           <div>
-            <label className="block text-sm font-bold mb-2" htmlFor="estadoOM">
+            <label className="block text-sm font-bold mb-1" htmlFor="estadoOM">
               Estado de la Orden
             </label>
             <select
               id="estadoOM"
               value={estadoOM}
               onChange={(e) => setEstadoOM(Number(e.target.value))}
-              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="border bg-[#E8EDF2] text-[#4F7594] rounded-lg w-full py-1 px-2 leading-tight focus:outline-none focus:shadow-outline"
             >
               <option value={0}>Pendiente</option>
               <option value={1}>Completada</option>
@@ -143,7 +130,7 @@ const CrearOrdenMedica = () => {
 
           <div>
             <label
-              className="block text-sm font-bold mb-2"
+              className="block text-sm font-bold mb-1"
               htmlFor="diagnostico"
             >
               Diagnóstico
@@ -154,13 +141,13 @@ const CrearOrdenMedica = () => {
               value={diagnostico}
               onChange={(e) => setDiagnostico(e.target.value)}
               placeholder="Ingrese el diagnóstico"
-              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="border bg-[#E8EDF2] text-[#4F7594] rounded-lg w-full py-1 px-2 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold mb-2" htmlFor="ordenes">
+            <label className="block text-sm font-bold mb-1" htmlFor="ordenes">
               Órdenes
             </label>
             <textarea
@@ -168,14 +155,14 @@ const CrearOrdenMedica = () => {
               value={ordenes}
               onChange={(e) => setOrdenes(e.target.value)}
               placeholder="Ingrese las órdenes"
-              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-24"
+              className="border bg-[#E8EDF2] text-[#4F7594] rounded-lg w-full py-1 px-2 leading-tight focus:outline-none focus:shadow-outline h-20"
               required
             />
           </div>
 
           <div>
             <label
-              className="block text-sm font-bold mb-2"
+              className="block text-sm font-bold mb-1"
               htmlFor="recomendaciones"
             >
               Recomendaciones
@@ -185,25 +172,25 @@ const CrearOrdenMedica = () => {
               value={recomendaciones}
               onChange={(e) => setRecomendaciones(e.target.value)}
               placeholder="Ingrese las recomendaciones"
-              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-16"
+              className="border bg-[#E8EDF2] text-[#4F7594] rounded-lg w-full py-1 px-2 leading-tight focus:outline-none focus:shadow-outline h-16"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-normal py-1 px-16 rounded-xl"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-8 rounded-lg"
           >
             Guardar Orden
           </button>
         </form>
       </div>
 
-      <div className="w-1/2 flex flex-col items-center justify-between">
+      <div className="w-1/2 flex items-center justify-center">
         <img
           src="..\..\src\assets\img\logos\LogoSanavit(Mediana).png"
           alt="Logo"
-          className="w-1/2 mx-auto mt-72"
+          className="w-1/2"
         />
       </div>
     </div>

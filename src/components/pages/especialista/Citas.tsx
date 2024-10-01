@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
 import dayjs from "dayjs";
 import TabComponent from "../../especialista_components/TabComponent";
@@ -10,12 +10,9 @@ const Citas: React.FC = () => {
   const [filteredAppointments, setFilteredAppointments] = useState<
     Appointment[]
   >([]);
-  const [, setSelectedAppointment] = useState<Appointment | null>(null);
-  const [userInfo, setUserInfo] = useState<User | null>(null);
-  const [doctorInfo, setDoctorInfo] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   interface Appointment {
     idCita: number;
@@ -26,21 +23,6 @@ const Citas: React.FC = () => {
     idHistoria_Medica: number;
     idUsuarioCC: string;
     idDocCC: string;
-  }
-
-  interface User {
-    CC: string;
-    nombreUsuario: string;
-    apellidoUsuario: string;
-    emailUsuario: string;
-    pwdUsuario: string;
-    idSede?: number;
-    idRol: number;
-    estadoUsuario?: boolean;
-    idEspecialidad?: number;
-    idHoja_Vida?: number;
-    idTipoPaciente?: number;
-    telefono?: string; // Optional field
   }
 
   const fetchAppointments = async () => {
@@ -56,78 +38,34 @@ const Citas: React.FC = () => {
     }
   };
 
-  const fetchUserInfo = async (userId: string) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/users/user/${userId}`
-      );
-      const data = await response.json();
-      if (data.success) {
-        setUserInfo(data.user);
-      } else {
-        console.error("API response error:", data);
-      }
-    } catch (error) {
-      console.error("Error fetching user info:", error);
-    }
-  };
-
-  const fetchDoctorInfo = async (doctorId: string) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/users/user/${doctorId}`
-      );
-      const data = await response.json();
-      if (data.success) {
-        setDoctorInfo(data.user);
-      } else {
-        console.error("API response error:", data);
-      }
-    } catch (error) {
-      console.error("Error fetching user info:", error);
-    }
-  };
-
   useEffect(() => {
     fetchAppointments();
   }, []);
 
   useEffect(() => {
     const today = dayjs();
-
-    const filterByToday = (appointment: Appointment) => {
-      const appointmentDate = dayjs(appointment.dia);
-      return appointmentDate.isSame(today, "day");
-    };
-
-    const filterByTomorrow = (appointment: Appointment) => {
-      const appointmentDate = dayjs(appointment.dia);
-      return appointmentDate.isSame(today.add(1, "day"), "day");
-    };
-
-    const filterByWeek = (appointment: Appointment) => {
-      const appointmentDate = dayjs(appointment.dia);
-      return appointmentDate.isSame(today, "week");
-    };
-
-    const filterByMonth = (appointment: Appointment) => {
-      const appointmentDate = dayjs(appointment.dia);
-      return appointmentDate.isSame(today, "month");
-    };
-
     let filteredData: Appointment[] = [];
+
     switch (selectedOption) {
       case "Hoy":
-        filteredData = appointments.filter(filterByToday);
+        filteredData = appointments.filter((appointment) =>
+          dayjs(appointment.dia).isSame(today, "day")
+        );
         break;
       case "Mañana":
-        filteredData = appointments.filter(filterByTomorrow);
+        filteredData = appointments.filter((appointment) =>
+          dayjs(appointment.dia).isSame(today.add(1, "day"), "day")
+        );
         break;
       case "Esta semana":
-        filteredData = appointments.filter(filterByWeek);
+        filteredData = appointments.filter((appointment) =>
+          dayjs(appointment.dia).isSame(today, "week")
+        );
         break;
       case "Este mes":
-        filteredData = appointments.filter(filterByMonth);
+        filteredData = appointments.filter((appointment) =>
+          dayjs(appointment.dia).isSame(today, "month")
+        );
         break;
       case "Todos":
         filteredData = appointments;
@@ -138,35 +76,21 @@ const Citas: React.FC = () => {
     }
 
     filteredData.sort((a, b) => dayjs(a.dia).unix() - dayjs(b.dia).unix());
-
     setFilteredAppointments(filteredData);
   }, [selectedOption, appointments]);
 
-  const handleAppointmentClick = async (appointment: Appointment) => {
-    setSelectedAppointment(appointment);
+  const handleAppointmentClick = (appointment: Appointment) => {
     setIsModalOpen(true);
-
-    console.log("Selected Appointment:", appointment); // Verifica la cita seleccionada
-
-    // Fetch user and doctor information
-    await fetchUserInfo(appointment.idUsuarioCC);
-    await fetchDoctorInfo(appointment.idDocCC);
-
-    // Navega a la ruta con el idCita en los parámetros y pasa el idCita en el estado
-    console.log(
-      "Navigating to:",
-      `/especialista/orden-medica/${appointment.idCita}`
-    ); // Verifica la ruta
     navigate(`/especialista/orden-medica/${appointment.idCita}`, {
       state: { idCita: appointment.idCita },
     });
   };
 
   return (
-    <div className="px-56 pt-16 mb-48">
-      <div className="flex items-center justify-between">
-        <h1 className="text-4xl font-extrabold">Citas</h1>
-      </div>
+    <div className="px-20 md:px-12 lg:px-32 pt-8 mb-24 ">
+      <h1 className="text-3xl font-bold text-slate-800 mb-4">
+        Citas Programadas
+      </h1>
 
       <TabComponent
         options={["Hoy", "Mañana", "Esta semana", "Este mes", "Todos"]}
@@ -174,36 +98,53 @@ const Citas: React.FC = () => {
         setSelectedOption={setSelectedOption}
       />
 
-      <div className="pt-8">
+      <div className="pt-4 flex flex-col space-y-4">
         {filteredAppointments.length > 0 ? (
           filteredAppointments.map((appointment) => (
             <div
               key={appointment.idCita}
-              className="flex items-center space-x-4 py-4 border-b border-[#D1DBE5] hover:bg-gray-100 transition cursor-pointer"
+              className="bg-white border border-slate-200 rounded-lg p-6 py-4 hover:shadow-md transition duration-200 cursor-pointer"
               onClick={() => handleAppointmentClick(appointment)}
             >
-              <img
-                src={USER_IMAGE}
-                alt="Profile"
-                className="w-12 h-12 rounded-full"
-              />
-              <div>
-                <p className="text-lg">
-                  {dayjs(appointment.dia).format("D [de] MMMM")}
-                </p>
-                <p>{appointment.hora}</p>
+              <div className="flex items-center space-x-4 mb-4">
+                <img
+                  src={USER_IMAGE}
+                  alt="Profile"
+                  className="w-16 h-16 rounded-full border border-blue-300 shadow-lg"
+                />
+                <div className="flex flex-col">
+                  <p className="text-lg font-semibold text-slate-800">
+                    {dayjs(appointment.dia).format("D [de] MMMM [a las] HH:mm")}
+                  </p>
+                  <p
+                    className={`text-sm font-medium ${
+                      appointment.estadoCita ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {appointment.estadoCita
+                      ? "Estado: Activa"
+                      : "Estado: Inactiva"}
+                  </p>
+                </div>
               </div>
-              <p
-                className={`text-lg font-bold ${
-                  appointment.estadoCita ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {appointment.estadoCita ? "Activa" : "Inactiva"}
-              </p>
+              <div className="flex justify-between items-center">
+                <button className="bg-sky-600 text-white px-4 py-2 rounded-md transition duration-200 hover:bg-sky-700">
+                  Crear Orden
+                </button>
+                <p
+                  className={`text-xs font-medium ${
+                    appointment.estadoCita ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {appointment.estadoCita ? "Activa" : "Inactiva"}
+                </p>
+              </div>
             </div>
           ))
         ) : (
-          <p>No hay citas programadas para esta selección.</p>
+          <p className="text-center text-slate-700 py-4">
+            No hay citas programadas para esta selección.
+          </p>
         )}
       </div>
     </div>

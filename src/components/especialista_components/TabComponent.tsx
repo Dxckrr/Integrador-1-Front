@@ -12,7 +12,7 @@ const TabComponent: React.FC<TabComponentProps> = ({
   setSelectedOption,
 }) => {
   return (
-    <div className="flex space-x-6 pt-12 border-b border-[#D1DBE5] font-medium">
+    <div className="flex space-x-6 pt-4 border-b border-[#D1DBE5] font-medium">
       {options.map((option) => (
         <button
           key={option}
