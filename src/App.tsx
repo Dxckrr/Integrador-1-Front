@@ -12,12 +12,15 @@ import OperatorEmergencies from "./components/pages/Operator/OperatorEmergencies
 import OperatorPatients from "./components/pages/Operator/OperatorPatients";
 import OperatorRegister from "./components/pages/Operator/OperatorRegister";
 import OperatorInformation from "./components/pages/Operator/OperatorInformation";
-import Payment from "./components/pages/payment/Payment";
+import Payment from "./components/pages/payment/Pasalera1-tsx/Pasarela1-tsx/Pasarela1";
+import Payment2 from "./components/pages/payment2/Pasarela2-tsx/Pasarela2";
+import Payment3 from "./components/pages/payment3/Pasarela3";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         {/* MAIN ROUTE '/' */}
         <Route index element={<Dashboard />} />
         {/* USUARIO */}
@@ -25,6 +28,7 @@ function App() {
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/servicios" element={<Services />} />
         <Route path="/citas" element={<Appointments />} />
+        
 
         {/* OPERADOR */}
       
@@ -63,6 +67,8 @@ function App() {
          */}
         {/* Payment  */}
         <Route path="/payment" element={<Payment />} />
+        <Route path="/payment2" element={<Payment2 paymentNumber={""} holderName={""} identification={""} bank={""} totalPayment={""} />} />
+        <Route path="/payment3" element={<Payment3 />} />
         {/* RUTAS NO EXISTENTES */}
         {/* <Route path="*" element={<NotFound />} /> */}
 
