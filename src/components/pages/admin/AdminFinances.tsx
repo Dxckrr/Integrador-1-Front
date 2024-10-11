@@ -1,7 +1,7 @@
 import { useState } from "react";
-import LOGO_IPS from "../../../assets/img/logos/LogoSanavit(Pequeño).png";
 import EstadisticGraphic from "../../ui/admin/EstadisticGraphic";
 import { services } from "../../../utils/data/services";
+import { useMonetaryRecord } from "../../../hooks/admin/useFinances";
 
 /**
 Contains the page to manage the finances of the ips
@@ -9,13 +9,14 @@ Contains the page to manage the finances of the ips
 */
 const AdminFinances = () => {
   const [service, setService] = useState<string | null>(null);
+  const { months, setSelectedMonth, filteredData } = useMonetaryRecord()
   return (
     <>
       <main className="min-h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1]">
         <section className="grid grid-cols-4 gap-x-4 gap-y-10 p-12 container mx-auto">
-          <div className="col-span-3 bg-white p-4 shadow-md">
+          <div className="col-span-3 bg-white shadow-customButton sm:p-2 2xl:p-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-3xl font-semibold">Facturación</h2>
+              <h2 className="text-2xl font-semibold 2xl:text-3xl">Facturación</h2>
               <div className="flex space-x-4">
                 <select
                   className="border border-gray-300 rounded-md p-1"
@@ -30,23 +31,30 @@ const AdminFinances = () => {
                 </select>
               </div>
             </div>
-            <div className="mt-4">
+            <div className="mt-2 2xl:mt-4">
               <EstadisticGraphic service={service} />
             </div>
           </div>
 
-          <div className="p-4">
-            <div className="bg-white shadow-md p-6 rounded-md ">
-              <h2 className="text-3xl font-semibold">Ver registro de pagos</h2>
+          <div className="p-2 2xl:p-4">
+            <div className="bg-white shadow-customButton p-3 rounded-md 2xl:p-6 ">
+              <h2 className="text-2xl font-semibold 2xl:text-3xl">Ver registro de pagos</h2>
               <div className="mt-2">
                 <p>Pagos realizados en</p>
-                <select className="border border-gray-300 rounded-md p-1 mb-2">
-                  <option>Mes actual (Septiembre)</option>
+                <select className="border border-gray-300 rounded-md p-1 mb-2 text-sm 2xl:text-normal"
+                  onChange={(e) => setSelectedMonth(Number(e.target.value))}
+                >
+                  <option key={1} value={-1}>Todos</option>
+                    {months.map((month) => (
+                      <option key={month.monthNumber} value={month.monthNumber}>
+                        {month.monthName}
+                      </option>
+                    ))}
                 </select>
                 <ul className="space-y-1">
-                  <li>$11,905 - 14/09/2024</li>
-                  <li>$11,905 - 14/09/2024</li>
-                  <li>$11,905 - 14/09/2024</li>
+                  {filteredData && filteredData.slice(0, 7).map((item) => (
+                    <li>{item.appointment_date} - ${item.service_price}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -56,14 +64,14 @@ const AdminFinances = () => {
             </button>
           </div>
 
-          <div className="col-span-3 bg-white p-4 shadow-md">
-            <h2 className="text-3xl font-semibold">Nómina general</h2>
+          <div className="col-span-3 bg-white p-2 shadow-customButton 2xl:p-4">
+            <h2 className="text-2xl font-semibold 2xl:text-3xl">Nómina general</h2>
             <p>Salarios de empleados</p>
             <p className="mt-2">
               Operadores: <span className="font-bold">$15.500.000</span>
             </p>
           </div>
-          <aside className="flex items-center justify-center p-4">
+          <aside className="flex items-center justify-center p-2 2xl:p-4">
             {/* <img
               src={LOGO_IPS}
               alt="IPS_LOGO"
