@@ -79,6 +79,7 @@ export const useMonetaryRecord = () => {
         getAppointments();
     }, []);
     useEffect(() => {
+        setFilteredData(historicData) 
         if(selectedMonth === -1){
             setSelectedMonth(null)
             setFilteredData(historicData) 

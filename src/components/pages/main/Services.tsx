@@ -6,11 +6,16 @@ import GRID_IMAGE_1 from "../../../assets/img/services/grid/happy-doctor-holding
 import GRID_IMAGE_5 from "../../../assets/img/services/grid/interior-view-operating-room.png";
 import GRID_IMAGE_3 from "../../../assets/img/services/grid/medium-shot-smiley-doctor-checking-woman.png";
 import GRID_IMAGE_2 from "../../../assets/img/services/grid/patient-doing-physical-rehabilitation-helped-by-therapists.png";
+import { useState } from "react";
+import Satisfaccion from "../EncuestaSatisfaccion";
 
 const Services = () => {
+  const [isSatisfactionModal, setSatisfactionModal] = useState<boolean>(false);
+  const closeModal = () => setSatisfactionModal(false);
   return (
     <>
       <NavBar />
+      {isSatisfactionModal && <Satisfaccion onClose={closeModal} />}
       <main className="h-screen flex flex-col ">
         {/* SERVICIOS */}
         <section className="w-full mt-36 mb-20 px-12 sm:px-0">
@@ -66,12 +71,12 @@ const Services = () => {
               de asistir a tu cita.
             </p>
           </div>
-          <div className=" px-8 py-4 w-1/3 hover:border hover:rounded-3xl hover:border-black hover:cursor-pointer">
+          <button onClick={() => setSatisfactionModal(true)} className=" px-8 py-4 w-1/3 hover:border hover:rounded-3xl hover:border-black hover:cursor-pointer">
             <h2 className="text-dark-blue font-bold text-xl">Diligencia la</h2>
             <h3 className="text-aux-1-yellow text-4xl">
               Encuesta de satisfacción
             </h3>
-          </div>
+          </button>
         </section>
         <section className="container mx-auto my-20">
           <div className="md:grid md:grid-cols-4 md:grid-rows-2 md:gap-4">
