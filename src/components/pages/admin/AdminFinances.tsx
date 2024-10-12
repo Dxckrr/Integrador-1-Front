@@ -13,7 +13,7 @@ const AdminFinances = () => {
   return (
     <>
       <main className="min-h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1]">
-        <section className="grid grid-cols-4 gap-x-4 gap-y-10 p-12 container mx-auto">
+        <section className="grid grid-cols-4 gap-x-4 gap-y-10 p-6 container mx-auto">
           <div className="col-span-3 bg-white shadow-customButton sm:p-2 2xl:p-4">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-semibold 2xl:text-3xl">Facturación</h2>
