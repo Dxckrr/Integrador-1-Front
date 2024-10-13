@@ -20,7 +20,7 @@ const Step3 = () => {
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
             id="name"
-            defaultValue={userLogin?.user.nombreUsuario}
+            defaultValue={userLogin?.nombreUsuario}
             {...register("name")}
           />
         </div>
@@ -39,7 +39,7 @@ const Step3 = () => {
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
             id="surname"
-            defaultValue={userLogin?.user.apellidoUsuario}
+            defaultValue={userLogin?.apellidoUsuario}
             {...register("surname")}
           />
         </div>
@@ -49,7 +49,7 @@ const Step3 = () => {
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
             id="email"
-            defaultValue={userLogin?.user.emailUsuario}
+            defaultValue={userLogin?.emailUsuario}
             {...register("email")}
           />
         </div>
@@ -59,7 +59,7 @@ const Step3 = () => {
             className="block bg-transparent appearance-none text-black border-b p-1 border-gray-400 focus:outline-none focus:border-black w-full peer"
             type="text"
             id="CC"
-            defaultValue={userLogin?.user.CC}
+            defaultValue={userLogin?.CC}
             {...register("idUsuarioCC")}
           />
         </div>

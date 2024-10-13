@@ -13,7 +13,7 @@ const ManagementPanel = () => {
                 <div className="fixed top-0 left-0 h-full w-60 bg-gray-800">
                     <SideBar />
                 </div>
-                <div className="flex-1 ml-80 2xl:ml-60">
+                <div className="flex-1 ml-80">
                     <Outlet />
                 </div>
                 

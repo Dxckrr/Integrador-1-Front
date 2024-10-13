@@ -1,15 +1,15 @@
 import { useStepperContext } from "../../../../context/re-schedule/ReScheduleStepperContext";
 
 const translations = {
-  name: "Nombre",
+  pacientName: "Nombre",
   surname: "Apellido",
   email: "Correo Electrónico",
   phone: "Teléfono",
-  CC: "CC",
+  pacientID: "CC",
   idServicio: "Id del Servicio",
   idDocCC: "CC del Médico",
-  fecha: "Fecha",
-  hora: "Hora",
+  date: "Fecha",
+  time: "Hora",
 };
 
 const Step3 = () => {
@@ -18,6 +18,8 @@ const Step3 = () => {
 
   // Verificar la estructura de los valores observados
   console.log(watchedValues);
+  console.log(appointment);
+
 
   return (
     <>

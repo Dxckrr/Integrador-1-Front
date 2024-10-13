@@ -102,19 +102,19 @@ function SimpleTableMedicInfo() {
                 <div className={div}>
                     <label className="text-lg">Documento</label>
                     <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'CC')?.value}
+                        value={columnFilters.find(filter => filter.id === 'CC')?.value as string || ''}
                         onChange={(e) => handleFilterChange('CC', e.target.value)}/>
                 </div>
                 <div className={div}>   
                     <label className="text-lg">Nombre</label>
                     <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value}
+                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value as string || ''}
                         onChange={(e) => handleFilterChange('nombreUsuario', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Especialidad</label>
                     <input className={inputActive} type="text" name={"Especialidad"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'idEspecialidad')?.value}
+                        value={columnFilters.find(filter => filter.id === 'idEspecialidad')?.value as string || ''}
                         onChange={(e) => handleFilterChange('idEspecialidad', e.target.value)}/>
                 </div>
             </div>

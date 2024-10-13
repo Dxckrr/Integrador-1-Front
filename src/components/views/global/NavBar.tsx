@@ -126,7 +126,7 @@ const NavBar = () => {
                                   "flex items-center px-2 py-1 text-sm text-black"
                                 )}>
                                 <UserIcon className="w-6 mr-2 text-gray-800" />
-                                {userLogin.user.nombreUsuario}
+                                {userLogin.nombreUsuario}
                               </a>
                             )}
                           </Menu.Item>

@@ -1,12 +1,12 @@
 import Slider from "react-slick";
-import "../../../../styles/carousel/aboutUsCarousel.css"
+import "../../../../styles/carousel/aboutUsCarousel.css";
 import img1 from "../../../../assets/img/carousel/aboutUs/yo.jpeg";
 import img2 from "../../../../assets/img/carousel/aboutUs/chris.jpeg";
 import img3 from "../../../../assets/img/carousel/aboutUs/jose.jpeg";
 import img4 from "../../../../assets/img/carousel/aboutUs/carvajal.png";
 import { useState } from "react";
-const images = [img1, img2, img3, img4];  //THIS OBJECT MUST HAVE THE NAME OF EACH DEV <- TODO
-function EmptyArrow({ onClick }) {
+const images = [img1, img2, img3, img4]; //THIS OBJECT MUST HAVE THE NAME OF EACH DEV <- TODO
+function EmptyArrow() {
   return <div></div>;
 }
 function CenterMode() {
@@ -20,16 +20,17 @@ function CenterMode() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 10000,
-    beforeChange: (current, next) => setSlideIndex(next),
+    beforeChange: (current: number, next: number) => setSlideIndex(next),
     centerMode: true,
-    appendDots: (dots) => (
+    appendDots: (dots: React.ReactNode) => (
       <div>
         <ul style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
-    customPaging: (current, next) => (
+    customPaging: (current: number) => (
       <div className={current === slideIndex ? "dot dot-active" : "dot"}></div>
     ),
+
     responsive: [
       {
         breakpoint: 768,
