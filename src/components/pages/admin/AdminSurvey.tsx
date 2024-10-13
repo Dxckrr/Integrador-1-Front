@@ -1,100 +1,53 @@
-import { useState } from "react";
-// Mock data for demonstration
-const mockData = {
-  totalResponses: 500,
-  averageSatisfaction: 4.2,
-  npsScore: 42,
-  satisfactionDistribution: [200, 400, 100, 200, 140],
-  improvementAreas: [
-    { name: "Product Quality", value: 150 },
-    { name: "Customer Service", value: 100 },
-    { name: "Website Usability", value: 80 },
-    { name: "Pricing", value: 120 },
-    { name: "Delivery Speed", value: 50 },
-  ],
-  recentFeedback: [
-    {
-      id: 1,
-      rating: 5,
-      comment: "Great service! Very satisfied with the product.",
-    },
-    {
-      id: 2,
-      rating: 3,
-      comment: "Product was okay, but delivery took longer than expected.",
-    },
-    {
-      id: 3,
-      rating: 4,
-      comment:
-        "Good overall experience, but the website could be more user-friendly.",
-    },
-    {
-      id: 4,
-      rating: 2,
-      comment: "Customer service was not very helpful in resolving my issue.",
-    },
-    {
-      id: 5,
-      rating: 5,
-      comment:
-        "Excellent product quality and fast delivery. Will definitely buy again!",
-    },
-  ],
-};
+import useSatisfaction from "../../../hooks/admin/useSatisfaction";
+
 /**
 Contains the page to manage the satisfaction survey
 @returns {Component} AdminStats
 **/
 export default function SurveyDataDashboard() {
-  const [timeRange, setTimeRange] = useState("all");
+  const { data } = useSatisfaction();
+  if (!data) {
+    return <div>Cargando...</div>; // Opcional: muestra un loading mientras se obtienen los datos
+  }
 
-  const maxValue = Math.max(...mockData.satisfactionDistribution);
+  const maxValue = Math.max(...data.satisfactionDistribution);
   const maxImprovementValue = Math.max(
-    ...mockData.improvementAreas.map((area) => area.value)
+    ...data.improvementAreas.map((area) => area.value)
   );
-  console.log(maxValue);
 
   return (
     <main className="min-h-screen w-full flex justify-center items-center bg-gradient-to-b from-white to-[#EFF0F1]">
       <div className="container mx-auto p-6 min-h-screen">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">
-            Customer Satisfaction Survey Results
+            Resultados de la encuesta de satisfacción
           </h1>
-          <select
-            className="p-2 border border-gray-300 rounded-md bg-white"
-            value={timeRange}
-            onChange={(e) => setTimeRange(e.target.value)}>
-            <option value="all">All Time</option>
-            <option value="month">Last Month</option>
-            <option value="week">Last Week</option>
-          </select>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3 mb-6">
           <div className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-2 text-gray-700">
-              Total Responses
+              Total de respuestas
             </h2>
             <p className="text-4xl font-bold text-blue-600">
-              {mockData.totalResponses}
+              {data.totalResponses}
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-2 text-gray-700">
-              Average Satisfaction
+              Evaluación Promedio
             </h2>
             <p className="text-4xl font-bold text-green-600">
-              {mockData.averageSatisfaction.toFixed(1)} / 5
+              {data.averageSatisfaction} /{" "}
+              <span className="text-2xl">{data.totalResponses * 5}</span>
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-2 text-gray-700">
-              NPS Score
+              Recomendaciones
             </h2>
             <p className="text-4xl font-bold text-purple-600">
-              {mockData.npsScore}
+              {data.npsScore}
             </p>
           </div>
         </div>
@@ -102,10 +55,10 @@ export default function SurveyDataDashboard() {
         <div className="grid gap-6 md:grid-cols-2 mb-6">
           <div className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
-              Satisfaction Distribution
+              Distribución de la satisfacción
             </h2>
             <div className="flex items-end h-64 space-x-2">
-              {mockData.satisfactionDistribution.map((value, index) => (
+              {data.satisfactionDistribution.map((value, index) => (
                 <div
                   key={index}
                   className="flex-1 flex flex-col items-center relative group">
@@ -126,10 +79,10 @@ export default function SurveyDataDashboard() {
 
           <div className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
-              Areas Needing Improvement
+              Areas que necesitan mejora
             </h2>
             <div className="space-y-2">
-              {mockData.improvementAreas.map((area) => (
+              {data.improvementAreas.map((area) => (
                 <div key={area.name} className="flex items-center">
                   <span className="w-32 text-sm">{area.name}</span>
                   <div className="flex-1 h-4 bg-gray-200 rounded-full overflow-hidden">
@@ -150,18 +103,22 @@ export default function SurveyDataDashboard() {
 
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-semibold mb-4 text-gray-700">
-            Recent Feedback
+            Comentarios Recientes
           </h2>
           <div className="overflow-x-auto">
             <table className="min-w-full">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="px-4 py-2 text-left text-gray-600">Rating</th>
-                  <th className="px-4 py-2 text-left text-gray-600">Comment</th>
+                  <th className="px-4 py-2 text-left text-gray-600">
+                    Calificación
+                  </th>
+                  <th className="px-4 py-2 text-left text-gray-600">
+                    Comentario
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {mockData.recentFeedback.map((feedback) => (
+                {data.recentFeedback.map((feedback) => (
                   <tr key={feedback.id} className="border-b">
                     <td className="px-4 py-2">
                       <div className="flex items-center">
