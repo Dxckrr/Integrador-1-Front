@@ -60,6 +60,7 @@ export const useSatisfaction = () => {
             rating: item.calificacion,
             comment: item.comentarios,
           }))
+          .reverse() //recentttt
           .slice(0, 5),
       });
     }

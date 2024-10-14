@@ -3,7 +3,7 @@ import { adminNavigation } from "../../../utils/navLinks.routes";
 import SideBarButtonsDropDown from "../admin/SideBarButtonsDropDown"
 import SideBarButton from "./SideBarButton";
 import { useState } from 'react';
-import { DocumentMagnifyingGlassIcon, ChartBarIcon, UserPlusIcon, PencilSquareIcon, CurrencyDollarIcon } from '@heroicons/react/24/solid';
+import { DocumentMagnifyingGlassIcon, ChartBarIcon, UserPlusIcon, PencilSquareIcon, CurrencyDollarIcon , PresentationChartBarIcon } from '@heroicons/react/24/solid';
 
 /**
  * Contains the side menu of the admin options
@@ -17,7 +17,7 @@ const svgIcons: Record<SvgIconKey, React.ComponentType<React.SVGProps<SVGSVGElem
     'Consultar información': DocumentMagnifyingGlassIcon,
     'Finanzas': CurrencyDollarIcon,
     'Encuesta de satisfacción': ChartBarIcon,
-    'Estadísticas': DocumentMagnifyingGlassIcon
+    'Estadísticas': PresentationChartBarIcon
 };
 
 const SideBarAdmin = () => {
