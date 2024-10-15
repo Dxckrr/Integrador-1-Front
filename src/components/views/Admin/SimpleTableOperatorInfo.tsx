@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { get_all_doctors, get_cv_userPDF } from "../../../services/core/users.service";
 import { services } from "../../../utils/data/services";
+import { PencilIcon } from "@heroicons/react/24/solid";
 
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 mr-10 mt-5"
@@ -53,6 +54,17 @@ function SimpleTableOperatorInfo() {
             accessorKey: "cv",
             cell: () => (
                 <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
+            )
+        },
+        {
+            header: "Editar",
+            cell: () => (
+                <>
+                    <button className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black flex">
+                        <PencilIcon className="size-5 mr-2"/>
+                        Editar
+                    </button>
+                </>
             )
         },
     ];

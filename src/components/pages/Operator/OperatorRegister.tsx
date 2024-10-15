@@ -151,7 +151,7 @@ const OperatorRegister = () => {
 
           </section>
           <div className="grid justify-items-end w-full">
-            <button className="bg-gradient-to-br from-[#0F6AEF] to-[#009EE2] hover:bg-gradient-to-r from-[#0F6AEF] to-[#009EE2] text-white text-2xl py-2 px-4 rounded-lg">
+            <button className="bg-gradient-to-br from-[#0F6AEF] to-[#009EE2] hover:bg-gradient-to-r text-white text-2xl py-2 px-4 rounded-lg">
               Confirmar
             </button>
           </div>
