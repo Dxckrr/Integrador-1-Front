@@ -23,9 +23,12 @@ import AdminSurvey from "./components/pages/admin/AdminSurvey";
 import AdminStats from "./components/pages/admin/AdminStats";
 import AdminConsultMedic from "./components/pages/admin/AdminConsultMedic";
 import AdminConsultOperator from "./components/pages/admin/AdminConsultOperator";
+import AdminViewAppointments from "./components/pages/admin/AdminViewAppointments";
+import AdminEditUser from "./components/pages/admin/AdminEditUser";
 import HealthCheck from "./components/pages/HealthCheck";
 import ReSchedule_Appointment from "./components/pages/user/re-schedule/ReSchedule_Appointment";
 import Cancel_Appointment from "./components/pages/user/cancel/Cancel_Appointment";
+
 import {
   DetallesPaciente,
   CrearOrdenMedica,
@@ -34,7 +37,7 @@ import {
 import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
 import HomePage from "./components/pages/especialista/HomePage";
-import AdminEditMedic from "./components/pages/admin/AdminEditMedic";
+
 function App() {
   return (
     <BrowserRouter>
@@ -122,7 +125,8 @@ function App() {
           <Route path='consultar-paciente' element={<OperatorInformation/>}/>
           <Route path='consultar-medicos' element={<AdminConsultMedic/>}/>
           <Route path='consultar-operador' element={<AdminConsultOperator/>}/>
-          <Route path='editar-medico' element={<AdminEditMedic/>}/>
+          <Route path='ver-citas' element={<AdminViewAppointments/>}/>
+          <Route path='modificar-usuario' element={<AdminEditUser/>}/>
         </Route>
         {/* RUTAS NO EXISTENTES */}
         {/* <Route path="*" element={<NotFound />} /> */}

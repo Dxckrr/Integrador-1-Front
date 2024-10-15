@@ -10,24 +10,19 @@ import {
 import { useEffect, useState } from "react";
 import { get_all_doctors, get_cv_userPDF } from "../../../services/core/users.service";
 import { services } from "../../../utils/data/services";
-import { PencilIcon } from "@heroicons/react/24/solid";
 
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 mr-10 mt-5"
 
-function SimpleTableMedicInfo() {
+function SimpleTableAppointments() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const dataF = async () => {
             try {
-                const res = await get_all_doctors(3);
-                res.users.map((item: any) => {
-                    const service = services.find(serviceItem => serviceItem.id === item.idEspecialidad);
-                    item.idEspecialidad = service?.title;
-
-                })
-                setData(res.users)
+                const res = await get_all_doctors(2);
+                console.log("res: ", res)         
+                setData(res.user)
             } catch (error) {
                 console.log(error);
             }
@@ -38,50 +33,30 @@ function SimpleTableMedicInfo() {
 
     const columns = [
         {
-            header: "Nombres",
-            accessorKey: "nombreUsuario",
+            header: "Estado",
+            accessorKey: "estadoCita",
         },
         {
-            header: "Apellidos",
-            accessorKey: "apellidoUsuario",
+            header: "ID",
+            accessorKey: "idCita",
         },
         {
-            header: "Documento",
-            accessorKey: "CC",
+            header: "Dia",
+            accessorKey: "dia",
         },
         {
-            header: "Categoria",
-            accessorKey: "idEspecialidad",
+            header: "Especialidad",
+            accessorKey: "servicio",
         },
         {
-            header: "Hoja de vida",
-            accessorKey: "cv",
+            header: "Médico",
+            accessorKey: "medicName",
+        },
+        {
+            header: "Historia clinica",
+            accessorKey: "historiaClinica",
             cell: () => (
-                <>
-                    <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
-                </>
-            )
-        },
-        {
-            header: "Citas",
-            accessorKey: "citas",
-            cell: () => (
-                <>
-                    <button className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black flex">
-                        Historial de citas
-                    </button>
-                </>
-            )
-        },
-        {
-            header: "Editar",
-            cell: () => (
-                <>
-                    <button className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black flex">
-                        <PencilIcon className="size-5 mr-2"/>
-                        Editar
-                    </button>
-                </>
+                <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver historia</button>
             )
         },
     ];
@@ -125,25 +100,28 @@ function SimpleTableMedicInfo() {
         <div className="flex flex-col justify-center">
             <div className="flex">
                 <div className={div}>
-                    <label className="text-lg">Documento</label>
-                    <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'CC')?.value as string || ''}
-                        onChange={(e) => handleFilterChange('CC', e.target.value)}/>
+                    <label className="text-lg">ID</label>
+                    <input className={inputActive} type="text" name={"id"} placeholder="Escribir..."
+                        value={columnFilters.find(filter => filter.id === 'idCita')?.value as string || ''}
+                        onChange={(e) => handleFilterChange('idCita', e.target.value)}/>
                 </div>
                 <div className={div}>   
-                    <label className="text-lg">Nombre</label>
-                    <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value as string || ''}
-                        onChange={(e) => handleFilterChange('nombreUsuario', e.target.value)}/>
+                    <label className="text-lg">Fecha</label>
+                    <input className={inputActive} type="date" name={"fecha"} placeholder="Escribir..."
+                        value={columnFilters.find(filter => filter.id === 'dia')?.value as string || ''}
+                        onChange={(e) => handleFilterChange('dia', e.target.value)}/>
                 </div>
                 <div className={div}>
-                    <label className="text-lg">Especialidad</label>
-                    <input className={inputActive} type="text" name={"Especialidad"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'idEspecialidad')?.value as string || ''}
-                        onChange={(e) => handleFilterChange('idEspecialidad', e.target.value)}/>
+                    <label className="text-lg">Médico</label>
+                    <input className={inputActive} type="text" name={"medico"} placeholder="Escribir..."
+                        value={columnFilters.find(filter => filter.id === 'medicName')?.value as string || ''}
+                        onChange={(e) => handleFilterChange('medicName', e.target.value)}/>
                 </div>
             </div>
-            <hr className="border-t border-gray-700 my-10"></hr>
+            <hr className="border-t border-gray-700 mt-10 mb-5"></hr>
+            <div className="flex justify-center mb-5">
+                <h1 className="text-xl font-bold">Citas</h1>
+            </div>
             <div className="overflow-x-auto border border-secondaryGray rounded-xl ">
                 <table className="table-auto w-full">
                 {/* bg-[#F2F2F2] */}
@@ -173,7 +151,7 @@ function SimpleTableMedicInfo() {
                         {table.getRowModel().rows.map((row) => (
                             <tr key={row.id} className="group hover:bg-primary-blue hover:text-white">
                                 {row.getVisibleCells().map((cell) => (
-                                    <td key={cell.id} className="border px-4 py-2 w-auto">
+                                    <td key={cell.id} className="border px-4 py-2 w-9">
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
                                 ))}
@@ -206,4 +184,4 @@ function SimpleTableMedicInfo() {
     );
 }
 
-export default SimpleTableMedicInfo;
+export default SimpleTableAppointments;
