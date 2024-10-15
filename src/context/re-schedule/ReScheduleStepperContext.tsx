@@ -7,7 +7,7 @@ interface StepperContextProps {
   register: UseFormRegister<FormDataSchedule>;
   onSubmit: () => void;
   errors: FieldErrors;
-  watch: (field: keyof FormDataSchedule) => any;
+  watch: (field?: keyof FormDataSchedule | (keyof FormDataSchedule)[]) => any;
   setValue: any;
   hours: string[];
   success: boolean;

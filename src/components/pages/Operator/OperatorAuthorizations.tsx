@@ -10,6 +10,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
 import AppointmentModal from "../../ui/global/AppoinmentModal";
 import ErrorMessage from "../../ui/global/ErrorMensaje";
+import { Autorization } from "../../../types/core/Authorization";
 
 const inputActive =
   "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full";
@@ -17,10 +18,11 @@ const div = "flex-col w-2/5 mr-10 mt-5";
 
 const OperatorAuthorizations = () => {
   const [isLoading, setIsLoading] = useState(false); // Estado para mostrar si está cargando
-  const [result, setResult] = useState(null); // Estado para manejar los resultados
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [result, setResult] = useState<Autorization>(null);
+
   /**
    * Submit's the form
    */
@@ -64,9 +66,7 @@ const OperatorAuthorizations = () => {
       {success && (
         <AppointmentModal
           title={"Autorización Exitosa  !"}
-          description={
-            "Su Autorización ha sido aprovada con exito"
-          }
+          description={"Su Autorización ha sido aprovada con exito"}
         />
       )}
       <main className="min-h-screen w-full flex justify-center bg-gradient-to-b from-white to-[#EFF0F1] p-6">
@@ -93,10 +93,11 @@ const OperatorAuthorizations = () => {
               </div>
               {result && (
                 <button
+                  type="button"
                   className="flex items-end justify-center"
                   onClick={() => {
                     setResult(null);
-                    document.getElementById("order").value = "";
+                    setValue("order", ""); // Clear the input value using setValue
                   }}>
                   <TrashIcon className="size-12 bg-slate-200 p-2 rounded-full" />
                 </button>

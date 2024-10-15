@@ -123,7 +123,8 @@ function SimpleTableReschedule() {
             name={"Documento"}
             placeholder="Escribir..."
             value={
-              columnFilters.find((filter) => filter.id === "pacientID")?.value
+              (columnFilters.find((filter) => filter.id === "pacientID")
+                ?.value as string) || ""
             }
             onChange={(e) => handleFilterChange("pacientID", e.target.value)}
           />
@@ -135,7 +136,10 @@ function SimpleTableReschedule() {
             type="text"
             name={"IDCita"}
             placeholder="Escribir..."
-            value={columnFilters.find((filter) => filter.id === "id")?.value}
+            value={
+              (columnFilters.find((filter) => filter.id === "id")
+                ?.value as string) || ""
+            }
             onChange={(e) => handleFilterChange("id", e.target.value)}
           />
         </div>
@@ -145,7 +149,10 @@ function SimpleTableReschedule() {
             className={inputActive}
             type="date"
             name={"Fecha"}
-            value={columnFilters.find((filter) => filter.id === "date")?.value}
+            value={
+              (columnFilters.find((filter) => filter.id === "date")
+                ?.value as string) || ""
+            }
             onChange={(e) => handleFilterChange("date", e.target.value)}
           />
         </div>

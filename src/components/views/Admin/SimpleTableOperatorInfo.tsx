@@ -110,19 +110,19 @@ function SimpleTableOperatorInfo() {
                 <div className={div}>
                     <label className="text-lg">Documento</label>
                     <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'CC')?.value}
+                        value={columnFilters.find(filter => filter.id === 'CC')?.value as string || ''}
                         onChange={(e) => handleFilterChange('CC', e.target.value)}/>
                 </div>
                 <div className={div}>   
                     <label className="text-lg">Nombre</label>
                     <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value}
+                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value as string || ''}
                         onChange={(e) => handleFilterChange('nombreUsuario', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Apellido</label>
                     <input className={inputActive} type="text" name={"Apellidos"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'apellidoUsuario')?.value}
+                        value={columnFilters.find(filter => filter.id === 'apellidoUsuario')?.value as string || ''}
                         onChange={(e) => handleFilterChange('apellidoUsuario', e.target.value)}/>
                 </div>
             </div>

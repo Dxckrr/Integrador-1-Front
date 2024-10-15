@@ -12,7 +12,7 @@ const useReScheduleAppointmentOperator = () => {
     formState: { errors },
     watch,
     setValue,
-  } = useForm<>();
+  } = useForm();
 
   const [success, setSuccess] = useState<boolean>(false);
   const [notSuccess, setNotSuccess] = useState<boolean>(false);

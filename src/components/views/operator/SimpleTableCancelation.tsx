@@ -11,13 +11,12 @@ import { useEffect, useState } from "react";
 import { get_all_appointments } from "../../../services/core/appointments.service";
 import { services } from "../../../utils/data/services";
 import { useNavigate } from "react-router-dom";
-import CancelModal from "../../ui/operator/CancelModal";
 
 const inputActive =
   "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full";
 const div = "flex-col w-1/3 mr-10 mt-5";
 
-function SimpleTableCancelation({isModalOpen ,setIdAppointment}) {
+function SimpleTableCancelation({ isModalOpen, setIdAppointment }) {
   const [data, setData] = useState([]);
   useEffect(() => {
     const dataF = async () => {
@@ -109,8 +108,8 @@ function SimpleTableCancelation({isModalOpen ,setIdAppointment}) {
   };
   // Función para manejar el clic en una fila completa
   const handleRowClick = (rowData: any) => {
-    isModalOpen(true)
-    setIdAppointment(rowData.id)
+    isModalOpen(true);
+    setIdAppointment(rowData.id);
   };
   return (
     <div className="flex flex-col justify-center">
@@ -122,9 +121,7 @@ function SimpleTableCancelation({isModalOpen ,setIdAppointment}) {
             type="text"
             name={"Documento"}
             placeholder="Escribir..."
-            value={
-              columnFilters.find((filter) => filter.id === "pacientID")?.value
-            }
+            value={columnFilters.find((filter) => filter.id === "pacientID")?.value as string || ''} // Cast to string
             onChange={(e) => handleFilterChange("pacientID", e.target.value)}
           />
         </div>
@@ -135,7 +132,7 @@ function SimpleTableCancelation({isModalOpen ,setIdAppointment}) {
             type="text"
             name={"IDCita"}
             placeholder="Escribir..."
-            value={columnFilters.find((filter) => filter.id === "id")?.value}
+            value={columnFilters.find((filter) => filter.id === "id")?.value as string || ''} // Cast to string
             onChange={(e) => handleFilterChange("id", e.target.value)}
           />
         </div>
@@ -145,7 +142,7 @@ function SimpleTableCancelation({isModalOpen ,setIdAppointment}) {
             className={inputActive}
             type="date"
             name={"Fecha"}
-            value={columnFilters.find((filter) => filter.id === "date")?.value}
+            value={columnFilters.find((filter) => filter.id === "date")?.value as string || ''}
             onChange={(e) => handleFilterChange("date", e.target.value)}
           />
         </div>

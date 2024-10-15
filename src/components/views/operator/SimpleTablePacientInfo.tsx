@@ -116,19 +116,19 @@ function SimpleTablePacientInfo() {
                 <div className={div}>
                     <label className="text-lg">Documento</label>
                     <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'pacientID')?.value}
+                        value={columnFilters.find(filter => filter.id === 'pacientID')?.value as string || ''}
                         onChange={(e) => handleFilterChange('pacientID', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Nombre</label>
                     <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'name')?.value}
+                        value={columnFilters.find(filter => filter.id === 'name')?.value as string || ''}
                         onChange={(e) => handleFilterChange('name', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Apellidos</label>
                     <input className={inputActive} type="text" name={"Apellidos"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'lastname')?.value}
+                        value={columnFilters.find(filter => filter.id === 'lastname')?.value as string || ''}
                         onChange={(e) => handleFilterChange('lastname', e.target.value)}/>
                 </div>
             </div>
