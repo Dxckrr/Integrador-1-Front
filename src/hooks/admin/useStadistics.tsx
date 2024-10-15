@@ -1,5 +1,4 @@
 import {
-  PresentationChartBarIcon,
   UserIcon,
   HeartIcon,
   DocumentTextIcon,
@@ -9,7 +8,10 @@ import {
   ClipboardIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
-import { get_stadistics } from "../../services/stadistic.service";
+import {
+  get_appointment_stadistics,
+  get_stadistics,
+} from "../../services/stadistic.service";
 import dayjs from "dayjs";
 
 interface EstadisticsItem {
@@ -56,6 +58,10 @@ export const useStadistics = () => {
           value: estadisticsData.numberOfUsers[0]?.totalUsuarios || 0,
           sub: `Pacientes : ${
             estadisticsData.numberOfPatients[0]?.totalSoloUsuarios || 0
+          } | Operadores : ${
+            estadisticsData.numberOfOperators[0]?.totalSoloUsuarios || 0
+          } | Medicos :  ${
+            estadisticsData.numberOfSpecialist[0]?.totalSoloUsuarios || 0
           }`,
           icon: <UserIcon className="h-6 w-6 text-blue-500 mr-2" />,
         },
@@ -98,13 +104,7 @@ export const useStadistics = () => {
             "MM/DD/YY"
           )}`,
           icon: <CalendarIcon className="h-6 w-6 text-yellow-500 mr-2" />,
-        },
-        {
-          title: "Ingresos Totales",
-          value: `$${estadisticsData.totalIncome[0]?.ingresosTotales || 0} COP`,
-          sub: "",
-          icon: <CurrencyDollarIcon className="h-6 w-6 text-green-500 mr-2" />,
-        },
+        }
       ];
 
       setData(extractedData);
@@ -114,4 +114,35 @@ export const useStadistics = () => {
   return { data };
 };
 
-export default useStadistics;
+export const useAppointmentStadistic = () => {
+  const [labels, setLabels] = useState<string[]>([]); // Estado para las etiquetas
+  const [totalIncome, setTotalIncome] = useState<number[]>([]); // Estado para los ingresos
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await get_appointment_stadistics();
+
+        // Mapear los datos una sola vez
+        const extractedLabels: string[] = [];
+        const extractedTotalIncome: number[] = [];
+
+        response.forEach(
+          (item: { nombreEspecialidad: string; total_income: string }) => {
+            extractedLabels.push(item.nombreEspecialidad);
+            extractedTotalIncome.push(parseFloat(item.total_income));
+          }
+        );
+
+        // Actualizar los estados
+        setLabels(extractedLabels);
+        setTotalIncome(extractedTotalIncome);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, []);
+
+  return { labels, totalIncome }; // Devolvemos las etiquetas y los ingresos
+};
