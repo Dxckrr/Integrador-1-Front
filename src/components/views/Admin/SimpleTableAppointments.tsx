@@ -102,19 +102,19 @@ function SimpleTableAppointments() {
                 <div className={div}>
                     <label className="text-lg">ID</label>
                     <input className={inputActive} type="text" name={"id"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'idCita')?.value}
+                        value={columnFilters.find(filter => filter.id === 'idCita')?.value as string || ''}
                         onChange={(e) => handleFilterChange('idCita', e.target.value)}/>
                 </div>
                 <div className={div}>   
                     <label className="text-lg">Fecha</label>
                     <input className={inputActive} type="date" name={"fecha"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'dia')?.value}
+                        value={columnFilters.find(filter => filter.id === 'dia')?.value as string || ''}
                         onChange={(e) => handleFilterChange('dia', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Médico</label>
                     <input className={inputActive} type="text" name={"medico"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'medicName')?.value}
+                        value={columnFilters.find(filter => filter.id === 'medicName')?.value as string || ''}
                         onChange={(e) => handleFilterChange('medicName', e.target.value)}/>
                 </div>
             </div>
