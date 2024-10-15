@@ -33,7 +33,6 @@ import {
 } from "./components/views/especialista";
 import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
-import EncuestaSatisfaccion from "./components/pages/EncuestaSatisfaccion";
 import HomePage from "./components/pages/especialista/HomePage";
 import AdminEditMedic from "./components/pages/admin/AdminEditMedic";
 function App() {
@@ -106,10 +105,11 @@ function App() {
             </EspecialistaLayout>
           }
         />
-        <Route
+        {/* The form will be shown as a MODAL => encuesta-satisfaccion */}
+        {/* <Route
           path="/encuesta-satisfaccion"
           element={<EncuestaSatisfaccion />}
-        />
+        /> */}
         {/* ADMINISTRADOR */}
         AQUI IRA LA RUTA PROTEGIDA DE ADMIN
         <Route path='/admin/' element={<AdminManagement/>}>

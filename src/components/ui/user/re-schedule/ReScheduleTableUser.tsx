@@ -5,6 +5,7 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   SortingState,
+  ColumnFiltersState,
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import { get_all_appointments_by_id } from "../../../../services/core/appointments.service";
@@ -21,7 +22,7 @@ function ReScheduleTableUser() {
   useEffect(() => {
     const dataF = async () => {
       try {
-        const res = await get_all_appointments_by_id(userLogin.user.CC);
+        const res = await get_all_appointments_by_id(parseInt(userLogin.CC));
         res.map((item: any) => {
           const service = services.find(
             (serviceItem) => serviceItem.id === item.type

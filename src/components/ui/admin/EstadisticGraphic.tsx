@@ -37,7 +37,7 @@ const EstadisticGraphic = ({ service }): any => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "top" as const,
       },
       title: {
         display: true,
