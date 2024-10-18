@@ -9,6 +9,7 @@ const DetallesPaciente: React.FC = () => {
 
   const [selectedOption, setSelectedOption] = useState("Información paciente");
   const [ordenesMedicas, setOrdenesMedicas] = useState<any[]>([]);
+  const [citas, setCitas] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
   const specialist = {
@@ -19,6 +20,10 @@ const DetallesPaciente: React.FC = () => {
   const renderEstadoUsuario = (estado: number) => {
     return estado === 1 ? "Activo" : "Inactivo";
   };
+
+  const citasOrdenadas = citas.sort((a, b) => {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+  });
 
   const medicalHistoryDetails = [
     {
@@ -54,23 +59,42 @@ const DetallesPaciente: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (selectedOption === "Ordenes") {
-      const fetchOrdenesMedicas = async () => {
-        setLoading(true);
-        try {
-          const response = await fetch(
-            `http://localhost:3000/api/orders/ordenes-medicas-paciente/${paciente.CC}`
-          );
-          const data = await response.json();
-          setOrdenesMedicas(data);
-        } catch (error) {
-          console.error("Error fetching medical orders:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
+    const fetchOrdenesMedicas = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/orders/ordenes-medicas-paciente/${paciente.CC}`
+        );
+        const data = await response.json();
+        setOrdenesMedicas(data);
+      } catch (error) {
+        console.error("Error fetching medical orders:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    const fetchCitas = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/appointments/user/${paciente.CC}`
+        );
+        const data = await response.json();
+        setCitas(data);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (selectedOption === "Ordenes") {
       fetchOrdenesMedicas();
+    }
+
+    if (selectedOption === "Historial de citas") {
+      fetchCitas();
     }
   }, [selectedOption, paciente.CC]);
 
@@ -127,6 +151,51 @@ const DetallesPaciente: React.FC = () => {
             )}
           </div>
         );
+      case "Historial de citas":
+        return (
+          <div>
+            <h2>Detalles de Citas</h2>
+            {loading ? (
+              <p className="text-center text-indigo-600">Cargando citas...</p>
+            ) : citasOrdenadas.length > 0 ? (
+              <div className="grid grid-cols-1 gap-6">
+                {citasOrdenadas.map((cita) => (
+                  <div
+                    key={cita.id} // Utilizando el id de la cita como clave
+                    className="border border-gray-300 bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <h4 className="text-xl font-semibold mb-2">
+                      Fecha y Hora:{" "}
+                      <span className="font-normal text-gray-700">
+                        {new Date(cita.date).toLocaleDateString()} {cita.time}
+                      </span>
+                    </h4>
+                    <p className="mb-2 text-gray-600">
+                      <strong>Nombre del Médico:</strong> {cita.medicName}
+                    </p>
+                    <p className="mb-2 text-gray-600">
+                      <strong>Nombre del Paciente:</strong> {cita.pacientName}
+                    </p>
+                    <p className="mb-2 text-gray-600">
+                      <strong>Email del Paciente:</strong> {cita.pacientEmail}
+                    </p>
+                    <p className="mb-2 text-gray-600">
+                      <strong>ID Paciente:</strong> {cita.pacientID}
+                    </p>
+                    <p className="mb-2 text-gray-600">
+                      <strong>ID Servicio:</strong> {cita.type}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">
+                No hay citas disponibles.
+              </p>
+            )}
+          </div>
+        );
+
       default:
         return null;
     }
@@ -172,7 +241,7 @@ const DetallesPaciente: React.FC = () => {
 
           {/* Componente de pestañas */}
           <TabComponent
-            options={["Información paciente", "Ordenes"]}
+            options={["Información paciente", "Ordenes", "Historial de citas"]}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
           />
