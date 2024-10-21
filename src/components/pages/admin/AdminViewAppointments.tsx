@@ -19,7 +19,6 @@ const AdminViewAppointments = () => {
                         </div>
                     </section>
                     
-
                     <SimpleTableAppointments/>
                     
                     

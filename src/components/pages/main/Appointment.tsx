@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import LOGO_IPS from "../../../assets/img/logos/LogoSanavit(Pequeño).png";
 
 const Appointment = () => {
@@ -7,7 +7,12 @@ const Appointment = () => {
   return (
     <>
       {location.pathname !== "/citas" ? (
-        <Outlet />
+        <>
+          <Link to='/citas'>
+            <img className="w-auto h-20 absolute top-2 left-2" src={LOGO_IPS} alt="Logo" />
+          </Link>
+          <Outlet />
+        </>
       ) : (
         <main className="w-full flex flex-col items-center">
           <header>

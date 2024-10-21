@@ -8,7 +8,7 @@ Contains the page to manage the finances of the ips
 @returns {Component} AdminStats
 */
 const AdminFinances = () => {
-  const [service, setService] = useState<string | null>(null);
+  const [service, setService] = useState<string | null>("5");
   const { months, setSelectedMonth, filteredData } = useMonetaryRecord()
   return (
     <>
