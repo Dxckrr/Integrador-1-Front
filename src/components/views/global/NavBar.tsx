@@ -11,7 +11,7 @@ import {
   UserIcon,
 } from "@heroicons/react/24/solid";
 import Login from "../main/Login.tsx";
-import { useAuth } from "../../../context/AuthContext.js";
+import { useAuth } from "../../../context/auth/AuthContext.js";
 
 /**
  * This function takes a list of classes and joins them together in one

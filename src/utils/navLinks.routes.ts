@@ -1,3 +1,9 @@
+import { DocumentMagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { ChartBarIcon } from '@heroicons/react/24/solid';
+import { UserPlusIcon } from '@heroicons/react/24/solid';
+import { PencilSquareIcon } from '@heroicons/react/24/solid';
+import { CurrencyDollarIcon } from '@heroicons/react/24/solid';
+
 /**
  * Object that contains the routes on the navBar on the user page
  */
@@ -24,7 +30,31 @@ export const medicNavigation = [
     { name: 'Ver historiales clínicos', href: '/medico/historiales_clinicos' },
     { name: 'Información de Pacientes', href: '/medico/pacientes' }
 ]
+
 export const adminNavigation = [
-    { name: 'Cargar Usuarios Nuevos', href: '/management/load_users' },
-    { name: 'Horario Medico', href: '/management/manage_medic' }
+    { name: 'Registrar usuarios', href: '', svg: {UserPlusIcon}, 
+        subRef: [
+        { name: 'Pacientes', href: '/admin/registrar-paciente'},
+        { name: 'Operadores', href: '/admin/registrar-operador'},
+        { name: 'Medicos', href: '/admin/registrar-medico'},
+        ]
+    },
+    { name: 'Modificar usuarios', href: '', svg: {PencilSquareIcon},
+        subRef: [
+            { name: 'Pacientes', href: '/admin/modificar-paciente'},
+            { name: 'Operadores', href: '/admin/modificar-operador'},
+            { name: 'Medicos', href: '/admin/modificar-medicos'},
+            ]
+    },
+    { name: 'Consultar información', href: '', svg: {DocumentMagnifyingGlassIcon},
+        subRef: [
+            { name: 'Pacientes', href: '/admin/consultar-paciente'},
+            { name: 'Operadores', href: '/admin/consultar-operador'},
+            { name: 'Medicos', href: '/admin/consultar-medicos'},
+            ]
+    },
+    { name: 'Finanzas', href: '/admin/finanzas', svg: {CurrencyDollarIcon}},
+    { name: 'Encuesta de satisfacción', href: '/admin/encuesta-satisfaccion', id: 'encuesta', svg: {ChartBarIcon}
+    },
+    { name: 'Estadísticas', href: '/admin/estadisticas', id: 'estadisticas', svg: {DocumentMagnifyingGlassIcon}}
 ]

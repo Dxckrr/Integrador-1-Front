@@ -1,4 +1,4 @@
-import SideBar from "../../ui/SidebarOperator"
+import SideBar from "../../ui/operator/SidebarOperator"
 import { Outlet } from "react-router-dom";
 
 /**
