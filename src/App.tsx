@@ -4,6 +4,7 @@ import AboutUs from "./components/pages/main/AboutUs";
 import Appointments from "./components/pages/main/Appointment";
 import Services from "./components/pages/main/Services";
 import Schedule_Appointment from "./components/pages/user/schedule/Schedule_Appointment";
+import Register from "./components/pages/main/Register";
 
 import OperatorManagement from "./components/pages/operator/OperatorManagement";
 import OperatorSchedule from "./components/pages/operator/OperatorSchedule";
@@ -53,6 +54,7 @@ function App() {
           <Route path="reagendar" element={<ReSchedule_Appointment />} />
           <Route path="cancelar" element={<Cancel_Appointment />} />
         </Route>
+        <Route path="/registrar" element={<Register />} />
         {/* OPERADOR */}
         AQUI IRA LA RUTA PROTEGIDA DE OPERADOR
         {/* <Route path='/operator' element={<Dashboard />}>      */}
