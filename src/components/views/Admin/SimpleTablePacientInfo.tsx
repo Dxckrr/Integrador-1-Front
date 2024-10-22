@@ -32,7 +32,7 @@ function SimpleTablePacientInfo() {
     const navigate = useNavigate();
     const handlePatientSelected = (patient: any) => {
       console.log(patient);
-      navigate(`/management/ver-citas/${patient.pacientID}`, {
+      navigate(`/admin/ver-citas/${patient.pacientID}`, {
         state: { patient },
       });
     };

@@ -6,6 +6,7 @@ import ScheduleCard from "../../ui/main/landing/ScheduleCard.tsx";
 import PORTRAIT_IMG from "../../../assets/img/others/Main_Image_Landing.png";
 import Chat_Bot from "../../ui/main/Chat_Bot.tsx";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 /**
  * This section contains tha main page
  * @returns {Component} Dashboard
@@ -88,9 +89,9 @@ const Dashboard = () => {
                 </li>
               ))}
             </ul>
-            <button className="bg-primary-blue text-xl text-white px-6 py-2 rounded-3xl mt-4">
+            <Link to="/servicios" className="bg-primary-blue text-xl text-white px-6 py-2 rounded-3xl mt-4">
               Conocer más
-            </button>
+            </Link>
           </div>
         </section>
       </main>

@@ -8,45 +8,51 @@ import {
     SortingState,
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
-import { get_all_doctors, get_cv_userPDF } from "../../../services/core/users.service";
-import { services } from "../../../utils/data/services";
+import { get_cv_userPDF } from "../../../services/core/users.service";
+import { get_all_appointments_by_id } from "../../../services/core/appointments.service";
 
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 mr-10 mt-5"
+interface SimpleTableAppointmentsProps {
+    idUser: number;
+}
 
-function SimpleTableAppointments() {
+function SimpleTableAppointments({ idUser }: SimpleTableAppointmentsProps) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const dataF = async () => {
             try {
-                const res = await get_all_doctors(2);
+                const res = await get_all_appointments_by_id(idUser);
                 console.log("res: ", res)         
-                setData(res.user)
+                res.map((item: any) => {
+                    // const service = services.find(
+                    //   (serviceItem) => serviceItem.id === item.type
+                    // );
+                    // item.type = service?.title; AHORA TOCARIA HACER UN CAMBIO POR AQUI
+                    item.id = item.id.toString();
+                  });
+                  setData(res);
             } catch (error) {
                 console.log(error);
             }
         }
         dataF()
-    }, [])
+    }, [idUser])
 
 
     const columns = [
         {
-            header: "Estado",
-            accessorKey: "estadoCita",
-        },
-        {
             header: "ID",
-            accessorKey: "idCita",
+            accessorKey: "id",
         },
         {
             header: "Dia",
-            accessorKey: "dia",
+            accessorKey: "date",
         },
         {
             header: "Especialidad",
-            accessorKey: "servicio",
+            accessorKey: "nombreServicio",
         },
         {
             header: "Médico",
@@ -102,14 +108,14 @@ function SimpleTableAppointments() {
                 <div className={div}>
                     <label className="text-lg">ID</label>
                     <input className={inputActive} type="text" name={"id"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'idCita')?.value as string || ''}
-                        onChange={(e) => handleFilterChange('idCita', e.target.value)}/>
+                        value={columnFilters.find(filter => filter.id === 'id')?.value as string || ''}
+                        onChange={(e) => handleFilterChange('id', e.target.value)}/>
                 </div>
                 <div className={div}>   
                     <label className="text-lg">Fecha</label>
                     <input className={inputActive} type="date" name={"fecha"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'dia')?.value as string || ''}
-                        onChange={(e) => handleFilterChange('dia', e.target.value)}/>
+                        value={columnFilters.find(filter => filter.id === 'date')?.value as string || ''}
+                        onChange={(e) => handleFilterChange('date', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Médico</label>

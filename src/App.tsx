@@ -37,6 +37,7 @@ import {
 import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
 import HomePage from "./components/pages/especialista/HomePage";
+import AdminConsultPatients from "./components/pages/admin/AdminConsultPacients";
 
 function App() {
   return (
@@ -122,10 +123,10 @@ function App() {
           <Route path='finanzas' element={<AdminFinances/>}/>
           <Route path='encuesta-satisfaccion' element={<AdminSurvey/>}/>
           <Route path='estadisticas' element={<AdminStats/>}/>
-          <Route path='consultar-paciente' element={<OperatorInformation/>}/>
+          <Route path='consultar-paciente' element={<AdminConsultPatients/>}/>
           <Route path='consultar-medicos' element={<AdminConsultMedic/>}/>
           <Route path='consultar-operador' element={<AdminConsultOperator/>}/>
-          <Route path='ver-citas' element={<AdminViewAppointments/>}/>
+          <Route path='ver-citas/:patient' element={<AdminViewAppointments/>}/>
           <Route path='modificar-usuario' element={<AdminEditUser/>}/>
         </Route>
         {/* RUTAS NO EXISTENTES */}
