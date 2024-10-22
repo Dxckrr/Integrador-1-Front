@@ -38,6 +38,7 @@ import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
 import HomePage from "./components/pages/especialista/HomePage";
 import AdminConsultPatients from "./components/pages/admin/AdminConsultPacients";
+import OperatorViewAppointments from "./components/pages/operator/OperatorViewAppointments";
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
           <Route path="gestionar-pacientes" element={<OperatorPatients />} />
           <Route path='registrar-pacientes' element={<RegisterPacient/>}/>
           <Route path="consultar-pacientes" element={<OperatorInformation />} />
+          <Route path='ver-citas/:patient' element={<OperatorViewAppointments/>}/>
           {/* <Route path='confirm' element={<ConfirmAppointment />} />
           <Route path='cancel' element={<CancelAppointmnet />} />
           <Route path='reschedule' element={<RescheduleAppointment />} /> */}
