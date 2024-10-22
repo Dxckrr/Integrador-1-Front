@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import { get_all_pacients, get_cv_userPDF } from "../../../services/core/users.service";
+import { PencilIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 mr-10 mt-5"
@@ -27,7 +29,13 @@ function SimpleTablePacientInfo() {
         }
         dataF()
     }, [])
-
+    const navigate = useNavigate();
+    const handlePatientSelected = (patient: any) => {
+      console.log(patient);
+      navigate(`/management/ver-citas/${patient.pacientID}`, {
+        state: { patient },
+      });
+    };
 
     const columns = [
         {
@@ -46,7 +54,30 @@ function SimpleTablePacientInfo() {
             header: "Hoja de vida",
             accessorKey: "cv",
             cell: () => (
-                <button onClick={() => get_cv_userPDF("as", 1)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
+                <button onClick={() => get_cv_userPDF("as")} className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
+            )
+        },
+        {
+            header: "Citas",
+            cell: ({ row }) => (
+                <button
+                    onClick={() => handlePatientSelected(row.original)}
+                    className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black flex"
+                >
+                    Ver citas
+                </button>
+            )
+        },
+        {
+            header: "Editar",
+            accessorKey: "",
+            cell: () => (
+                <>
+                    <button className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black flex">
+                        <PencilIcon className="size-5 mr-2"/>
+                        Editar
+                    </button>
+                </>
             )
         },
     ];
@@ -72,6 +103,7 @@ function SimpleTablePacientInfo() {
         onColumnFiltersChange: setColumnFilters,
         onSortingChange: setSorting,
     });
+    
     const handleFilterChange = (id: string, value: string) => {
         setColumnFilters((prevFilters) => {
             const existingFilterIndex = prevFilters.findIndex(filter => filter.id === id);
@@ -92,19 +124,19 @@ function SimpleTablePacientInfo() {
                 <div className={div}>
                     <label className="text-lg">Documento</label>
                     <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'pacientID')?.value}
+                        value={columnFilters.find(filter => filter.id === 'pacientID')?.value as string || ''}
                         onChange={(e) => handleFilterChange('pacientID', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Nombre</label>
                     <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'name')?.value}
+                        value={columnFilters.find(filter => filter.id === 'name')?.value as string || ''}
                         onChange={(e) => handleFilterChange('name', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Apellidos</label>
                     <input className={inputActive} type="text" name={"Apellidos"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'lastname')?.value}
+                        value={columnFilters.find(filter => filter.id === 'lastname')?.value as string || ''}
                         onChange={(e) => handleFilterChange('lastname', e.target.value)}/>
                 </div>
             </div>

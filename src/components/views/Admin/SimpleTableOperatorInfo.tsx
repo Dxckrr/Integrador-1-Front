@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { get_all_doctors, get_cv_userPDF } from "../../../services/core/users.service";
 import { services } from "../../../utils/data/services";
+import { PencilIcon } from "@heroicons/react/24/solid";
 
 const inputActive = "border-gray-300 bg-white border rounded-lg h-10 p-1 pl-2 text-xl font-light w-full"
 const div = "flex-col w-1/3 mr-10 mt-5"
@@ -55,6 +56,17 @@ function SimpleTableOperatorInfo() {
                 <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
             )
         },
+        {
+            header: "Editar",
+            cell: () => (
+                <>
+                    <button className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black flex">
+                        <PencilIcon className="size-5 mr-2"/>
+                        Editar
+                    </button>
+                </>
+            )
+        },
     ];
     
     const [sorting, setSorting] = useState<SortingState>([]);
@@ -98,19 +110,19 @@ function SimpleTableOperatorInfo() {
                 <div className={div}>
                     <label className="text-lg">Documento</label>
                     <input className={inputActive} type="text" name={"Documento"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'CC')?.value}
+                        value={columnFilters.find(filter => filter.id === 'CC')?.value as string || ''}
                         onChange={(e) => handleFilterChange('CC', e.target.value)}/>
                 </div>
                 <div className={div}>   
                     <label className="text-lg">Nombre</label>
                     <input className={inputActive} type="text" name={"Nombres"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value}
+                        value={columnFilters.find(filter => filter.id === 'nombreUsuario')?.value as string || ''}
                         onChange={(e) => handleFilterChange('nombreUsuario', e.target.value)}/>
                 </div>
                 <div className={div}>
                     <label className="text-lg">Apellido</label>
                     <input className={inputActive} type="text" name={"Apellidos"} placeholder="Escribir..."
-                        value={columnFilters.find(filter => filter.id === 'apellidoUsuario')?.value}
+                        value={columnFilters.find(filter => filter.id === 'apellidoUsuario')?.value as string || ''}
                         onChange={(e) => handleFilterChange('apellidoUsuario', e.target.value)}/>
                 </div>
             </div>

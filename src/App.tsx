@@ -4,6 +4,7 @@ import AboutUs from "./components/pages/main/AboutUs";
 import Appointments from "./components/pages/main/Appointment";
 import Services from "./components/pages/main/Services";
 import Schedule_Appointment from "./components/pages/user/schedule/Schedule_Appointment";
+import Register from "./components/pages/main/Register";
 
 import OperatorManagement from "./components/pages/operator/OperatorManagement";
 import OperatorSchedule from "./components/pages/operator/OperatorSchedule";
@@ -23,9 +24,12 @@ import AdminSurvey from "./components/pages/admin/AdminSurvey";
 import AdminStats from "./components/pages/admin/AdminStats";
 import AdminConsultMedic from "./components/pages/admin/AdminConsultMedic";
 import AdminConsultOperator from "./components/pages/admin/AdminConsultOperator";
+import AdminViewAppointments from "./components/pages/admin/AdminViewAppointments";
+import AdminEditUser from "./components/pages/admin/AdminEditUser";
 import HealthCheck from "./components/pages/HealthCheck";
 import ReSchedule_Appointment from "./components/pages/user/re-schedule/ReSchedule_Appointment";
 import Cancel_Appointment from "./components/pages/user/cancel/Cancel_Appointment";
+
 import {
   DetallesPaciente,
   CrearOrdenMedica,
@@ -33,9 +37,14 @@ import {
 } from "./components/views/especialista";
 import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
-import EncuestaSatisfaccion from "./components/pages/EncuestaSatisfaccion";
 import HomePage from "./components/pages/especialista/HomePage";
-import AdminEditMedic from "./components/pages/admin/AdminEditMedic";
+import AdminEditMedic from "./components/pages/admin/AdminEditUser";
+import AdminConsultPatients from "./components/pages/admin/AdminConsultPacients";
+import OperatorViewAppointments from "./components/pages/operator/OperatorViewAppointments";
+import ProtectedRouteUser from "./routes/ProtectedRouteUser";
+import ProtectedRouteOperator from "./routes/ProtectedRouteOperator";
+import ProtectedRouteDoctor from "./routes/ProtectedRouteDoctor";
+import ProtectedRouteAdmin from "./routes/ProtectedRouteAdmin";
 import Payment from "./components/pages/payment/Pasalera1-tsx/Pasarela1-tsx/Pasarela1";
 import Payment2 from "./components/pages/payment2/Pasarela2-tsx/Pasarela2";
 import Payment3 from "./components/pages/payment3/Pasarela3";
@@ -47,46 +56,58 @@ function App() {
 
         {/* MAIN ROUTE '/' */}
         <Route index element={<Dashboard />} />
+
         {/* USUARIO */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/nosotros" element={<AboutUs />} />
         <Route path="/servicios" element={<Services />} />
-        <Route path="/citas" element={<Appointments />}>
-          <Route path="agendar" element={<Schedule_Appointment />} />
-          <Route path="reagendar" element={<ReSchedule_Appointment />} />
-          <Route path="cancelar" element={<Cancel_Appointment />} />
+
+        {/* PROTECTED USER VIEW -> SCHEDULE */}
+
+        <Route element={<ProtectedRouteUser />}>
+          <Route path="/citas" element={<Appointments />}>
+            <Route path="agendar" element={<Schedule_Appointment />} />
+            <Route path="reagendar" element={<ReSchedule_Appointment />} />
+            <Route path="cancelar" element={<Cancel_Appointment />} />
+          </Route>
         </Route>
+
+
+        <Route path="/registrar" element={<Register />} />
+
+
         {/* OPERADOR */}
-        AQUI IRA LA RUTA PROTEGIDA DE OPERADOR
-        {/* <Route path='/operator' element={<Dashboard />}>      */}
-        <Route path="/management/" element={<OperatorManagement />}>
-          <Route path="agendamiento" element={<OperatorSchedule />} />
-          <Route
-            path="re-agendamiento/"
-            element={<OperatorManageReschedule />}
-          />
-          <Route
-            path="re-agendamiento/cita/:id"
-            element={<OperatorReschedule />}
-          />
-          <Route path="cancelacion" element={<OperatorCancelation />} />
-          <Route path="autorizaciones" element={<OperatorAuthorizations />} />
-          <Route path="urgencias" element={<OperatorEmergencies />} />
-          <Route path="gestionar-pacientes" element={<OperatorPatients />} />
-          <Route path='registrar-pacientes' element={<RegisterPacient/>}/>
-          <Route path="consultar-pacientes" element={<OperatorInformation />} />
-          {/* <Route path='confirm' element={<ConfirmAppointment />} />
-          <Route path='cancel' element={<CancelAppointmnet />} />
-          <Route path='reschedule' element={<RescheduleAppointment />} /> */}
-          {/* <Route path='addUser' element={<RegisterUsers />} /> */}
+        <Route element={<ProtectedRouteOperator />}>
+          <Route path="/management/" element={<OperatorManagement />}>
+            <Route path="agendamiento" element={<OperatorSchedule />} />
+            <Route
+              path="re-agendamiento/"
+              element={<OperatorManageReschedule />}
+            />
+            <Route
+              path="re-agendamiento/cita/:id"
+              element={<OperatorReschedule />}
+            />
+            <Route path="cancelacion" element={<OperatorCancelation />} />
+            <Route path="autorizaciones" element={<OperatorAuthorizations />} />
+            <Route path="urgencias" element={<OperatorEmergencies />} />
+            <Route path="gestionar-pacientes" element={<OperatorPatients />} />
+            <Route path="registrar-pacientes" element={<RegisterPacient />} />
+            <Route
+              path="consultar-pacientes"
+              element={<OperatorInformation />}
+            />
+            <Route
+              path="ver-citas/:patient"
+              element={<OperatorViewAppointments />}
+            />
+          </Route>
         </Route>
+
+
         {/* MEDICO */}
-        {/* AQUI IRA LA RUTA PROTEGIDA DE MEDICO
-        <Route path='/medic' element={<Dashboard />}>     
-          <Route path='/sth/' element={<Dashboard />}>
-        </Route>
-         */}
-        <Route
+        <Route element={<ProtectedRouteDoctor />}>
+           <Route
           path="/especialista/*"
           element={
             <EspecialistaLayout>
@@ -111,30 +132,37 @@ function App() {
             </EspecialistaLayout>
           }
         />
-        <Route
-          path="/encuesta-satisfaccion"
-          element={<EncuestaSatisfaccion />}
-        />
+        </Route>
+
+        {/* encuesta-satisfaccion => The form will be shown as a MODAL */}
+
         {/* ADMINISTRADOR */}
-        AQUI IRA LA RUTA PROTEGIDA DE ADMIN
-        <Route path='/admin/' element={<AdminManagement/>}>
-          <Route path='registrar-paciente' element={<RegisterPacient/>}/>
-          <Route path='registrar-operador' element={<RegisterOperator/>}/>
-          <Route path='registrar-medico' element={<RegisterMedic/>}/>
-          <Route path='finanzas' element={<AdminFinances/>}/>
-          <Route path='encuesta-satisfaccion' element={<AdminSurvey/>}/>
-          <Route path='estadisticas' element={<AdminStats/>}/>
-          <Route path='consultar-paciente' element={<OperatorInformation/>}/>
-          <Route path='consultar-medicos' element={<AdminConsultMedic/>}/>
-          <Route path='consultar-operador' element={<AdminConsultOperator/>}/>
-          <Route path='editar-medico' element={<AdminEditMedic/>}/>
+        <Route element={<ProtectedRouteAdmin />}>
+          <Route path="/admin/" element={<AdminManagement />}>
+            <Route path="registrar-paciente" element={<RegisterPacient />} />
+            <Route path="registrar-operador" element={<RegisterOperator />} />
+            <Route path="registrar-medico" element={<RegisterMedic />} />
+            <Route path="finanzas" element={<AdminFinances />} />
+            <Route path="encuesta-satisfaccion" element={<AdminSurvey />} />
+            <Route path="estadisticas" element={<AdminStats />} />
+            <Route path="consultar-paciente" element={<AdminConsultPatients />} />
+            <Route path="consultar-medicos" element={<AdminConsultMedic />} />
+            <Route path="consultar-operador" element={<AdminConsultOperator />} />
+            <Route
+              path="ver-citas/:patient"
+              element={<AdminViewAppointments />}
+            />
+            <Route path="modificar-usuario" element={<AdminEditUser />} />
+          </Route>
         </Route>
         {/* Payment  */}
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment2" element={<Payment2 paymentNumber={""} holderName={""} identification={""} bank={""} totalPayment={""} />} />
         <Route path="/payment3" element={<Payment3 />} />
         {/* RUTAS NO EXISTENTES */}
+
         {/* <Route path="*" element={<NotFound />} /> */}
+        
         {/* HealthCheck */}
         <Route path="/health" element={<HealthCheck />} />
       </Routes>
