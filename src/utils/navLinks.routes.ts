@@ -24,6 +24,7 @@ export const operatorNavigation = [
     { name: 'Gestionar pacientes', href: '/management/gestionar-pacientes'},
     { name: 'Registrar pacientes', href: '/management/registrar-pacientes'},
     { name: 'Consultar información', href: '/management/consultar-pacientes'},
+    { name: 'Modificar pacientes', href: '/management/modificar-pacientes'},
 ]
 export const medicNavigation = [
     { name: 'Agenda', href: '/medico/agenda' },

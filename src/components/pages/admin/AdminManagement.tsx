@@ -68,7 +68,7 @@ export default ManagementPanel
 
 const quickAccessItems = [
     { title: "Ver pacientes", description: "Consulte la información de los pacientes de la IPS.", link:"/admin/consultar-paciente" },
-    { title: "Modificar usuarios", description: "Modifique la información de los pacientes y empleados.", link:"/admin/modificar-paciente" },
+    { title: "Modificar usuarios", description: "Modifique la información de los pacientes y empleados.", link:"/admin/modificar-usuario" },
     { title: "Registrar médicos", description: "Añada nuevos especialistas al sistema.", link:"/admin/registrar-medico" },
     { title: "Encuesta de Satisfacción", description: "Analice el feedback de los pacientes y el personal", link:"/admin/encuesta-satisfaccion" },
     { title: "Finanzas y Facturación", description: "Gestione aspectos financieros y facturación.", link:"/admin/finanzas" },
