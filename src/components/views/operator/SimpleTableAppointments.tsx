@@ -62,7 +62,7 @@ function SimpleTableAppointments({ idUser }: SimpleTableAppointmentsProps) {
             header: "Historia clinica",
             accessorKey: "historiaClinica",
             cell: () => (
-                <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver historia</button>
+                <button onClick={() => get_cv_userPDF("a")} className="group-hover:border-white border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver historia</button>
             )
         },
     ];

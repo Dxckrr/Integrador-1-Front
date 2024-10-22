@@ -58,7 +58,7 @@ function SimpleTableMedicInfo() {
             accessorKey: "cv",
             cell: () => (
                 <>
-                    <button onClick={() => get_cv_userPDF("a", 3)} className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
+                    <button onClick={() => get_cv_userPDF("a")} className="group-hover:border-white transform transition-transform duration-300 hover:scale-105 border-black border rounded-full px-3 py-1 shadow-customButton hover:bg-white hover:text-black">Ver hoja de vida</button>
                 </>
             )
         },
