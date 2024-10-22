@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
-import SimpleTableAppointments from "../../views/Admin/SimpleTableAppointments";
+import SimpleTableAppointments from "../../views/operator/SimpleTableAppointments";
 
-const AdminViewAppointments = () => {
+const OperatorViewAppointments = () => {
   const location = useLocation();
   const patient = location.state?.patient;
   if (!patient) {
@@ -32,4 +32,4 @@ const AdminViewAppointments = () => {
   );
 };
 
-export default AdminViewAppointments;
+export default OperatorViewAppointments;

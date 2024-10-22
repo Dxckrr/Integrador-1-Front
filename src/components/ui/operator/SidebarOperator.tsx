@@ -41,10 +41,10 @@ const SideBarOperator = () => {
                 </div>
                 <div>
                     <hr className="border-gray-300 mb-3 mx-5"></hr>
-                    <button className="w-28 px-3 mx-3 hover:bg-gray-200 flex text-lg items-center py-2 mb-6 rounded-xl">
+                    <Link to='/' className="w-5/6 px-3 mx-3 hover:bg-gray-200 flex text-lg items-center py-2 mb-6 rounded-xl">
                         <ArrowLeftStartOnRectangleIcon className="size-6 mr-2"/>
                         Salir
-                    </button>
+                    </Link>
                 </div>
             </nav>
         </div>

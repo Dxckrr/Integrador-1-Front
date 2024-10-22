@@ -24,10 +24,10 @@ function ReScheduleTableUser() {
       try {
         const res = await get_all_appointments_by_id(parseInt(userLogin.CC));
         res.map((item: any) => {
-          const service = services.find(
-            (serviceItem) => serviceItem.id === item.type
-          );
-          item.type = service?.title;
+          // const service = services.find(
+          //   (serviceItem) => serviceItem.id === item.type
+          // );
+          // item.type = service?.title; AHORA TOCARIA HACER UN CAMBIO POR AQUI
           item.id = item.id.toString();
         });
         setData(res);

@@ -27,10 +27,18 @@ export const useLogin = () => {
       const response: User = await signinContext(data);
       console.log(response, " -");
       if (response.idRol === roles.USER) {
-        window.location.reload();
-      } else {
-        // navigate(response.responseModule[1].link);
+        navigate("/citas")
       }
+      if(response.idRol === roles.OPERATOR) {
+        navigate("/management")
+      }
+      if(response.idRol === roles.MEDIC) {
+        navigate("/especialista")
+      }
+      if(response.idRol === roles.ADMIN) {
+        navigate("/admin")
+      }
+
     } catch (e) {
       console.error(e);
       setErrorOnResponse(true);

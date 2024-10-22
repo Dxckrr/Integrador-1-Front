@@ -72,9 +72,32 @@ export async function get_all_doctors(role : number) {
     }
 }
 
-export async function get_cv_userPDF(cc : String, idRol : number) {
+export async function get_cv_userPDF(cc : String) {
     try {
-        const response = await fetch(`${host}users/getCV/${cc}/${idRol}`, {
+        const response = await fetch(`${host}users/getCVUser/${cc}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error('Error al generar PDF');
+        }
+
+        const pdfBlob = await response.blob();
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+
+        return pdfUrl;
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+}
+export async function get_cv_employeePDF(cc : String) {
+    try {
+        const response = await fetch(`${host}users/getCVEmployee/${cc}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -123,6 +146,53 @@ export async function get_history_clinicPDF(cc : String, idCita : number) {
 export async function get_medic_orderPDF(id : number) {
     try {
         const response = await fetch(`${host}users/getOrder/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error(`Error al generar PDF: ${response.statusText}`);
+        }
+
+        const pdfBlob = await response.blob();
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+
+        return pdfUrl;
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+}
+
+export async function get_pay_stubPDF(id : number) {
+    try {
+        const response = await fetch(`${host}users/getPayStub/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include"
+        })
+        if (!response.ok) {
+            throw new Error(`Error al generar PDF: ${response.statusText}`);
+        }
+
+        const pdfBlob = await response.blob();
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+
+        return pdfUrl;
+    } catch (error) {
+        // Manejar errores de red o de análisis JSON
+        console.error('Error al procesar la solicitud:', error);
+    }
+}
+export async function get_billPDF(id : number) {
+    try {
+        const response = await fetch(`${host}users/getBill/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

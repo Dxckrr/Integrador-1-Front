@@ -1,11 +1,14 @@
 import Slider from "react-slick";
 import "../../../../styles/carousel/aboutUsCarousel.css";
-import img1 from "../../../../assets/img/carousel/aboutUs/yo.jpeg";
-import img2 from "../../../../assets/img/carousel/aboutUs/chris.jpeg";
-import img3 from "../../../../assets/img/carousel/aboutUs/jose.jpeg";
-import img4 from "../../../../assets/img/carousel/aboutUs/carvajal.png";
+import img1 from "../../../../assets/img/carousel/aboutUs/yo.png";
+import img2 from "../../../../assets/img/carousel/aboutUs/alejandro.png";
+import img3 from "../../../../assets/img/carousel/aboutUs/carvajlito.png";
+import img4 from "../../../../assets/img/carousel/aboutUs/sergio.png";
+import img5 from "../../../../assets/img/carousel/aboutUs/fuentes.png";
+import img6 from "../../../../assets/img/carousel/aboutUs/juanagel.png";
+
 import { useState } from "react";
-const images = [img1, img2, img3, img4]; //THIS OBJECT MUST HAVE THE NAME OF EACH DEV <- TODO
+const images = [img1, img2, img3, img4 ,img5 , img6]; //THIS OBJECT MUST HAVE THE NAME OF EACH DEV <- TODO
 function EmptyArrow() {
   return <div></div>;
 }
