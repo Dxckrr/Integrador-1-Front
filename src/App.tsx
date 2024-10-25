@@ -38,17 +38,22 @@ import {
 import { Buscar, Citas } from "./components/pages/especialista";
 import EspecialistaLayout from "./components/Layouts/Especialista_layout";
 import HomePage from "./components/pages/especialista/HomePage";
+import AdminEditMedic from "./components/pages/admin/AdminEditUser";
 import AdminConsultPatients from "./components/pages/admin/AdminConsultPacients";
 import OperatorViewAppointments from "./components/pages/operator/OperatorViewAppointments";
 import ProtectedRouteUser from "./routes/ProtectedRouteUser";
 import ProtectedRouteOperator from "./routes/ProtectedRouteOperator";
 import ProtectedRouteDoctor from "./routes/ProtectedRouteDoctor";
 import ProtectedRouteAdmin from "./routes/ProtectedRouteAdmin";
+import Payment from "./components/pages/payment/Pasalera1-tsx/Pasarela1-tsx/Pasarela1";
+import Payment2 from "./components/pages/payment2/Pasarela2-tsx/Pasarela2";
+import Payment3 from "./components/pages/payment3/Pasarela3";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         {/* MAIN ROUTE '/' */}
         <Route index element={<Dashboard />} />
 
@@ -150,7 +155,11 @@ function App() {
             <Route path="modificar-usuario" element={<AdminEditUser />} />
           </Route>
         </Route>
-        
+        {/* Payment  */}
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment2" element={<Payment2 />} />
+
+        <Route path="/payment3" element={<Payment3 />} />
         {/* RUTAS NO EXISTENTES */}
 
         {/* <Route path="*" element={<NotFound />} /> */}
