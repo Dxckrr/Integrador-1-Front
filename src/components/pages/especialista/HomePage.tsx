@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   return (
@@ -15,12 +16,13 @@ const HomePage: React.FC = () => {
           "La medicina musculoesquelética es la clave para una vida activa y
           saludable."
         </p>
-        <a
-          href="/especialista/buscar"
+        <Link
+          to="/especialista/buscar"
           className="bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-gray-200 transition duration-300"
         >
-          Comienza a navegar
-        </a>
+          {" "}
+          empezar a navegar{" "}
+        </Link>
       </div>
 
       {/* Corazón que late */}

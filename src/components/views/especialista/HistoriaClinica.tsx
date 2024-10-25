@@ -131,7 +131,7 @@ function HistoriaClinica() {
       // Actualiza la cita con el nuevo idHistoria_Medica
       if (cita) {
         const actualizarCitaResponse = await fetch(
-          `http://localhost:3000/api/appointments/${cita.idCita}`,
+          `http://localhost:3000/api/appointments/update/${cita.idCita}`,
           {
             method: "PUT",
             headers: {
@@ -268,8 +268,6 @@ function HistoriaClinica() {
               onChange={(e) => setPulso(e.target.value)}
               className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-1/3 py-2 px-3"
             />
-          </div>
-          <div className="flex space-x-4 mt-4">
             <input
               type="text"
               placeholder="Saturación"
@@ -277,19 +275,21 @@ function HistoriaClinica() {
               onChange={(e) => setSaturacion(e.target.value)}
               className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-1/3 py-2 px-3"
             />
+          </div>
+          <div className="flex space-x-4 mt-4">
             <input
               type="number"
               placeholder="Altura (cm)"
-              value={altura}
+              value={altura ?? ""}
               onChange={(e) => setAltura(Number(e.target.value))}
-              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-1/3 py-2 px-3"
+              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-1/2 py-2 px-3"
             />
             <input
               type="number"
               placeholder="Peso (kg)"
-              value={peso}
+              value={peso ?? ""}
               onChange={(e) => setPeso(Number(e.target.value))}
-              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-1/3 py-2 px-3"
+              className="border bg-[#E8EDF2] text-[#4F7594] rounded-xl w-1/2 py-2 px-3"
             />
           </div>
         </div>
