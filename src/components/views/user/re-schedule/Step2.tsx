@@ -1,10 +1,10 @@
 // import { useStepperContext } from "../../../../context/schedule/ScheduleStepperContext";
-import { CalendarIcon, ClockIcon, UserIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon, ClockIcon } from "@heroicons/react/24/outline";
 import HelperText from "../../../ui/user/DatePicker";
 import { useStepperContext } from "../../../../context/re-schedule/ReScheduleStepperContext";
 
 const Step2 = () => {
-  const { register, watch, medics, hours, appointment } = useStepperContext();
+  const { register,hours, appointment } = useStepperContext();
   //   const selectedMedicId = watch("idDocCC") || "";
   // const selectedDate = watch("dia") || "";
   // const selectedHour = watch("hora") || "";

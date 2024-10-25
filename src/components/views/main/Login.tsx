@@ -6,6 +6,7 @@ import usePasswordToggle from "../../../hooks/auth/usePassword";
 import { modalStyles } from "../../../styled-components/auth/loginModal";
 import { useLogin } from "../../../hooks/auth/useLoginForm";
 import Loader from "../../ui/global/Loader";
+import { Link } from "react-router-dom";
 
 const Login = ({ onClose }) => {
   const [modalIsOpen, setIsOpen] = useState<boolean>(true);
@@ -37,7 +38,15 @@ const Login = ({ onClose }) => {
           <div className="flex items-center justify-center w-56 sm:w-64 md:w-72 p-2 mt-2">
             <img src={LOGO_IPS} alt="logo_ips" />
           </div>
-          <h1 className="text-xl flex justify-center">Iniciar Sesión</h1>
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="text-xl mb-2">Iniciar Sesión</h1>
+            <p className="text-xs">
+              ¿No tienes cuenta?
+              <span className="text-blue-500 underline-offset-1 underline ml-1">
+                <Link to="/registrar">Registrate</Link>
+              </span>
+            </p>
+          </div>
         </header>
         <section className="w-full">
           <form onSubmit={onSubmit}>

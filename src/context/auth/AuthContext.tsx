@@ -1,41 +1,47 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import Cookies from "js-cookie";
 import { verifyTokenRequest, signin } from "../../services/auth/auth.service";
-import { UserLogin } from "../../types/auth/UserLogin";
+import { UserLogin, User } from "../../types/auth/UserLogin";
 
-/**
- * Creates the context of the current user
- */
-const AuthContext = createContext();
-/**
- * Export the function to use the context body
- * @returns {Context} Context
- */
-export const useAuth = () => {
+// Define the interface for the AuthContext
+interface AuthContextProps {
+  signinContext: (user: UserLogin) => Promise<User | undefined>;
+  logoutContext: () => Promise<void>;
+  userLogin: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+}
+
+// Create the context with proper typing
+const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+
+// Custom hook to use the AuthContext
+export const useAuth = (): AuthContextProps => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("No AuthContext");
   }
   return context;
 };
-/**
- * Contains the functions of the Context
- * In order to have the user info in the whole app
- * @param {*} param0
- * @returns {Component} AuthContext.Provider that envolves the app
- * */
-export const AuthProvider = ({ children }) => {
-  const [userLogin, setUserLogin] = useState(null);
+
+// Define the AuthProvider props type
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
+// AuthProvider component
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [userLogin, setUserLogin] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const signinContext = async (user : UserLogin) => {
+
+  const signinContext = async (user: UserLogin): Promise<User | undefined> => {
     try {
-      const res = await signin(user);
-      console.log(res.user);
+      const res: User = await signin(user);
       setIsAuthenticated(true);
       setUserLogin(res);
-      console.log("asasd");
-
+      console.log(res)
       return res;
     } catch (err) {
       console.error(err);
@@ -58,13 +64,13 @@ export const AuthProvider = ({ children }) => {
       }
       try {
         const res = await verifyTokenRequest(cookies.token);
-        console.log("-", res);
         if (!res) return setIsAuthenticated(false);
         setIsAuthenticated(true);
-        setLoading(false);
         setUserLogin(res);
-      } catch (error) {
+      } catch (error ) {
+        console.error(error);
         setIsAuthenticated(false);
+      } finally {
         setLoading(false);
       }
     };

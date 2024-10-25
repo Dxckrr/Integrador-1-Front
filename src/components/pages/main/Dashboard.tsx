@@ -4,17 +4,25 @@ import { services } from "../../../utils/data/services.ts";
 import Carousel from "../../ui/main/landing/Carousel.tsx";
 import ScheduleCard from "../../ui/main/landing/ScheduleCard.tsx";
 import PORTRAIT_IMG from "../../../assets/img/others/Main_Image_Landing.png";
+import Chat_Bot from "../../ui/main/Chat_Bot.tsx";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 /**
  * This section contains tha main page
  * @returns {Component} Dashboard
  */
 const Dashboard = () => {
+  const [chatVisible, setChatVisible] = useState(false);
+
+  const toggleChat = () => {
+    setChatVisible(!chatVisible);
+  };
   return (
     <>
       <NavBar />
       {/* 1 SECCIÓN  = LANDING*/}
       <main className="w-full flex flex-col my-16 ">
-        <section className="flex h-2/5 w-full text-white bg-primary-blue">
+        <section className="flex h-2/5 w-full text-white bg-gradient-to-br from-primary-blue to-secondary-blue ">
           <div className="flex flex-col w-full lg:flex-row lg:items-center lg:mx-auto lg:container">
             <article className="flex flex-col items-start px-8 py-6 lg:py-0 lg:mr-20 order-last lg:order-1">
               <div className="mb-4 lg:mb-0">
@@ -81,9 +89,9 @@ const Dashboard = () => {
                 </li>
               ))}
             </ul>
-            <button className="bg-primary-blue text-xl text-white px-6 py-2 rounded-3xl mt-4">
+            <Link to="/servicios" className="bg-primary-blue text-xl text-white px-6 py-2 rounded-3xl mt-4">
               Conocer más
-            </button>
+            </Link>
           </div>
         </section>
       </main>
@@ -126,7 +134,9 @@ const Dashboard = () => {
       </section>
       <section className="flex flex-col items-center justify-center w-full">
         <div className="flex flex-col items-center justify-center mt-16 mb-8">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">Ubicación</h1>
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">
+            Ubicación
+          </h1>
           <h2 className="text-center px-4 sm:text-lg lg:text-xl sm:p-0">
             IPS Sanavit - Centro de medicina musculoesquelética y rehabilitación
           </h2>
@@ -158,7 +168,13 @@ const Dashboard = () => {
           <ScheduleCard days="Sabado" hours="7:00 a.m - 7:00 p.m" />
         </div>
       </section>
-
+      {/* Chat_Bot */}
+      {chatVisible && <Chat_Bot onClose={toggleChat} />}
+      <button
+        onClick={toggleChat}
+        className="fixed bottom-6 right-6 bg-primary-blue text-white px-6 py-2 rounded-3xl shadow-lg">
+        Asistente Virtual
+      </button>
       {/* FOOTER */}
       <Footer />
     </>

@@ -7,6 +7,7 @@ interface UserFormSchedule {
   }
   
   export interface FormDataSchedule extends UserFormSchedule {
+    id?: number;
     dia: Date;
     hora: string;
     estadoCita: boolean;
