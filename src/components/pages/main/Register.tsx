@@ -14,7 +14,7 @@ const Register = () => {
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-  const onSubmit = handleSubmit(async (data: UserLogin) => {
+  const onSubmit = handleSubmit(async (data: User) => {
     if (data.pwdUsuario === confirmPassword) {
       try {
         console.log(data);
