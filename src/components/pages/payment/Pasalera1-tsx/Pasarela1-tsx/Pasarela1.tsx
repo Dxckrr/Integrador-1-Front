@@ -5,7 +5,7 @@ import Footer from '../../../../ui/global/Footer';
 
 const PaymentGateway: React.FC = () => {
     const location = useLocation();
-    const { paymentMethod } = location.state || {}; // Recibes el método de pago desde PaymentOptions
+    const { paymentMethod } = location.state || {}; // Recibe el método de pago desde PaymentOptions
     const [formData, setFormData] = useState({
         holderName: '',
         holderAddress: '',
@@ -27,8 +27,17 @@ const PaymentGateway: React.FC = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Redirigir a la ruta /payment2 con los datos del formulario
-        navigate('/payment2', { state: formData });
+
+        // Redirigir a la ruta /payment2 con los datos que espera Pasarela2
+        navigate('/payment2', { 
+            state: {
+                paymentNumber: 'DRP4613', // Aquí puedes ajustar este valor si es necesario
+                holderName: formData.holderName,
+                identification: formData.identification,
+                bank: 'Bancolombia', // Aquí puedes agregar una opción para que el usuario seleccione el banco si es necesario
+                totalPayment: '820.000$', // Ajusta este valor según corresponda
+            }
+        });
     };
 
     return (
@@ -44,7 +53,7 @@ const PaymentGateway: React.FC = () => {
                     <div className="flex-1 flex justify-center items-center">
                         <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
                             <h2 className="text-center text-blue-600 text-xl mb-6">Pasarela de Pago</h2>
-                            <p>Método de Pago Seleccionado: {paymentMethod}</p> {/* Mostrando el método seleccionado */}
+                            <p>Método de Pago Seleccionado: {paymentMethod}</p>
                             <form id="paymentForm" onSubmit={handleSubmit}>
                                 <div className="flex">
                                     <div className="flex-1 mr-4">

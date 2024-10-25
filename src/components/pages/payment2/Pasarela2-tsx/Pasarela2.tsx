@@ -1,9 +1,17 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+interface LocationState {
+    paymentNumber?: string;
+    holderName?: string;
+    identification?: string;
+    bank?: string;
+    totalPayment?: string;
+}
+
 const Pasarela2: React.FC = () => {
     const location = useLocation();
-    const { paymentNumber, holderName, identification, bank, totalPayment } = location.state || {};
+    const { paymentNumber, holderName, identification, bank, totalPayment } = location.state as LocationState;
 
     return (
         <div className="flex flex-col h-screen">
@@ -37,8 +45,6 @@ const Pasarela2: React.FC = () => {
                 </div>
             </div>
         </div>
-
-        
     );
 };
 
