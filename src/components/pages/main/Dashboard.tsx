@@ -22,7 +22,7 @@ const Dashboard = () => {
       <NavBar />
       {/* 1 SECCIÓN  = LANDING*/}
       <main className="w-full flex flex-col my-16 ">
-        <section className="flex h-2/5 w-full text-white bg-primary-blue">
+        <section className="flex h-2/5 w-full text-white bg-gradient-to-br from-primary-blue to-secondary-blue ">
           <div className="flex flex-col w-full lg:flex-row lg:items-center lg:mx-auto lg:container">
             <article className="flex flex-col items-start px-8 py-6 lg:py-0 lg:mr-20 order-last lg:order-1">
               <div className="mb-4 lg:mb-0">
