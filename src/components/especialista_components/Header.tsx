@@ -1,5 +1,6 @@
 import React from "react";
 import USER_IMAGE from "../../assets/svg/icons/extra/UserBlack.svg";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -16,21 +17,21 @@ const Header: React.FC = () => {
 
       <div className="flex items-center space-x-8">
         <nav className="flex space-x-8">
-          <a className="hover:text-primary duration-300" href="/Especialista">
+          <Link className="hover:text-primary duration-300" to="/Especialista">
             Inicio
-          </a>
-          <a
+          </Link>
+          <Link
             className="hover:text-primary duration-300"
-            href="/Especialista/Buscar"
+            to="/Especialista/Buscar"
           >
             Pacientes
-          </a>
-          <a
+          </Link>
+          <Link
             className="hover:text-primary duration-300"
-            href="/Especialista/citas"
+            to="/Especialista/citas"
           >
             Citas
-          </a>
+          </Link>
         </nav>
 
         <div className="w-12 h-full rounded-full bg-white">

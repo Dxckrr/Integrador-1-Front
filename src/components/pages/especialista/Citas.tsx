@@ -15,7 +15,7 @@ const Citas: React.FC = () => {
   const navigate = useNavigate();
 
   interface Appointment {
-    idCita: number;
+    id: number;
     dia: Date;
     hora: string;
     estadoCita: boolean;
@@ -27,9 +27,9 @@ const Citas: React.FC = () => {
 
   const fetchAppointments = async () => {
     try {
-      const staticDoctorId = 123456789; // Static ID for now
+      const staticDoctorId = "123456789"; // Static ID for now
       const response = await fetch(
-        `http://localhost:3000/api/appointments/user/${staticDoctorId}`
+        `http://localhost:3000/api/appointments/doctor/${staticDoctorId}`
       );
       const data = await response.json();
       setAppointments(data);
@@ -80,9 +80,10 @@ const Citas: React.FC = () => {
   }, [selectedOption, appointments]);
 
   const handleAppointmentClick = (appointment: Appointment) => {
+    console.log("Cita ID:", appointment.id); // Verifica el valor de idCita
     setIsModalOpen(true);
-    navigate(`/especialista/orden-medica/${appointment.idCita}`, {
-      state: { idCita: appointment.idCita },
+    navigate(`/especialista/orden-medica/${appointment.id}`, {
+      state: { idCita: appointment.id },
     });
   };
 
@@ -102,7 +103,7 @@ const Citas: React.FC = () => {
         {filteredAppointments.length > 0 ? (
           filteredAppointments.map((appointment) => (
             <div
-              key={appointment.idCita}
+              key={appointment.id}
               className="bg-white border border-slate-200 rounded-lg p-6 py-4 hover:shadow-md transition duration-200 cursor-pointer"
               onClick={() => handleAppointmentClick(appointment)}
             >
@@ -114,7 +115,9 @@ const Citas: React.FC = () => {
                 />
                 <div className="flex flex-col">
                   <p className="text-lg font-semibold text-slate-800">
-                    {dayjs(appointment.dia).format("D [de] MMMM [a las] HH:mm")}
+                    {dayjs(appointment.hora).format(
+                      "D [de] MMMM [a las] HH:mm"
+                    )}
                   </p>
                   <p
                     className={`text-sm font-medium ${

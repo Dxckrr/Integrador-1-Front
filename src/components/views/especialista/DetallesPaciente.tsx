@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { TabComponent, DetallesComponent } from "../../especialista_components";
 import USER_IMAGE from "../../../assets/svg/icons/extra/UserBlack.svg";
 import { useLocation } from "react-router-dom";
+import {
+  get_history_clinicPDF,
+  get_medic_orderPDF,
+} from "../../../services/core/users.service";
 
 const DetallesPaciente: React.FC = () => {
   const location = useLocation();
@@ -9,6 +13,7 @@ const DetallesPaciente: React.FC = () => {
 
   const [selectedOption, setSelectedOption] = useState("Información paciente");
   const [ordenesMedicas, setOrdenesMedicas] = useState<any[]>([]);
+  const [citas, setCitas] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
   const specialist = {
@@ -19,6 +24,10 @@ const DetallesPaciente: React.FC = () => {
   const renderEstadoUsuario = (estado: number) => {
     return estado === 1 ? "Activo" : "Inactivo";
   };
+
+  const citasOrdenadas = citas.sort((a, b) => {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+  });
 
   const medicalHistoryDetails = [
     {
@@ -54,23 +63,42 @@ const DetallesPaciente: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (selectedOption === "Ordenes") {
-      const fetchOrdenesMedicas = async () => {
-        setLoading(true);
-        try {
-          const response = await fetch(
-            `http://localhost:3000/api/orders/ordenes-medicas-paciente/${paciente.CC}`
-          );
-          const data = await response.json();
-          setOrdenesMedicas(data);
-        } catch (error) {
-          console.error("Error fetching medical orders:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
+    const fetchOrdenesMedicas = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/orders/ordenes-medicas-paciente/${paciente.CC}`
+        );
+        const data = await response.json();
+        setOrdenesMedicas(data);
+      } catch (error) {
+        console.error("Error fetching medical orders:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    const fetchCitas = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/appointments/user/${paciente.CC}`
+        );
+        const data = await response.json();
+        setCitas(data);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (selectedOption === "Ordenes") {
       fetchOrdenesMedicas();
+    }
+
+    if (selectedOption === "Historial de citas") {
+      fetchCitas();
     }
   }, [selectedOption, paciente.CC]);
 
@@ -118,11 +146,59 @@ const DetallesPaciente: React.FC = () => {
                     <strong>Fecha:</strong>{" "}
                     {new Date(orden.fecha).toLocaleString()}
                   </p>
+                  <button
+                    className="mt-4 px-4 py-2 bg-[#4F7594] text-white rounded hover:bg-[#39546b]"
+                    onClick={() => get_medic_orderPDF(1)}
+                  >
+                    Generar PDF
+                  </button>
                 </div>
               ))
             ) : (
               <p className="text-center text-gray-500">
                 No hay órdenes médicas disponibles.
+              </p>
+            )}
+          </div>
+        );
+      case "Historial de citas":
+        return (
+          <div>
+            {loading ? (
+              <p className="text-center text-indigo-600">Cargando citas...</p>
+            ) : citasOrdenadas.length > 0 ? (
+              <div className="grid grid-cols-1 gap-6">
+                {citasOrdenadas.map((cita) => (
+                  <div
+                    key={cita.id}
+                    className="border border-gray-300 bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <h4 className="text-xl font-semibold mb-2">
+                      Fecha y Hora:{" "}
+                      <span className="font-normal text-gray-700">
+                        {new Date(cita.date).toLocaleDateString()} {cita.time}
+                      </span>
+                    </h4>
+                    <p className="mb-2 text-gray-600">
+                      <strong>Nombre del Médico:</strong> {cita.medicName}
+                    </p>
+                    <p className="mb-2 text-gray-600">
+                      <strong>Nombre del Paciente:</strong> {cita.pacientName}
+                    </p>
+                    <button
+                      className="mt-4 px-4 py-2 bg-[#4F7594] text-white rounded hover:bg-[#39546b]"
+                      onClick={() =>
+                        get_history_clinicPDF(paciente.CC, cita.id)
+                      }
+                    >
+                      Generar PDF
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">
+                No hay citas disponibles.
               </p>
             )}
           </div>
@@ -135,7 +211,6 @@ const DetallesPaciente: React.FC = () => {
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       <div className="flex flex-grow">
-        {/* Columna izquierda para la información del especialista */}
         <div className="w-[28%] bg-white p-6 flex flex-col justify-between shadow-md h-full rounded-lg">
           <div className="flex items-center mb-6">
             <img
@@ -144,7 +219,7 @@ const DetallesPaciente: React.FC = () => {
               className="w-24 h-24 rounded-full border-2 border-indigo-500 p-1 mr-4"
             />
             <div>
-              <h3 className="text-lg font-medium text-indigo-600">
+              <h3 className="text-lg font-medium text-[#4F7594]">
                 Especialista
               </h3>
               <p className="text-gray-600">{specialist.specialty}</p>
@@ -153,9 +228,7 @@ const DetallesPaciente: React.FC = () => {
           </div>
         </div>
 
-        {/* Columna principal para la información del paciente */}
         <div className="w-[72%] bg-white p-4 flex flex-col h-full rounded-lg shadow-md">
-          {/* Información del paciente en la parte superior */}
           <div className="text-center mt-4">
             <div className="flex flex-col items-center">
               <img
@@ -163,27 +236,23 @@ const DetallesPaciente: React.FC = () => {
                 alt="Paciente"
                 className="w-28 h-28 rounded-full border-2 border-indigo-500 mb-2"
               />
-              <p className="text-xl font-medium text-indigo-600">{`${paciente.nombreUsuario} ${paciente.apellidoUsuario}`}</p>
-              <p className="text-gray-600">
-                {paciente.genero || "Género desconocido"}
-              </p>
+              <p className="text-xl font-medium text-[#4F7594]">{`${paciente.nombreUsuario} ${paciente.apellidoUsuario}`}</p>
+              <p className="text-gray-600">{paciente.genero || "Género"}</p>
             </div>
           </div>
 
-          {/* Componente de pestañas */}
           <TabComponent
-            options={["Información paciente", "Ordenes"]}
+            options={["Información paciente", "Ordenes", "Historial de citas"]}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
           />
 
-          {/* Detalles según la pestaña seleccionada */}
           <div className="pt-4 flex-grow overflow-y-auto">
             {renderDetails()}
           </div>
         </div>
       </div>
-      <div className="bg-white pb-10"></div>
+      <div className="mt-4 text-gray-500 text-center">Detalles Paciente</div>
     </div>
   );
 };
